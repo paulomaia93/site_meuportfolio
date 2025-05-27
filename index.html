@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Profissional | Tecnologia & Análise de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos personalizados que não são cobertos pelo Tailwind */
+        body {
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #A7A8F8, #6C63FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(167, 168, 248, 0.2);
+        }
+        
+        /* Animação para os cards de projeto */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+        
+        /* Delay para animação sequencial dos cards */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .animate-imageFloat {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Efeito de transição suave no fundo */
+        #modal-habilidade {
+            backdrop-filter: blur(0px);
+            transition: backdrop-filter 0.5s ease, background-color 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Ativo (mostrado) */
+        #modal-habilidade.active {
+            backdrop-filter: blur(8px);
+            background-color: rgba(0, 0, 0, 0.7);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Animação do conteúdo interno */
+        #modal-habilidade .modal-content {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #modal-habilidade.active .modal-content {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #modal-habilidade.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #modal-topicos li::marker {
+            color: #6C63FF;
+        }
+
+    </style>
+</head>
+<body class="bg-[#080A21] text-[#F6F9DC] font-sans">
+    <!-- Barra de navegação -->
+    <nav class="fixed w-full bg-[#080A21]/90 backdrop-blur-sm z-50 shadow-lg">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo/Nome -->
+                <a href="#home" class="text-2xl font-bold gradient-text">Portfólio Profissional</a>
+                
+                <!-- Menu para desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-[#A7A8F8] transition">Home</a>
+                    <a href="#sobre" class="hover:text-[#A7A8F8] transition">Sobre</a>
+                    <a href="#projetos" class="hover:text-[#A7A8F8] transition">Projetos</a>
+                    <a href="#contato" class="hover:text-[#A7A8F8] transition">Contato</a>
+                </div>
+                
+                <!-- Botão mobile menu -->
+                <button id="mobile-menu-button" class="md:hidden text-[#A7A8F8]">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Menu mobile (oculto por padrão) -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 pb-3">
+                <a href="#home" class="block hover:text-[#A7A8F8] transition">Home</a>
+                <a href="#sobre" class="block hover:text-[#A7A8F8] transition">Sobre</a>
+                <a href="#projetos" class="block hover:text-[#A7A8F8] transition">Projetos</a>
+                <a href="#contato" class="block hover:text-[#A7A8F8] transition">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção Home -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-5 z-0" style="background-image: url('https://media.licdn.com/dms/image/v2/D4D12AQEu7Cs4ishifQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1701531603930?e=2147483647&v=beta&t=QVwTOucrdQjpX3-f5LrCaOusOawkK43bsoRjhzGdej4');"></div>
+        <div class="container mx-auto px-6 py-12 md:py-24 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Foto e redes sociais -->
+                <div class="md:w-1/3 mb-12 md:mb-0 flex flex-col items-center">
+                    <div class="w-96 h-96 rounded-xl overflow-hidden border-4 border-[#A7A8F8] shadow-lg mb-6 animate-imageFloat">
+                        <!-- Placeholder para foto - substitua pelo seu caminho de imagem -->
+                        <img src="https://media.licdn.com/dms/image/v2/D4D03AQGYobW4EW3VgQ/profile-displayphoto-shrink_800_800/B4DZYfHOHdHIAk-/0/1744278709793?e=1751500800&v=beta&t=G-7jTClynmXq-gYowfRzSfRYiBUDpSxZYWp5mMQPnm0" alt="Minha Foto" class="w-full h-full object-cover">
+                    </div>
+                    
+                    <!-- Redes sociais -->
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/5585992590695" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/pauloestevao.maia" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Texto de apresentação -->
+                <div class="md:w-2/3 md:pl-12">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                        Olá, eu sou o <span class="gradient-text">Paulo Estevão</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl text-[#A7A8F8] mb-8">
+                        Bem-vindo ao meu portfólio!
+                    </h2>
+                    <p class="text-lg mb-8 leading-relaxed">
+                        É uma satisfação ter você aqui! Fico feliz pelo seu interesse em conhecer mais sobre meu lado profissional e tudo o que tenho a oferecer. Neste espaço, compartilho minha trajetória, principais competências e projetos desenvolvidos ao longo da minha jornada. Você também encontrará meu currículo, experiências e habilidades. Sinta-se à vontade para explorar!
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projetos" class="px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-lg font-medium hover:bg-[#6C63FF] transition">
+                            Ver Projetos
+                        </a>
+                        <a href="#contato" class="px-6 py-3 border-2 border-[#A7A8F8] text-[#A7A8F8] rounded-lg font-medium hover:bg-[#A7A8F8]/10 transition">
+                            Contato
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="sobre" class="py-20 bg-[#0D0F2B]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-12 text-center">
+                Sobre Mim
+            </h2>
+            
+            <!-- Texto completo -->
+            <div class="max-w-4xl mx-auto mb-16">
+                <p class="text-lg mb-6 leading-relaxed">
+                    Sou um profissional em constante evolução, movido pela paixão por tecnologia, inovação e melhoria contínua. Minha trajetória começou em operações e logística, onde aprendi a valorizar o trabalho duro. Ao longo dos anos, foi evoluindo e, hoje, atuo como analista de dados.
+                </p>
+                <p class="text-lg mb-6 leading-relaxed">
+                    Me considero um autodidata e curioso, sempre em busca de novos conhecimentos que me permitam aprimorar minhas habilidades e expandir minha atuação. Embora a análise de dados seja meu forte, meu interesse vai além: sou fascinado por gestão da qualidade, ciência, programação e inteligência artificial. Acredito no poder da tecnologia para impulsionar mudanças, resolver problemas complexos e criar novas oportunidades.
+                </p>
+                <p class="text-lg mb-6 leading-relaxed">
+                    Para mim, crescimento profissional não é apenas uma meta, mas um processo contínuo. Com disciplina, estratégia e paixão pelo que faço, sigo me aperfeiçoando para impactar positivamente os projetos em que atuo e contribuir para um futuro mais inovador e eficiente.
+                </p>
+            </div>
+            
+            <!-- Abas para currículo -->
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-wrap border-b border-[#A7A8F8]/30 mb-8">
+                    <button class="tab-button active px-6 py-3 font-medium text-[#A7A8F8]" data-tab="habilidades">
+                        Habilidades
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="experiencia">
+                        Experiência
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="educacao">
+                        Educação
+                    </button>
+                    <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="certificacoes">
+                        Certificados e Reconhecimentos
+                    </button>
+                </div>
+                
+                <!-- Conteúdo das abas -->
+                <div id="habilidades" class="tab-content active">
+                    <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Habilidades Técnicas</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                        <!-- Habilidade1 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="analise-dados">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-database text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Análise de Dados</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Lidar com dados sempre fez parte do meu dia a dia. Com o tempo, essa habilidade natural se fortaleceu em ambientes profissionais. Isso aprimorou minha capacidade de resolver.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+                    
+                        <!-- Habilidade2 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="inteligencia-artificial">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-brain text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Inteligência Artificial</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Desenvolver competências em IAs tem sido um grande diferencial para mim. Ela funciona como um verdadeiro assistente pessoal, permitindo aumentar minha produtividade.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+                        
+                        <!-- Habilidade3 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="ferramentas">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-gear text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Ferramentas</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Posso afirmar com convicção que aprender ferramentas foi um divisor de águas para mim. Essa é uma habilidade técnica indispensável no mercado e que ajuda a abrir portas.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+
+                        <!-- Habilidade4 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="programacao-logica">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-code text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Programação e Lógica</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Criar scripts e aplicações que otimizam processos já faz parte da minha rotina. Essa habilidade é muito importante para quem busca se destacar como um profissional completo.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+
+                        <!-- Habilidade5 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="qualidade-processos">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-medal text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Qualidade e Processos</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Adquiri experiência em metodologias e ferramentas voltadas para a melhoria contínua e compreendo, na prática, a importância da qualidade nos processos.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+
+                        <!-- Habilidade6 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="gestao-projetos">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-bullseye text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Gestão de Projetos</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Na resolução de problemas, é comum a implementação de projetos. Para que essas soluções sejam eficazes, é fundamental que sejam bem planejadas e gerenciadas.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+
+                        <!-- Habilidade7 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="planejamento">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-calendar text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Planejamento</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Tive a oportunidade de elaborar planos para alinhar equipes e processos, além de realizar a gestão de riscos, garantindo que os procedimentos estejam em conformidade.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+
+                        <!-- Habilidade8 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="aprendizagem-rapida">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-lightbulb text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Aprendizagem Rápida</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Me considero autodidata e tenho facilidade em absorver conhecimento de forma rápida, o que me torna apto a aprender coisas novas e me adaptar com agilidade a diferentes contextos.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+
+                        <!-- Habilidade9 com modal -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="didatica-ensino">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-graduation-cap text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <h4 class="text-[16px] font-bold">Didática e Ensino</h4>
+                            </div>
+                            <p class="text-[#F6F9DC]/80">
+                                Tenho grande prazer em ensinar e compartilhar o conhecimento que adquiri. Sinto-me realizado ao compreender as dores das pessoas e contribuir ativamente para o seu desenvolvimento.
+                                </p>
+                                Clique aqui para saber mais!
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <div id="experiencia" class="tab-content hidden">
+                    <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Experiência Profissional</h3>
+                    
+                    <!-- Linha do tempo -->
+                    <div class="relative">
+                        <!-- Linha vertical -->
+                        <div class="absolute left-4 h-full w-0.5 bg-[#A7A8F8]/30 top-0"></div>
+                        
+                        <!-- Item 1 -->
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Analista de Dados</h4>
+                                <p class="text-[#A7A8F8] mb-2">UpValue Solutions | 9 Meses</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Coletei, organizei e analisei dados, garantindo sua qualidade e integridade. Realizo consultas, manipulação a bancos de dados, automações, integrações e consumo de APIs. Desenvolvi relatórios e dashboards interativos, criando soluções e gerando insights que apoiem a tomada de decisão. Atuei de forma colaborativa para a melhoria do processos e solução de problemas, sempre focado em eficiência e inovação.</li>
+                                    <li>Ferramentas: Power BI, Excel, Power Automate, Python, APIs, SQL, Apache Hoop, Azure, ChatGPT, entre outras.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Analista de Logística</h4>
+                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | 1 Ano E 8 Meses</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Criei e mantive estruturas de dados. Montei e apresentei indicadores para alta gestão. Criei e revisei documentos para padronização de processos conforme normas ISO 9001, 14001 e 45001. Participei da implementação de melhorias utilizando metodologias Lean e Kaisen e ferramentas da Qualidade. Planejei e controlei o fluxos materiais e atuei em processos de almoxarifado.</li>
+                                    <li>Ferramentas: Power BI, Excel, Power Apps, Power Point, Word, SAP, Bizagi, Visio, Sistemas de Gestão, entre outras</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 3 -->
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Assistente Administrativo</h4>
+                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | 11 Meses</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Desenvolvi e atualizei painéis e controles. Prestei assistência nos processos logísticos de Pás Eólicas, incluindo armazenagem, movimentação e expedição.</li>
+                                    <li>Ferramentas: Power BI, Excel, Power Apps, Power Point, Word, SAP, Sistemas de Gestão, entre outras.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 4 -->
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Instrutor Independente</h4>
+                                <p class="text-[#A7A8F8] mb-2">EX DPT | 1 Ano e 1 Mês</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Ministrei aulas e turmas de Excel e Power BI, além de desenvolver projetos personalizados em Excel para atender demandas de empresas e indivíduos.</li>
+                                    <li>Ferramentas: Power BI e Excel.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 5 -->
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Auxiliar Administrativo</h4>
+                                <p class="text-[#A7A8F8] mb-2">Tomé Equipamentos e Transportes | 1 Ano e 9 Meses</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Realizei atividades administrativas, analisando dados e operando sistemas para cadastros, autorizações e emissão de documentos fiscais. Também desenvolvi projetos avançados para automatização de processos e preparei relatórios para os clientes.</li>
+                                    <li>Ferramentas: Excel, Word e Sistemas de Gestão.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 6 -->
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Conferente</h4>
+                                <p class="text-[#A7A8F8] mb-2">Apm Terminals | Nove Meses</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Executei atividades logísticas, desde o recebimento e armazenagem até o descarregamento e embarque de cargas. Além disso, fui responsável pela atualização de documentos e sistemas com as informações das operações realizadas.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Item 7 -->
+                        <div class="relative pl-12">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Assistente Operacional</h4>
+                                <p class="text-[#A7A8F8] mb-2">Tecer Terminais Portuários Ceará | 1 Ano e 6 Meses</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Executei atividades logísticas, incluindo recebimento, armazenagem, conferência, separação e amarração cargas. Mantive documentos e sistemas atualizados com as informações das operações realizadas.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="educacao" class="tab-content hidden">
+                    <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Formação Acadêmica</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Formação 1 -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-graduation-cap text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-[17px] font-bold">Análise e Desenvolvimento de Sistemas</h4>
+                                    <p class="text-[#A7A8F8]">Graduação Superior | Tecnólogo</p>
+                                </div>
+                            </div>
+                            <p class="text-[#FFFFFF] mb-3">
+                                Estácio de Sá | Cursando 3° Semestre
+                            </p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Desenvolvimento e manutenção de sistemas, com foco em lógica de programação, estruturas de dados e performance.</li>
+                                    <li>Domínio de bancos de dados, análise de requisitos, arquitetura de software e metodologias ágeis.</li>
+                                    <li>Uso de tecnologias atuais, boas práticas e aplicação de segurança da informação.</li>
+                            </p>
+                        </div>
+                        
+                        <!-- Formação 2 -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
+                                    <i class="fas fa-graduation-cap text-2xl text-[#A7A8F8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-[17px] font-bold">Gestão Portuária</h4>
+                                    <p class="text-[#A7A8F8]">Graduação Superior | Tecnólogo</p>
+                                </div>
+                            </div>
+                            <p class="text-[#FFFFFF] mb-3">
+                                UniAteneu | Concluído em 2017
+                            </p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Planejamento e coordenação de operações portuárias, com foco em eficiência e integração logística.</li>
+                                    <li>Domínio da importação e exportação, normas legais, contratos internacionais e regras portuárias.</li>
+                                    <li>Responsabilidade ambiental, uso de tecnologias na gestão e práticas sustentáveis e seguras.</li>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="certificacoes" class="tab-content hidden">
+                    <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Certificados e Reconhecimentos</h3>
+                    
+                    <div class="space-y-6">                       
+                        <!-- Certificação 1 -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex flex-col md:flex-row md:items-center">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4D2DAQEESzGlT-zB1A/profile-treasury-document-cover-images_480/profile-treasury-document-cover-images_480/0/1738430976362?e=1748728800&v=beta&t=4MU77n6-Lza2qC8ID55IsXuUQz33r_q6mzupVT3sSIo" alt="Certificação" class="rounded-lg">
+                                </div>
+                                <div class="md:w-3/4 md:pl-6">
+                                    <h4 class="text-xl font-bold mb-2">Algoritmos e Lógicas de Programação</h4>
+                                    <p class="text-[#A7A8F8] mb-3">Hashtag Treinamentos | jan de 2025</p>
+                                    <p class="text-[#F6F9DC]/80">
+                                        Conclusão do curso Algoritmos e Lógica de Programação com duração de 2 horas , iniciado no dia 28/12/24 e concluído no dia 31/01/25. Credencial ALGPAU1738346327.
+                                    </p>
+                                    <a href="https://portalhashtag.com/validacao-certificado/1738346329093x270078334260215800" 
+                                    target="_blank" 
+                                    class="inline-block mt-3 text-[#A7A8F8] hover:underline">
+                                    Ver credencial <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Certificação 2 -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex flex-col md:flex-row md:items-center">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4D2DAQHRUtJ0fJj7Hg/profile-treasury-image-shrink_800_800/B4DZcS2fq2GgAc-/0/1748367965489?e=1748977200&v=beta&t=sIe0sQs98fv2z7CQ02NB8sS_vUSAtPt1voQ53t7TfUU"
+                                    alt="Certificação" class="rounded-lg">
+                                </div>
+                                <div class="md:w-3/4 md:pl-6">
+                                    <h4 class="text-xl font-bold mb-2">Green Belt Lean Six Sigma</h4>
+                                    <p class="text-[#A7A8F8] mb-3">Frons Educação | mai de 2025</p>
+                                    <p class="text-[#F6F9DC]/80">
+                                        Conclusão do curso Green Belt Lean Seis Sigma (60h) pela FRONS. Certificado emitido em 27/05/2025, código 14B31626B-13EF92E17-12D18EB09.
+                                    </p>
+                                    <a href="https://frons.com.br/verificacao-certificados/14B31626B-13EF92E17-12D18EB09/" 
+                                    target="_blank" 
+                                    class="inline-block mt-3 text-[#A7A8F8] hover:underline">
+                                    Ver credencial <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificação 3 -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex flex-col md:flex-row md:items-center">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4D2DAQGOvC3xhnCiaQ/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1700553255473?e=1748728800&v=beta&t=zFl2aE1HmBE2cB34zkrgBEtXGOMuYut8Dphpa5OU2dY" alt="Certificação" class="rounded-lg">
+                                </div>
+                                <div class="md:w-3/4 md:pl-6">
+                                    <h4 class="text-xl font-bold mb-2">2ª Semana da Qualidade Aeris</h4>
+                                    <p class="text-[#A7A8F8] mb-3">Departamento da Qualidade | nov de 2023</p>
+                                    <p class="text-[#F6F9DC]/80">
+                                        Reconhecimento na participação e engajamento como auditor interno.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificação 4 -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex flex-col md:flex-row md:items-center">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <img src="https://media.licdn.com/dms/image/v2/D4D2DAQHVzQ4tbOC-9A/profile-treasury-image-shrink_800_800/profile-treasury-image-shrink_800_800/0/1700552630907?e=1748728800&v=beta&t=N2shqF8xDJrRDWcxsXzKLbFPdhbjMCfL3G4gMNXAg4o" alt="Certificação" class="rounded-lg">
+                                </div>
+                                <div class="md:w-3/4 md:pl-6">
+                                    <h4 class="text-xl font-bold mb-2">Programa VISA (Valorizando Ideias e Soluções na Aeris)</h4>
+                                    <p class="text-[#A7A8F8] mb-3">Coordenação VISA | out de 2023</p>
+                                    <p class="text-[#F6F9DC]/80">
+                                        Reconhecimento como um solucionador de problemas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Projetos -->
+    <section id="projetos" class="py-20">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-12 text-center">
+                Meus Projetos
+            </h2>
+            
+            <!-- Filtros por categoria -->
+            <div class="flex flex-wrap justify-center mb-12 gap-4">
+                <button class="project-filter active px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-full font-medium" data-filter="all">
+                    Todos
+                </button>
+                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="analisedados">
+                    Dados
+                </button>         
+            </div>
+            
+            <!-- Grid de projetos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Projeto 6 - Python -->
+                <div class="project-item python animate-fadeIn delay-300">
+                    <div class="bg-[#0D0F2B] rounded-lg overflow-hidden border border-[#A7A8F8]/20 card-hover h-full flex flex-col">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/d/1imkbNuprZS4B692rdUKBGU2XpLB6_8w7=w600-h600" alt="Previsão de Séries Temporais" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6 flex-grow">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-3">
+                                    <i class="fas fa-code text-lg text-[#A7A8F8]"></i>
+                                </div>
+                                <h3 class="text-xl font-bold">Meu Site Portfólio</h3>
+                            </div>
+                            <p class="text-[#F6F9DC]/80 mb-4">
+                                Para criar este portfólio utilizando técnicas, tecnologias e linguagens que contribuíram para o resultado final. Optei por detalhar o processo de construção deste trabalho e compartilhar com vocês como tudo foi desenvolvido.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">HTML</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Tailwind CSS</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Desenvolvimento Web</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">DeepSite IA</span>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6">
+                            <div class="flex space-x-3">
+                                <a href="#" class="px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-lg font-medium hover:bg-[#6C63FF] transition flex items-center">
+                                    <i class="fab fa-github mr-2"></i> Código
+                                </a>
+                                <a href="#" class="px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-lg font-medium hover:bg-[#A7A8F8]/10 transition flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i> Relatório
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botão para ver mais projetos -->
+            <div class="text-center mt-12">
+                <button id="load-more" class="px-6 py-3 border-2 border-[#A7A8F8] text-[#A7A8F8] rounded-lg font-medium hover:bg-[#A7A8F8]/10 transition">
+                    Carregar Mais Projetos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="py-20 bg-[#0D0F2B]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-12 text-center">
+                Contato
+            </h2>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Formulário de contato -->
+                <div class="lg:w-1/2">
+                    <form id="contact-form" class="bg-[#080A21] p-8 rounded-lg border border-[#A7A8F8]/20">
+                        <div class="mb-6">
+                            <label for="name" class="block text-[#A7A8F8] mb-2">Nome</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="email" class="block text-[#A7A8F8] mb-2">E-mail</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-[#A7A8F8] mb-2">Assunto</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-[#A7A8F8] mb-2">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-lg font-bold hover:bg-[#6C63FF] transition">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Informações de contato -->
+                <div class="lg:w-1/2">
+                    <div class="bg-[#080A21] p-8 rounded-lg border border-[#A7A8F8]/20 h-full">
+                        <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Informações para Contato</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Email -->
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-xl text-[#A7A8F8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1">E-mail</h4>
+                                    <a href="mailto:seuemail@exemplo.com" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">seuemail@exemplo.com</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Telefone -->
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone-alt text-xl text-[#A7A8F8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1">Telefone/WhatsApp</h4>
+                                    <a href="tel:+5511999999999" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">+55 (11) 99999-9999</a>
+                                </div>
+                            </div>
+                            
+                            <!-- LinkedIn -->
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fab fa-linkedin-in text-xl text-[#A7A8F8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1">LinkedIn</h4>
+                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">linkedin.com/in/seuperfil</a>
+                                </div>
+                            </div>
+                            
+                            <!-- GitHub -->
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fab fa-github text-xl text-[#A7A8F8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1">GitHub</h4>
+                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">github.com/seuusuario</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Localização -->
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-xl text-[#A7A8F8]"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-bold mb-1">Localização</h4>
+                                    <p class="text-[#F6F9DC]/80">São Paulo, Brasil</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-[#080A21] py-8 border-t border-[#A7A8F8]/20">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <p class="text-[#F6F9DC]/70">&copy; <span id="year"></span> [Seu Nome]. Todos os direitos reservados.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão para voltar ao topo -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-[#A7A8F8] text-[#080A21] flex items-center justify-center shadow-lg hover:bg-[#6C63FF] transition hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Modal para Habilidade Técnica -->
+    <div id="modal-habilidade" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center hidden">
+        <div class="bg-[#0D0F2B] w-[90%] max-w-3xl rounded-xl shadow-2xl flex overflow-hidden relative animate-fade-in border border-[#A7A8F8]/30">
+      
+          <!-- Botão fechar -->
+          <button id="fechar-modal" class="absolute top-4 right-4 text-white text-2xl hover:text-[#6C63FF] transition   bg-black bg-opacity-30 rounded-full w-10 h-10 flex items-center justify-center leading-none">&times;</button>
+      
+          <!-- Conteúdo (texto) -->
+          <div class="w-1/2 p-8 text-[#F6F9DC] flex flex-col justify-center space-y-4">
+            <h2 id="modal-titulo" class="text-3xl font-bold"></h2>
+            <ul id="modal-topicos" class="list-[square] pl-5 space-y-2 text-[#F6F9DC]/90 text-base"></ul>
+          </div>
+      
+          <!-- Imagem -->
+          <div class="w-1/2 bg-[#0D0F2B] flex items-center justify-center">
+            <img id="modal-imagem" src="" alt="Imagem" class="h-full object-cover rounded-none border-l border-[#A7A8F8]/10">
+          </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Função para inicializar o ano no rodapé
+        document.addEventListener('DOMContentLoaded', function() {
+            // Atualiza o ano no rodapé
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Menu mobile
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Abas do currículo
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove a classe 'active' de todos os botões e conteúdos
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.classList.add('text-[#A7A8F8]/70');
+                    });
+                    
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Adiciona a classe 'active' ao botão clicado
+                    this.classList.add('active');
+                    this.classList.remove('text-[#A7A8F8]/70');
+                    
+                    // Mostra o conteúdo correspondente
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    document.getElementById(tabId).classList.remove('hidden');
+                });
+            });
+            
+            // Filtro de projetos
+            const projectFilters = document.querySelectorAll('.project-filter');
+            const projectItems = document.querySelectorAll('.project-item');
+            
+            projectFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    // Remove a classe 'active' de todos os filtros
+                    projectFilters.forEach(f => {
+                        f.classList.remove('active', 'bg-[#A7A8F8]', 'text-[#080A21]');
+                        f.classList.add('border', 'border-[#A7A8F8]', 'text-[#A7A8F8]');
+                    });
+                    
+                    // Adiciona a classe 'active' ao filtro clicado
+                    this.classList.add('active', 'bg-[#A7A8F8]', 'text-[#080A21]');
+                    this.classList.remove('border', 'border-[#A7A8F8]', 'text-[#A7A8F8]');
+                    
+                    // Filtra os projetos
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    projectItems.forEach(item => {
+                        const itemClasses = item.className.split(/\s+/);
+                        const isVisible = filterValue === 'all' || itemClasses.includes(filterValue);
+                        item.style.display = isVisible ? 'block' : 'none';
+                    });
+                });
+            });
+            
+            // Botão "Carregar Mais Projetos"
+            const loadMoreButton = document.getElementById('load-more');
+            let visibleProjects = 6;
+            const allProjects = document.querySelectorAll('.project-item');
+            
+            // Esconde projetos além dos 6 primeiros
+            for (let i = visibleProjects; i < allProjects.length; i++) {
+                allProjects[i].style.display = 'none';
+            }
+            
+            loadMoreButton.addEventListener('click', function() {
+                // Mostra mais 3 projetos
+                const nextProjects = visibleProjects + 3;
+                
+                for (let i = visibleProjects; i < nextProjects && i < allProjects.length; i++) {
+                    allProjects[i].style.display = 'block';
+                    allProjects[i].classList.add(`delay-${(i % 3) * 100}`);
+                }
+                
+                visibleProjects = nextProjects;
+                
+                // Esconde o botão se todos os projetos estiverem visíveis
+                if (visibleProjects >= allProjects.length) {
+                    loadMoreButton.style.display = 'none';
+                }
+                
+                // Rola suavemente para os novos projetos
+                allProjects[visibleProjects - 3].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+            
+            // Botão "Voltar ao Topo"
+            const backToTopButton = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('hidden');
+                } else {
+                    backToTopButton.classList.add('hidden');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Formulário de contato (simulado)
+            const contactForm = document.getElementById('contact-form');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simula o envio do formulário
+                alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
+                contactForm.reset();
+            });
+            
+            // Suaviza o scroll para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        // Fecha o menu mobile se estiver aberto
+                        mobileMenu.classList.add('hidden');
+                        
+                        // Scroll suave para o elemento
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Modal de Habilidades Técnicas
+        const habilidadesDetalhes = {
+            "analise-dados": {
+                titulo: "Análise de Dados",
+                imagem: "https://scicrop.com/wp-content/uploads/2021/06/descritiva.jpg",
+                topicos: [
+                    "Manipulação e limpeza de dados, além da integração de múltiplas fontes via processos ETL com aplicação de automações e modelagem.",
+                    "Análise estatística e exploratória para identificação de padrões.",
+                    "Criação de visualizações eficientes e uso de storytelling para comunicar insights que apoiam decisões estratégicas.",
+                    "Conhecimento em bancos de dados e desenvolvimento de consultas otimizadas.",
+                    "Aplicação de pensamento crítico para resolução de problemas complexos, conectando habilidades técnicas a objetivos de negócio."
+                ]
+            },
+            "inteligencia-artificial": {
+                titulo: "Inteligência Artificial",
+                imagem: "https://uploads.startups.com.br/2025/03/inteligencia-artificial-cerebro.webp",
+                topicos: [
+                    "Aplicação de engenharia de prompt para gerar respostas precisas, criativas e adaptadas ao contexto, otimizando o uso de modelos generativos.",
+                    "Utilização de IAs generativas para desenvolvimento de scripts personalizados, automações inteligentes e integração eficiente de processos.",
+                    "Adoção de princípios éticos no uso da inteligência artificial, com atenção à mitigação de vieses e à proteção da privacidade dos dados.",
+                    "Compreensão dos fundamentos de machine learning e deep learning, com foco em suas aplicações.",
+                ]
+            },
+            "ferramentas": {
+                titulo: "Ferramentas",
+                imagem: "https://lh3.googleusercontent.com/d/1xvR3RfL43FPgo12ZS9Aj4rbCtWE9c10a=w600-h600",
+                topicos: [
+                    "Microsoft Excel",
+                    "Microsoft Power BI",
+                    "Microsoft Power Automate",
+                    "Microsoft Power Apps",
+                    "Microsoft Azure",
+                    "Microsoft OneDrive",
+                    "Microsoft SharePoint",
+                    "Microsoft Visio",
+                    "Linguagem SQL",
+                    "Linguagem Python",
+                    "Linguagens HTML, CSS e JavaScript",
+                    "Sistemas ERPs"
+                ]
+            },
+            "programacao-logica": {
+                titulo: "Programação e Lógica",
+                imagem: "https://hermes.dio.me/articles/cover/6122f311-8ce8-4a23-ad7c-45ff8ecec627.jpg",
+                topicos: [
+                    "Automação de processos com scripts, melhorando o fluxo de dados e tarefas repetitivas, com implantação em produção em servidores e nuvem.",
+                    "Uso de Estruturas (listas, dicionários, tuplas, conjuntos) e manipulação de strings e arquivos para processar informações em diversos formatos.",
+                    "Integração com APIs para troca automatizada e segura de dados entre sistemas.",
+                    "Criação de funções modulares, reutilizáveis, facilitando a organização do código.",
+                    "Testes e resolução de erros, correção eficaz e qualidade do sistema."
+                ]
+            },
+            "qualidade-processos": {
+                titulo: "Qualidade e Processos",
+                imagem: "https://media.licdn.com/dms/image/v2/C4E12AQE4vhAPTk6o_g/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1638292450124?e=2147483647&v=beta&t=voqMa6xuucDSu6hkKeG1vkfnW-uKlHuIXKYr0BYIHBo",
+                topicos: [
+                    "Gestão da qualidade, com foco na aplicação de metodologias como PDCA, Kaizen, 5S, Lean e Six Sigma.",
+                    "Mapeamento e otimização de processos, com uso de fluxogramas e análise de gargalos.",
+                    "Realização de auditorias internas, assegurando a conformidade com normas ISO e a execução de ações corretivas e preventivas.",
+                    "Definição e acompanhamento de KPIs, CEP e análise de dados com ferramentas de BI.",
+                    "Comunicação assertiva, com estímulo à cultura da qualidade e à melhoria contínua."
+                ]
+            },
+            "gestao-projetos": {
+                titulo: "Gestão de Projetos",
+                imagem: "https://merlinseg.com.br/wp-content/uploads/2022/05/gestao_projetos-scaled-1.jpg",
+                topicos: [
+                    "Estruturação, padronização e gerenciamento de projetos para garantir a entrega alinhada às necessidades dos clientes.",
+                    "Planejamento e gestão de programas, priorizando projetos que gerem maior impacto para a organização.",
+                    "Treinamento e desenvolvimento das equipes para fortalecer a cultura de gestão focada em resultados e adoção de boas práticas.",
+                    "Monitoramento constante dos indicadores de desempenho e da maturidade dos projetos, garantindo melhorias contínuas."
+                ]
+            },
+            "planejamento": {
+                titulo: "Planejamento",
+                imagem: "https://setting.com.br/wp-content/uploads/2018/07/o-que-e-estrategia-empresarial.png",
+                topicos: [
+                    "Análise para fundamentação do planejamento com dados concretos e cenários realistas.",
+                    "Estabelecimento de metas, mensuráveis e alinhadas à visão estratégica.",
+                    "Elaboração de planos de ação detalhados, contemplando recursos, prazos e responsáveis.",
+                    "Definição de processos de comunicação e alinhamento para garantir o engajamento de todas as partes envolvidas.",
+                    "Avaliação de riscos e desenvolvimento de planos de contingência para assegurar a continuidade das operações."
+                ]
+            },
+            "aprendizagem-rapida": {
+                titulo: "Aprendizagem Rápida",
+                imagem: "https://i0.wp.com/humannia.com.br/wp-content/uploads/2023/06/tecnicas-de-aprendizagem.jpg?fit=1980%2C990&ssl=1",
+                topicos: [
+                    "Buscar constantemente novos conhecimentos com mente aberta, promovendo aprendizado contínuo.",
+                    "Atenção plena nas tarefas para absorver o conteúdo de forma eficiente e aprofundada.",
+                    "Avaliar criticamente as informações, focando no que realmente agrega valor e evitando superficialidades.",
+                    "Organização do conhecimento de forma clara e estruturada, facilitando a memorização.",
+                    "Autogestão e flexibilidade, monitorando o progresso e ajustando o estudo conforme os desafios."
+                ]
+            },
+            "didatica-ensino": {
+                titulo: "Didática e Ensino",
+                imagem: "https://midias.agazeta.com.br/2021/10/05/professor-na-sala-de-aula--617878-article.jpg",
+                topicos: [
+                    "Comunicação clara, garantindo que todos os alunos compreendam o conteúdo com facilidade.",
+                    "Planejamento e organização das aulas e treinamentos com objetivos bem definidos, facilitando o processo de aprendizagem.",
+                    "Conteúdo elaborado de forma coerente e estruturada.",
+                    "Aplicação de metodologias de ensino adaptadas ao perfil e às necessidades dos alunos, assegurando maior efetividade no aprendizado.",
+                    "Avaliação contínua do progresso dos alunos por meio de instrumentos eficazes."
+                ]
+            }
+        };
+
+        const modal = document.getElementById('modal-habilidade');
+        const modalContent = document.querySelector('#modal-habilidade .modal-content');
+
+        // Abrir modal com transição
+        document.querySelectorAll('.open-modal').forEach(el => {
+            el.addEventListener('click', () => {
+                const tipo = el.getAttribute('data-habilidade');
+                const dados = habilidadesDetalhes[tipo];
+
+                if (dados) {
+                    document.getElementById('modal-titulo').textContent = dados.titulo;
+                    document.getElementById('modal-imagem').src = dados.imagem;
+
+                    const lista = document.getElementById('modal-topicos');
+                    lista.innerHTML = "";
+                    dados.topicos.forEach(topico => {
+                        const li = document.createElement("li");
+                        li.textContent = topico;
+                        lista.appendChild(li);
+                    });
+
+                    // Transição de entrada
+                    modal.classList.remove('hidden');
+                    setTimeout(() => modal.classList.add('active'), 10);
+                }
+            });
+        });
+
+        // Função para fechar o modal com transição
+        function fecharModalSuavemente() {
+            modal.classList.remove('active');
+            setTimeout(() => modal.classList.add('hidden'), 300); // Espera a transição terminar
+        }
+
+        // Botão "X"
+        document.getElementById('fechar-modal').addEventListener('click', fecharModalSuavemente);
+
+        // Clique fora do conteúdo
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                fecharModalSuavemente();
+            }
+        });
+
+        // Tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                fecharModalSuavemente();
+            }
+        });
+
+    </script>  
+</body>
+</html>
