@@ -160,7 +160,7 @@
                 <!-- Texto de apresentação -->
                 <div class="md:w-2/3 md:pl-12">
                     <h1 class="text-4xl md:text-5xl font-bold mb-6">
-                        Olá, eu sou o <span class="gradient-text">Paulo Estevão</span>
+                        Olá, aqui é o <span class="gradient-text">Paulo Estevão</span>
                     </h1>
                     <h2 class="text-2xl md:text-3xl text-[#A7A8F8] mb-8">
                         Bem-vindo ao meu portfólio!
@@ -672,6 +672,7 @@
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">JavaScript</span>
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Desenvolvimento Web</span>
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">DeepSite IA</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">ChatGPT IA</span>
                             </div>
                         </div>
                         <div class="px-6 pb-6">
@@ -748,31 +749,45 @@
             <div class="flex flex-col lg:flex-row gap-12">
                 <!-- Formulário de contato -->
                 <div class="lg:w-1/2">
-                    <form id="contact-form" class="bg-[#080A21] p-8 rounded-lg border border-[#A7A8F8]/20">
+
+                    <form action="https://formspree.io/f/xanordvg" method="POST" class="bg-[#080A21] p-8 rounded-lg border border-[#A7A8F8]/20">
                         <div class="mb-6">
                             <label for="name" class="block text-[#A7A8F8] mb-2">Nome</label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required>
+                            <input type="text" name="name" id="name" required
+                                class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent">
                         </div>
-                        
+
                         <div class="mb-6">
                             <label for="email" class="block text-[#A7A8F8] mb-2">E-mail</label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required>
+                            <input type="email" name="email" id="email" required
+                                class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent">
                         </div>
-                        
+
                         <div class="mb-6">
                             <label for="subject" class="block text-[#A7A8F8] mb-2">Assunto</label>
-                            <input type="text" id="subject" name="subject" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required>
+                            <input type="text" name="subject" id="subject" required
+                                class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent">
                         </div>
-                        
+
                         <div class="mb-6">
                             <label for="message" class="block text-[#A7A8F8] mb-2">Mensagem</label>
-                            <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent" required></textarea>
+                            <textarea name="message" id="message" rows="5" required
+                                    class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent"></textarea>
                         </div>
-                        
-                        <button type="submit" class="w-full px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-lg font-bold hover:bg-[#6C63FF] transition">
+
+                        <!-- Campo para evitar bots -->
+                        <input type="text" name="_gotcha" style="display:none">
+
+                        <!-- Redirecionamento ou mensagem de sucesso -->
+                        <input type="hidden" name="_subject" value="Novo contato pelo site do Paulo Estevão">
+                        <input type="hidden" name="_next" value="https://seusite.com.br/obrigado.html">
+
+                        <button type="submit"
+                                class="w-full px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-lg font-bold hover:bg-[#6C63FF] transition">
                             Enviar Mensagem
                         </button>
                     </form>
+
                 </div>
                 
                 <!-- Informações de contato -->
@@ -788,7 +803,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">E-mail</h4>
-                                    <a href="mailto:seuemail@exemplo.com" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">seuemail@exemplo.com</a>
+                                    <a href="mailto:seuemail@exemplo.com" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">auto.maia93@gmail.com</a>
                                 </div>
                             </div>
                             
@@ -799,7 +814,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">Telefone/WhatsApp</h4>
-                                    <a href="tel:+5511999999999" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">+55 (11) 99999-9999</a>
+                                    <a href="tel:+5511999999999" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">+55 (85) 9 9259-0695</a>
                                 </div>
                             </div>
                             
@@ -810,7 +825,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">LinkedIn</h4>
-                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">linkedin.com/in/seuperfil</a>
+                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">linkedin.com/in/pauloestevaofreitasmaia</a>
                                 </div>
                             </div>
                             
@@ -821,7 +836,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">GitHub</h4>
-                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">github.com/seuusuario</a>
+                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">github.com/paulomaia93</a>
                                 </div>
                             </div>
                             
@@ -831,8 +846,9 @@
                                     <i class="fas fa-map-marker-alt text-xl text-[#A7A8F8]"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-lg font-bold mb-1">Localização</h4>
-                                    <p class="text-[#F6F9DC]/80">São Paulo, Brasil</p>
+                                    <h4 class="text-lg font-bold mb-1">Atuação</h4>
+                                    <p class="text-[#F6F9DC]/80">Fortaleza Ceará, Brasil</p>
+                                    <p class="text-[#F6F9DC]/80">Remoto, Brasil</p>
                                 </div>
                             </div>
                         </div>
@@ -847,20 +863,24 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <p class="text-[#F6F9DC]/70">&copy; <span id="year"></span> [Seu Nome]. Todos os direitos reservados.</p>
+                    <p class="text-[#F6F9DC]/70">&copy; <span id="year"></span> Paulo Estevão Freitas Maia. Todos os direitos reservados.</p>
                 </div>
                 
-                <div class="flex space-x-6">
-                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                <div class="flex justify-end pr-16 space-x-6">
+                    <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" 
+                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                    <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" 
+                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
-                        <i class="fab fa-twitter"></i>
+                    <a href="https://wa.me/5585992590695" target="_blank" rel="noopener noreferrer" 
+                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                        <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="#" class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                    <a href="https://www.instagram.com/pauloestevao.maia" target="_blank" rel="noopener noreferrer" 
+                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
