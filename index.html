@@ -3,42 +3,560 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Profissional | Paulo Estevão</title>
+    <meta name="description" content="Portf&oacute;lio profissional de Paulo Estev&atilde;o Maia com projetos em dados, automa&ccedil;&atilde;o, Power BI, Python, SQL e melhoria de processos.">
+    <meta name="theme-color" content="#080A21">
+    <title>Portf&oacute;lio Profissional | Paulo Estev&atilde;o Maia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Estilos personalizados que não são cobertos pelo Tailwind */
+        :root {
+            --surface-primary: linear-gradient(180deg, rgba(13, 15, 43, 0.92), rgba(8, 10, 33, 0.9));
+            --surface-secondary: linear-gradient(180deg, rgba(10, 12, 35, 0.88), rgba(7, 9, 27, 0.8));
+            --surface-interactive: linear-gradient(180deg, rgba(13, 15, 43, 0.8), rgba(8, 10, 33, 0.86));
+            --surface-flat: rgba(8, 10, 33, 0.92);
+            --border-soft: rgba(167, 168, 248, 0.14);
+            --border-strong: rgba(167, 168, 248, 0.28);
+            --shadow-soft: 0 10px 24px rgba(4, 7, 28, 0.06);
+            --shadow-medium: 0 12px 28px rgba(7, 10, 35, 0.08);
+            --shadow-strong: 0 16px 36px rgba(7, 10, 35, 0.1);
+            --radius-md: 1rem;
+            --radius-lg: 1.35rem;
+            --radius-xl: 1.75rem;
+            --motion-fast: 220ms;
+            --motion-medium: 320ms;
+            --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
         body {
             scroll-behavior: smooth;
+            font-family: 'Manrope', sans-serif;
+            background-color: #080A21;
+            background-image:
+                radial-gradient(circle at top center, rgba(108, 99, 255, 0.08), transparent 28%),
+                radial-gradient(circle at bottom left, rgba(167, 168, 248, 0.05), transparent 26%);
         }
-        
+
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        section[id] {
+            scroll-margin-top: 5.5rem;
+        }
+
         .gradient-text {
             background: linear-gradient(90deg, #A7A8F8, #6C63FF);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-        
+
+        .nav-shell {
+            border-bottom: 1px solid rgba(167, 168, 248, 0.08);
+            box-shadow: 0 10px 35px rgba(3, 5, 20, 0.14);
+        }
+
+        .nav-link {
+            position: relative;
+            color: rgba(246, 249, 220, 0.86);
+            transition: color var(--motion-fast) var(--ease-standard);
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -0.45rem;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(167, 168, 248, 0.9), rgba(108, 99, 255, 0.9));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
+            opacity: 0;
+        }
+
+        .nav-link:hover,
+        .nav-link-active {
+            color: #A7A8F8;
+        }
+
+        .nav-link:hover::after,
+        .nav-link-active::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+
+        .mobile-menu-panel {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition:
+                max-height var(--motion-medium) var(--ease-standard),
+                opacity var(--motion-fast) var(--ease-standard),
+                transform var(--motion-medium) var(--ease-standard);
+        }
+
+        .mobile-menu-panel.is-open {
+            max-height: 16rem;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 0.6rem 0;
+            color: rgba(246, 249, 220, 0.82);
+            transition: color var(--motion-fast) var(--ease-standard), padding-left var(--motion-fast) var(--ease-standard);
+        }
+
+        .mobile-nav-link:hover,
+        .mobile-nav-link.nav-link-active {
+            color: #A7A8F8;
+            padding-left: 0.4rem;
+        }
+
+        .section-band {
+            position: relative;
+        }
+
+        .section-band::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: min(92vw, 1180px);
+            height: 1px;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, transparent, rgba(167, 168, 248, 0.16), transparent);
+        }
+
+        .surface-card-primary,
+        .surface-card-secondary,
+        .surface-card-interactive {
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--border-soft);
+        }
+
+        .surface-card-primary {
+            background: var(--surface-primary);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .surface-card-secondary {
+            background: var(--surface-secondary);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .surface-card-interactive {
+            background: var(--surface-interactive);
+            box-shadow: var(--shadow-soft);
+            transition:
+                transform var(--motion-medium) var(--ease-standard),
+                box-shadow var(--motion-medium) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard),
+                background var(--motion-medium) var(--ease-standard);
+        }
+
+        .surface-card-interactive:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 34px rgba(7, 10, 35, 0.14);
+            border-color: var(--border-strong);
+        }
+
         .card-hover {
-            transition: all 0.3s ease;
+            transition:
+                transform var(--motion-medium) var(--ease-standard),
+                box-shadow var(--motion-medium) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard);
         }
-        
+
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(167, 168, 248, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 26px rgba(167, 168, 248, 0.06);
+            border-color: rgba(167, 168, 248, 0.28);
         }
-        
-        /* Animação para os cards de projeto */
+
+        .ui-pill {
+            border-radius: 999px;
+            border: 1px solid rgba(167, 168, 248, 0.2);
+            background: rgba(167, 168, 248, 0.08);
+            color: #A7A8F8;
+            transition:
+                background var(--motion-fast) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard),
+                transform var(--motion-fast) var(--ease-standard),
+                color var(--motion-fast) var(--ease-standard);
+        }
+
+        .ui-pill:hover {
+            transform: translateY(-2px);
+            background: rgba(167, 168, 248, 0.13);
+            border-color: rgba(167, 168, 248, 0.32);
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            transition:
+                transform var(--motion-fast) var(--ease-standard),
+                background var(--motion-fast) var(--ease-standard),
+                color var(--motion-fast) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard),
+                box-shadow var(--motion-medium) var(--ease-standard);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(108, 99, 255, 0.1);
+        }
+
+        .contact-field::placeholder {
+            color: rgba(246, 249, 220, 0.34);
+        }
+
+        .contact-field {
+            transition:
+                border-color var(--motion-fast) var(--ease-standard),
+                box-shadow var(--motion-fast) var(--ease-standard),
+                background-color var(--motion-fast) var(--ease-standard);
+        }
+
+        .contact-field.is-invalid {
+            border-color: rgba(248, 113, 113, 0.7);
+            box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.22);
+        }
+
+        .contact-submit[disabled] {
+            cursor: wait;
+            opacity: 0.82;
+            box-shadow: none;
+        }
+
+        .contact-feedback {
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            padding: 0.9rem 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateY(8px);
+            pointer-events: none;
+            transition:
+                opacity var(--motion-fast) var(--ease-standard),
+                transform var(--motion-fast) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard),
+                background-color var(--motion-fast) var(--ease-standard);
+        }
+
+        .contact-feedback.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .contact-feedback.is-success {
+            color: #dff7cf;
+            background: rgba(34, 197, 94, 0.1);
+            border-color: rgba(134, 239, 172, 0.3);
+        }
+
+        .contact-feedback.is-error {
+            color: #ffe2dd;
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(252, 165, 165, 0.28);
+        }
+
+        .icon-action {
+            color: rgba(246, 249, 220, 0.88);
+            transition:
+                color var(--motion-fast) var(--ease-standard),
+                transform var(--motion-fast) var(--ease-standard),
+                text-shadow var(--motion-medium) var(--ease-standard);
+        }
+
+        .icon-action:hover {
+            color: #A7A8F8;
+            transform: translateY(-2px);
+            text-shadow: 0 0 18px rgba(167, 168, 248, 0.32);
+        }
+
+        .tooltip-shell {
+            border-radius: 0.85rem;
+            border: 1px solid rgba(167, 168, 248, 0.18);
+            background: rgba(8, 10, 33, 0.96);
+            box-shadow: 0 12px 30px rgba(4, 7, 28, 0.28);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-lead {
+            color: rgba(246, 249, 220, 0.75);
+            line-height: 1.8;
+        }
+
+        .sobre-resumo-card {
+            background: linear-gradient(180deg, rgba(9, 11, 31, 0.98), rgba(5, 7, 24, 0.96));
+            box-shadow: none;
+        }
+
+        .sobre-resumo-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .sobre-resumo-visual {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .sobre-resumo-visual::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url('https://lh3.googleusercontent.com/d/1uifbMnFCLVZoSn_S3V4xXK61RWcjhJ1i=w1075-h768');
+            background-size: cover;
+            background-position: right center;
+            opacity: 0.5;
+            filter: saturate(0.98) brightness(0.86) contrast(1.02);
+            transform: scale(1.03);
+            -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 34%, rgba(0, 0, 0, 0.22) 48%, rgba(0, 0, 0, 0.58) 62%, rgba(0, 0, 0, 0.88) 76%, #000 100%);
+            mask-image: linear-gradient(90deg, transparent 0%, transparent 34%, rgba(0, 0, 0, 0.22) 48%, rgba(0, 0, 0, 0.58) 62%, rgba(0, 0, 0, 0.88) 76%, #000 100%);
+        }
+
+        .sobre-resumo-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(5, 7, 24, 0.94) 0%, rgba(5, 7, 24, 0.9) 22%, rgba(5, 7, 24, 0.68) 42%, rgba(5, 7, 24, 0.26) 62%, rgba(5, 7, 24, 0.18) 100%),
+                radial-gradient(circle at 78% 52%, rgba(167, 168, 248, 0.1), transparent 52%),
+                linear-gradient(180deg, rgba(5, 7, 24, 0.08), rgba(5, 7, 24, 0.28));
+        }
+
+        @media (min-width: 1024px) {
+            .sobre-resumo-content {
+                max-width: 68%;
+            }
+        }
+
+        .sobre-resumo-collapse {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin-top: 0;
+            transition:
+                max-height 480ms var(--ease-standard),
+                opacity 240ms var(--ease-standard),
+                margin-top 320ms var(--ease-standard);
+        }
+
+        .sobre-resumo-collapse.is-open {
+            max-height: 32rem;
+            opacity: 1;
+            margin-top: 1.25rem;
+        }
+
+        #habilidades .open-modal,
+        #educacao .card-hover,
+        #certificacoes .card-hover {
+            background: var(--surface-interactive);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-soft);
+        }
+
+        #habilidades .open-modal {
+            min-height: 18.25rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #habilidades .open-modal > p {
+            flex-grow: 1;
+        }
+
+        #experiencia .relative.pl-12 > div:last-child {
+            background: var(--surface-secondary);
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-soft);
+            transition:
+                transform var(--motion-medium) var(--ease-standard),
+                box-shadow var(--motion-medium) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard);
+        }
+
+        #experiencia .relative.pl-12:hover > div:last-child {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(7, 10, 35, 0.1);
+            border-color: rgba(167, 168, 248, 0.26);
+        }
+
+        #contact-form input:focus,
+        #contact-form textarea:focus {
+            box-shadow: 0 0 0 4px rgba(167, 168, 248, 0.12);
+        }
+
+        #certificacoes a {
+            transition: color var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
+        }
+
+        #certificacoes a:hover {
+            color: #F6F9DC;
+            transform: translateX(2px);
+        }
+
+        .tab-button {
+            position: relative;
+            border-bottom: 2px solid transparent;
+            color: rgba(167, 168, 248, 0.66);
+            transition:
+                color var(--motion-fast) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard),
+                background var(--motion-fast) var(--ease-standard);
+        }
+
+        .tab-button:hover {
+            color: #A7A8F8;
+        }
+
+        .tab-button.active {
+            color: #A7A8F8;
+            border-color: rgba(167, 168, 248, 0.8);
+            background: transparent;
+        }
+
+        .tab-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tab-content.tab-content-scrollable {
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(167, 168, 248, 0.4) transparent;
+            padding-right: 0.75rem;
+        }
+
+        .tab-content.tab-content-scrollable::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .tab-content.tab-content-scrollable::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .tab-content.tab-content-scrollable::-webkit-scrollbar-thumb {
+            background: rgba(167, 168, 248, 0.28);
+            border-radius: 999px;
+        }
+
+        .tab-content.is-transitioning-out {
+            opacity: 0;
+            transform: translateY(14px);
+            transition:
+                opacity 180ms var(--ease-standard),
+                transform 220ms var(--ease-standard);
+        }
+
+        .tab-content.is-transitioning-in {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+
+        .tab-content.is-transitioning-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition:
+                opacity 260ms var(--ease-standard),
+                transform 320ms var(--ease-standard);
+        }
+
+        @media (max-width: 1023px) {
+            .tab-content.tab-content-scrollable {
+                max-height: none !important;
+                overflow: visible;
+                padding-right: 0;
+            }
+        }
+
+        .project-filter {
+            border-radius: 999px;
+            border: 1px solid rgba(167, 168, 248, 0.2);
+            background: rgba(167, 168, 248, 0.08);
+            color: #A7A8F8;
+            transition:
+                background var(--motion-fast) var(--ease-standard),
+                color var(--motion-fast) var(--ease-standard),
+                border-color var(--motion-fast) var(--ease-standard),
+                transform var(--motion-fast) var(--ease-standard),
+                box-shadow var(--motion-medium) var(--ease-standard);
+        }
+
+        .project-filter:hover {
+            transform: translateY(-2px);
+            border-color: rgba(167, 168, 248, 0.3);
+        }
+
+        .project-filter.active {
+            border-color: transparent;
+            box-shadow: 0 8px 18px rgba(108, 99, 255, 0.08);
+        }
+
+        .project-item {
+            transition: opacity var(--motion-fast) var(--ease-standard), transform var(--motion-medium) var(--ease-standard);
+        }
+
+        .project-item.is-exiting {
+            opacity: 0;
+            transform: translateY(18px) scale(0.985);
+        }
+
+        .project-item.is-entering {
+            opacity: 0;
+            transform: translateY(18px) scale(0.985);
+        }
+
+        .project-item.is-entering.project-item-visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .project-frame img,
+        .cert-thumb img {
+            transition: transform 700ms var(--ease-standard), filter var(--motion-medium) var(--ease-standard);
+        }
+
+        .surface-card-interactive:hover .project-frame img,
+        .surface-card-interactive:hover .cert-thumb img {
+            transform: scale(1.03);
+            filter: saturate(1.05);
+        }
+
+        .floating-divider {
+            border-color: rgba(167, 168, 248, 0.12);
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .animate-fadeIn {
             animation: fadeIn 0.6s ease-out forwards;
         }
-        
-        /* Delay para animação sequencial dos cards */
+
         .delay-100 { animation-delay: 0.1s; }
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
@@ -54,51 +572,122 @@
         }
 
         .animate-imageFloat {
-            animation: float 3s ease-in-out infinite;
+            animation: float 3.6s ease-in-out infinite;
         }
 
-        /* Efeito de transição suave no fundo */
+        #back-to-top {
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+            transition:
+                opacity var(--motion-fast) var(--ease-standard),
+                transform var(--motion-medium) var(--ease-standard),
+                background var(--motion-fast) var(--ease-standard),
+                box-shadow var(--motion-medium) var(--ease-standard);
+        }
+
+        #back-to-top.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
         #modal-habilidade {
             backdrop-filter: blur(0px);
-            transition: backdrop-filter 0.5s ease, background-color 0.5s ease, opacity 0.5s ease;
+            transition:
+                backdrop-filter 0.45s var(--ease-standard),
+                background-color 0.45s var(--ease-standard),
+                opacity 0.35s var(--ease-standard);
             opacity: 0;
             pointer-events: none;
         }
 
-        /* Ativo (mostrado) */
         #modal-habilidade.active {
-            backdrop-filter: blur(8px);
-            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.74);
             opacity: 1;
             pointer-events: auto;
         }
 
-        /* Animação do conteúdo interno */
         #modal-habilidade .modal-content {
             opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(18px) scale(0.97);
+            transition: opacity 0.3s var(--ease-standard), transform 0.3s var(--ease-standard);
+            width: min(92vw, 980px);
+            height: min(78vh, 34rem);
         }
 
         #modal-habilidade.active .modal-content {
             opacity: 1;
-            transform: scale(1);
+            transform: translateY(0) scale(1);
         }
 
-        #modal-habilidade.show {
-            opacity: 1;
-            pointer-events: auto;
+        .modal-text-pane {
+            width: 52%;
+            height: 100%;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(167, 168, 248, 0.4) transparent;
+        }
+
+        .modal-text-pane::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-text-pane::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .modal-text-pane::-webkit-scrollbar-thumb {
+            background: rgba(167, 168, 248, 0.28);
+            border-radius: 999px;
+        }
+
+        .modal-media-pane {
+            width: 48%;
+            height: 100%;
+        }
+
+        .modal-media-pane img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         #modal-topicos li::marker {
             color: #6C63FF;
         }
 
+        @media (max-width: 767px) {
+            .section-band::before {
+                width: calc(100% - 3rem);
+            }
+
+            #modal-habilidade .modal-content {
+                width: min(92vw, 34rem);
+                height: auto;
+                max-height: 82vh;
+                flex-direction: column;
+            }
+
+            .modal-text-pane,
+            .modal-media-pane {
+                width: 100%;
+            }
+
+            .modal-text-pane {
+                max-height: 24rem;
+            }
+
+            .modal-media-pane {
+                height: 15rem;
+            }
+        }
     </style>
 </head>
 <body class="bg-[#080A21] text-[#F6F9DC] font-sans">
     <!-- Barra de navegação -->
-    <nav class="fixed w-full bg-[#080A21]/90 backdrop-blur-sm z-50 shadow-lg">
+    <nav class="nav-shell fixed w-full bg-[#080A21]/90 backdrop-blur-sm z-50">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo/Nome -->
@@ -106,74 +695,147 @@
                 
                 <!-- Menu para desktop -->
                 <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-[#A7A8F8] transition">Home</a>
-                    <a href="#sobre" class="hover:text-[#A7A8F8] transition">Sobre</a>
-                    <a href="#projetos" class="hover:text-[#A7A8F8] transition">Projetos</a>
-                    <a href="#contato" class="hover:text-[#A7A8F8] transition">Contato</a>
+                    <a href="#home" class="nav-link" data-nav-link="home">Home</a>
+                    <a href="#sobre" class="nav-link" data-nav-link="sobre">Sobre</a>
+                    <a href="#projetos" class="nav-link" data-nav-link="projetos">Projetos</a>
+                    <a href="#contato" class="nav-link" data-nav-link="contato">Contato</a>
                 </div>
                 
                 <!-- Botão mobile menu -->
-                <button id="mobile-menu-button" class="md:hidden text-[#A7A8F8]">
+                <button id="mobile-menu-button" class="md:hidden text-[#A7A8F8] transition hover:text-[#F6F9DC]" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
             
             <!-- Menu mobile (oculto por padrão) -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 pb-3">
-                <a href="#home" class="block hover:text-[#A7A8F8] transition">Home</a>
-                <a href="#sobre" class="block hover:text-[#A7A8F8] transition">Sobre</a>
-                <a href="#projetos" class="block hover:text-[#A7A8F8] transition">Projetos</a>
-                <a href="#contato" class="block hover:text-[#A7A8F8] transition">Contato</a>
+            <div id="mobile-menu" class="mobile-menu-panel md:hidden mt-4 border-t border-[#A7A8F8]/10 pt-3 pb-1">
+                <a href="#home" class="mobile-nav-link" data-nav-link="home">Home</a>
+                <a href="#sobre" class="mobile-nav-link" data-nav-link="sobre">Sobre</a>
+                <a href="#projetos" class="mobile-nav-link" data-nav-link="projetos">Projetos</a>
+                <a href="#contato" class="mobile-nav-link" data-nav-link="contato">Contato</a>
             </div>
         </div>
     </nav>
 
     <!-- Seção Home -->
-    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="home" class="relative min-h-[86vh] flex items-center pt-16 overflow-hidden">
         <div class="absolute inset-0 bg-cover bg-center opacity-5 z-0" style="background-image: url('https://lh3.googleusercontent.com/d/1JQCeIj9BD_EY2TX7p8SBlJ4SCOmTSAlZ=w1259-h664');"></div>
-        <div class="container mx-auto px-6 py-12 md:py-24 relative z-10">
-            <div class="flex flex-col md:flex-row items-center">
-                <!-- Foto e redes sociais -->
-                <div class="md:w-1/3 mb-12 md:mb-0 flex flex-col items-center">
-                    <div class="w-96 h-96 rounded-xl overflow-hidden border-4 border-[#A7A8F8] shadow-lg mb-6 animate-imageFloat">
-                        <!-- Placeholder para foto - substitua pelo seu caminho de imagem -->
-                        <img src="https://lh3.googleusercontent.com/d/1f_q0l5N32PqOzlqMOPV1JejwXKcIgoSd=w1080-h1080" alt="Minha Foto" class="w-full h-full object-cover">
+        <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,_rgba(167,168,248,0.18),_transparent_32%),radial-gradient(circle_at_bottom_left,_rgba(108,99,255,0.15),_transparent_28%)]"></div>
+        <div class="container mx-auto px-6 py-8 md:py-14 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-10 md:gap-12">
+                <div class="w-full lg:w-[34%] flex flex-col items-center">
+                    <div id="hero-photo-area" class="relative mb-6">
+                        <div class="w-72 h-[22.5rem] md:w-[24rem] md:h-[30rem] rounded-[2rem] overflow-hidden border-4 border-[#A7A8F8] shadow-[0_20px_60px_rgba(108,99,255,0.18)] animate-imageFloat">
+                    <img src="https://lh3.googleusercontent.com/d/14f-Hvz7XkOCkA6P5x2PeMVbW3GV-Ap7b=w920-h1152" alt="Foto de Paulo Estevão Maia" class="w-full h-full object-cover object-top">
+                        </div>
+                        <div id="hero-photo-tooltip" class="tooltip-shell pointer-events-none absolute left-0 top-0 z-20 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 translate-y-2 transition duration-200 whitespace-nowrap">
+                            Este sou eu! <span aria-hidden="true">&#128521;</span>
+                        </div>
                     </div>
-                    
-                    <!-- Redes sociais -->
+
+                    <div class="flex flex-wrap justify-center gap-3 mb-5">
+                        <div class="relative group">
+                            <a href="#curriculo-tabs" data-tab-target="habilidades" class="hero-tab-link ui-pill px-4 py-2 text-sm">
+                                Habilidades
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Abre suas competências
+                            </span>
+                        </div>
+                        <div class="relative group">
+                            <a href="#curriculo-tabs" data-tab-target="experiencia" class="hero-tab-link ui-pill px-4 py-2 text-sm">
+                                Experiências
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Mostra sua trajetória
+                            </span>
+                        </div>
+                        <div class="relative group">
+                            <a href="#curriculo-tabs" data-tab-target="educacao" class="hero-tab-link ui-pill px-4 py-2 text-sm">
+                                Formações
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Exibe sua formação
+                            </span>
+                        </div>
+                        <div class="relative group">
+                            <a href="#curriculo-tabs" data-tab-target="certificacoes" class="hero-tab-link ui-pill px-4 py-2 text-sm">
+                                Certificados
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Abre seus certificados
+                            </span>
+                        </div>
+                    </div>
+
                     <div class="flex space-x-4">
-                        <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://wa.me/5585992590695" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
-                            <i class="fab fa-whatsapp"></i>
-                        </a>
-                        <a href="https://www.instagram.com/pauloestevao.maia" target="_blank" rel="noopener noreferrer" class="text-2xl text-[#F6F9DC] hover:text-[#A7A8F8] transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
+                        <div class="relative group">
+                            <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil do GitHub" class="icon-action text-2xl">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Abre meu GitHub
+                            </span>
+                        </div>
+                        <div class="relative group">
+                            <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil do LinkedIn" class="icon-action text-2xl">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Abre meu LinkedIn
+                            </span>
+                        </div>
+                        <div class="relative group">
+                            <a href="https://wa.me/5585992590695" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp" class="icon-action text-2xl">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Abre o WhatsApp
+                            </span>
+                        </div>
+                        <div class="relative group">
+                            <a href="mailto:auto.maia93@gmail.com" aria-label="Enviar e-mail" class="icon-action text-2xl">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
+                                Envia um e-mail
+                            </span>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Texto de apresentação -->
-                <div class="md:w-2/3 md:pl-12">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">
+
+                <div class="w-full lg:w-[66%]">
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-5">
                         Olá, aqui é o <span class="gradient-text">Paulo Estevão</span>
                     </h1>
-                    <h2 class="text-2xl md:text-3xl text-[#A7A8F8] mb-8">
-                        Bem-vindo ao meu portfólio!
+                    <h2 class="text-2xl md:text-4xl text-[#9797E8] font-semibold mb-6 leading-tight">
+                        Seja bem-vindo(a) ao meu portfólio!
                     </h2>
-                    <p class="text-lg mb-8 leading-relaxed">
-                        É uma satisfação ter você aqui! Fico feliz pelo seu interesse em conhecer mais sobre meu lado profissional e tudo o que tenho a oferecer. Neste espaço, compartilho minha trajetória, principais competências e projetos desenvolvidos ao longo da minha jornada. Você também encontrará meu currículo, experiências e habilidades. Sinta-se à vontade para explorar!
+                    <p class="text-lg md:text-xl text-[#F6F9DC]/85 leading-relaxed max-w-5xl mb-8">
+                        É um prazer ter você por aqui! Fico muito feliz pelo seu interesse em conhecer mais sobre minha trajetória e o que posso oferecer. Tudo o que encontrará é reflexo da minha dedicação, das entregas realizadas e das parcerias construídas ao longo do tempo. Também, neste espaço, compartilho minhas principais competências e projetos desenvolvidos. Sinta-se à vontade para explorar!
                     </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                        <div class="surface-card-secondary p-5">
+                            <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Especialidade</p>
+                            <p class="font-semibold text-lg">Desenvolvimento de soluções, Business Intelligence, aplicações, automação de processos e performance</p>
+                        </div>
+                        <div class="surface-card-secondary p-5">
+                            <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Stack principal</p>
+                            <p class="font-semibold text-lg">Excel, Power BI, SQL, Python, Fabric, Power Platform, Google e Cloud, Looker, Apps Script, BigQuery e IA</p>
+                        </div>
+                        <div class="surface-card-secondary p-5">
+                            <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Diferencial profissional</p>
+                            <p class="font-semibold text-lg">Visão estratégica, qualidade de processos, melhoria contínua e adaptação ao contexto</p>
+                        </div>
+                    </div>
+
                     <div class="flex flex-wrap gap-4">
-                        <a href="#projetos" class="px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-lg font-medium hover:bg-[#6C63FF] transition">
-                            Ver Projetos
+                        <a href="#projetos" class="btn-primary px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-xl font-semibold hover:bg-[#6C63FF]">
+                            Ver projetos
                         </a>
-                        <a href="#contato" class="px-6 py-3 border-2 border-[#A7A8F8] text-[#A7A8F8] rounded-lg font-medium hover:bg-[#A7A8F8]/10 transition">
-                            Contato
+                        <a href="#contato" class="btn-secondary px-6 py-3 border-2 border-[#A7A8F8] text-[#A7A8F8] rounded-xl font-semibold hover:bg-[#A7A8F8]/10">
+                            Falar comigo
                         </a>
                     </div>
                 </div>
@@ -182,39 +844,96 @@
     </section>
 
     <!-- Seção Sobre -->
-    <section id="sobre" class="py-20 bg-[#0D0F2B]">
+<section id="sobre" class="section-band py-20 bg-[#0D0F2B]">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-12 text-center">
-                Sobre Mim
-            </h2>
-            
-            <!-- Texto completo -->
-            <div class="max-w-4xl mx-auto mb-16">
-                <p class="text-lg mb-6 leading-relaxed">
-                    Sou um profissional em evolução constante, movido pela transformação digital, tecnologia e inovação. Comecei minha carreira em operações e logística, onde aprendi na prática o valor do esforço. Com o tempo, minha curiosidade e vontade de aprender me levaram para o universo dos dados.
-                </p>
-                <p class="text-lg mb-6 leading-relaxed">
-                    Gosto de usar tecnologia para resolver problemas, pois acredito que a automação de processos, aliada a uma análise eficiente de dados, tem o poder de transformar negócios e gerar novas oportunidades. Meu perfil vai além de análises, dashboards e automações: também tenho experiência em gestão da qualidade e metodologias, o que me permite enxergar o todo e entregar soluções mais completas.
-                </p>
-                <p class="text-lg mb-6 leading-relaxed">
-                    Sou autodidata e gosto de explorar, testar e entender como cada coisa funciona. Isso me permitiu transformar ferramentas em extensão da minha capacidade de atuação. Tenho domínio em Power BI, Python, SQL, Excel, Power Automate, Power Apps e diversas ferramentas do ecossistema Microsoft, além de outras soluções fora desse ambiente. Também utilizo inteligência artificial generativa para aumentar produtividade, desenvolver ideias e criar soluções mais criativas e inteligentes.
-                </p>
-                <p class="text-lg mb-6 leading-relaxed">
-                    ejo o desenvolvimento profissional como um processo contínuo. Por isso, estou sempre estudando, aplicando e buscando maneiras de entregar mais valor. Meu objetivo é claro: evoluir constantemente, crescer com propósito e contribuir para soluções mais inteligentes, humanas e eficientes.
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-4">
+                    Sobre Mim
+                </h2>
+                <p class="section-lead text-lg md:text-xl max-w-3xl mx-auto">
+                    Uma breve introdução sobre mim, minha trajetória e o que tenho a oferecer.
                 </p>
             </div>
             
-            <!-- Abas para currículo -->
-            <div class="max-w-4xl mx-auto">
-                <div class="flex flex-wrap border-b border-[#A7A8F8]/30 mb-8">
+            <div id="sobre-resumo-bloco" class="mb-10 lg:max-w-[75%] lg:mx-auto">
+                <div class="surface-card-primary sobre-resumo-card relative overflow-hidden p-8 md:p-10">
+                    <div class="sobre-resumo-visual" aria-hidden="true"></div>
+                    <div class="sobre-resumo-content">
+                        <p class="text-sm uppercase tracking-[0.25em] text-[#A7A8F8] mb-7">Resumo profissional</p>
+                        <p class="text-lg leading-relaxed text-[#F6F9DC]/88">
+                            Sou um profissional em constante evolução, movido pela transformação digital.
+                        </p>
+                        <p class="mt-5 text-lg leading-relaxed text-[#F6F9DC]/82">
+                            Iniciei minha trajetória como auxiliar de operações, onde aprendi o valor do trabalho. Cresci à medida que fui adquirindo e aplicando conhecimento, construíndo uma carreira sólida.<span id="sobre-resumo-ellipsis" class="text-[#F6F9DC]/68"> ...</span>
+                        </p>
+                        <div id="sobre-resumo-completo" class="sobre-resumo-collapse space-y-5">
+                            <p class="text-lg leading-relaxed text-[#F6F9DC]/82">
+                                Ao longo dos anos, me especializei no desenvolvimento de soluções de BI. Hoje, atuo com modelagem de dados, integração de múltiplas fontes, construção de pipelines e processos de ELT, além da criação e aprimoramento de dashboards, automações e aplicações voltadas à performance e escala.
+                            </p>
+                            <p class="text-lg leading-relaxed text-[#F6F9DC]/82">
+                                Tenho domínio em ferramentas e linguagens como Power BI, Excel, IA, SQL, Python, entre outras. Por ser autodidata, exploro, testo e aprofundo cada recurso até transformá-lo em uma extensão da minha própria capacidade, adaptando arquiteturas e soluções conforme a necessidade.
+                            </p>
+                            <p class="text-lg leading-relaxed text-[#F6F9DC]/82">
+                                Quero continuar aprendendo, mantendo-me sempre constante, por meio do estudo, da prática e da busca por formas de gerar mais impacto. Meu objetivo é crescer com propósito e contribuir para a construção de soluções cada vez mais eficientes.
+                            </p>
+                        </div>
+                        <button id="sobre-resumo-toggle" type="button" class="ui-pill mt-6 inline-flex items-center gap-2 px-5 py-2.5 font-medium" aria-expanded="false" aria-controls="sobre-resumo-completo">
+                            <span>Ler mais</span>
+                            <i class="fas fa-chevron-down text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sobre-entregas-bloco" class="surface-card-secondary p-8 md:p-10 mb-16 lg:max-w-[75%] lg:mx-auto">
+                <p class="text-sm uppercase tracking-[0.25em] text-[#A7A8F8] mb-5">O que eu entrego</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="md:pr-4">
+                        <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
+                            <i class="fas fa-robot text-[#A7A8F8] text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Desenvolvimento e Automação</h3>
+                        <p class="text-[#F6F9DC]/80 leading-relaxed">
+                            Desenvolvo soluções, aplicações, scripts, integrações e automações para transformar necessidades operacionais em entregas mais ágeis, úteis, escaláveis e bem conectadas ao contexto.
+                        </p>
+                    </div>
+                    <div class="md:px-4 md:border-x floating-divider md:border-x-[#A7A8F8]/12">
+                        <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-[#A7A8F8] text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Dados para decisão</h3>
+                        <p class="text-[#F6F9DC]/80 leading-relaxed">
+                            Transformo bases e indicadores em painéis, análises e narrativas que apoiam acompanhamento, leitura executiva e tomada de decisão com mais clareza e direcionamento.
+                        </p>
+                    </div>
+                    <div class="md:pl-4">
+                        <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
+                            <i class="fas fa-gears text-[#A7A8F8] text-lg"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3">Melhoria contínua</h3>
+                        <p class="text-[#F6F9DC]/80 leading-relaxed">
+                            Levo para a tecnologia uma base forte em qualidade, planejamento e metodologia para construir soluções mais sustentáveis, consistentes e preparadas para evoluir com segurança.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="curriculo-tabs" class="scroll-mt-28 pt-4 md:pt-8 lg:max-w-[75%] lg:mx-auto">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8]">Perfil Profissional</h2>
+                    <p class="section-lead text-lg md:text-xl max-w-3xl mx-auto mt-4">
+                        Uma visão organizada das minhas competências, experiências, formações e certificações.
+                    </p>
+                </div>
+                <div class="mb-8 flex flex-wrap gap-x-1 border-b border-[#A7A8F8]/20">
                     <button class="tab-button active px-6 py-3 font-medium text-[#A7A8F8]" data-tab="habilidades">
                         Habilidades
                     </button>
                     <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="experiencia">
-                        Experiência
+                        Experiências
                     </button>
                     <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="educacao">
-                        Formação
+                        Formações
                     </button>
                     <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="certificacoes">
                         Certificados
@@ -225,8 +944,6 @@
                 <div id="habilidades" class="tab-content active">
                     <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Habilidades Técnicas</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        
-                        <!-- Habilidade1 com modal -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="analise-dados">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
@@ -234,14 +951,12 @@
                                 </div>
                                 <h4 class="text-[16px] font-bold">Análise de Dados</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
+                            <p class="text-[#F6F9DC]/80 mb-4">
                                 Lidar com dados sempre fez parte do meu dia a dia. Com o tempo, essa habilidade natural se fortaleceu em ambientes profissionais. Isso aprimorou minha capacidade de resolver.
-                                </p>
-                                Clique aqui para saber mais!
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
-                    
-                        <!-- Habilidade2 com modal -->
+
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="inteligencia-artificial">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
@@ -249,44 +964,38 @@
                                 </div>
                                 <h4 class="text-[16px] font-bold">Inteligência Artificial</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
+                            <p class="text-[#F6F9DC]/80 mb-4">
                                 Desenvolver competências em IAs tem sido um grande diferencial para mim. Ela funciona como um verdadeiro assistente pessoal, permitindo aumentar minha produtividade.
-                                </p>
-                                Clique aqui para saber mais!
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
-                        
-                        <!-- Habilidade3 com modal -->
+
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="ferramentas">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
                                     <i class="fas fa-gear text-2xl text-[#A7A8F8]"></i>
                                 </div>
-                                <h4 class="text-[16px] font-bold">Ferramentas</h4>
+                                <h4 class="text-[16px] font-bold">Ferramentas e Plataformas</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
+                            <p class="text-[#F6F9DC]/80 mb-4">
                                 Posso afirmar com convicção que aprender ferramentas foi um divisor de águas para mim. Essa é uma habilidade técnica indispensável no mercado e que ajuda a abrir portas.
-                                </p>
-                                Clique aqui para saber mais!
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
 
-                        <!-- Habilidade4 com modal -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="programacao-logica">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
                                     <i class="fas fa-code text-2xl text-[#A7A8F8]"></i>
                                 </div>
-                                <h4 class="text-[16px] font-bold">Programação e Lógica</h4>
+                                <h4 class="text-[16px] font-bold">Programação e Automação</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
+                            <p class="text-[#F6F9DC]/80 mb-4">
                                 Criar scripts e aplicações que otimizam processos já faz parte da minha rotina. Essa habilidade é muito importante para quem busca se destacar como um profissional completo.
-                                </p>
-                                Clique aqui para saber mais!
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
 
-                        <!-- Habilidade5 com modal -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="qualidade-processos">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
@@ -294,213 +1003,232 @@
                                 </div>
                                 <h4 class="text-[16px] font-bold">Qualidade e Processos</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
-                                Adquiri experiência em metodologias e ferramentas voltadas para a melhoria contínua e compreendo, na prática, a importância da qualidade nos processos.
-                                </p>
-                                Clique aqui para saber mais!
+                            <p class="text-[#F6F9DC]/80 mb-4">
+                                Adquiri experiência em metodologias e ferramentas voltadas para a melhoria contínua em projetos e compreendo, na prática, a importância da qualidade nos processos.
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
 
-                        <!-- Habilidade6 com modal -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="gestao-projetos">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
                                     <i class="fas fa-bullseye text-2xl text-[#A7A8F8]"></i>
                                 </div>
-                                <h4 class="text-[16px] font-bold">Gestão de Projetos</h4>
+                                <h4 class="text-[16px] font-bold">Gestão e Liderança</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
-                                Na resolução de problemas, é comum a implementação de projetos. Para que essas soluções sejam eficazes, é fundamental que sejam bem planejadas e gerenciadas.
-                                </p>
-                                Clique aqui para saber mais!
+                            <p class="text-[#F6F9DC]/80 mb-4">
+                                Tive a oportunidade de exercer liderança em diferentes contextos, entendendo na prática que comunicação e acompanhamento constante são determinantes para os resultados.
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
 
-                        <!-- Habilidade7 com modal -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="planejamento">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
                                     <i class="fas fa-calendar text-2xl text-[#A7A8F8]"></i>
                                 </div>
-                                <h4 class="text-[16px] font-bold">Planejamento</h4>
+                                <h4 class="text-[16px] font-bold">Planejamento e Operação</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
+                            <p class="text-[#F6F9DC]/80 mb-4">
                                 Tive a oportunidade de elaborar planos para alinhar equipes e processos, além de realizar a gestão de riscos, garantindo que os procedimentos estejam em conformidade.
-                                </p>
-                                Clique aqui para saber mais!
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
 
-                        <!-- Habilidade8 com modal -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="aprendizagem-rapida">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
                                     <i class="fas fa-lightbulb text-2xl text-[#A7A8F8]"></i>
                                 </div>
-                                <h4 class="text-[16px] font-bold">Aprendizagem Rápida</h4>
+                                <h4 class="text-[16px] font-bold">Aprendizado e Adaptabilidade</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
+                            <p class="text-[#F6F9DC]/80 mb-4">
                                 Me considero autodidata e tenho facilidade em absorver conhecimento de forma rápida, o que me torna apto a aprender coisas novas e me adaptar com agilidade a diferentes contextos.
-                                </p>
-                                Clique aqui para saber mais!
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
 
-                        <!-- Habilidade9 com modal -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="didatica-ensino">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
                                     <i class="fas fa-graduation-cap text-2xl text-[#A7A8F8]"></i>
                                 </div>
-                                <h4 class="text-[16px] font-bold">Didática e Ensino</h4>
+                                <h4 class="text-[16px] font-bold">Comunicação e Treinamento</h4>
                             </div>
-                            <p class="text-[#F6F9DC]/80">
+                            <p class="text-[#F6F9DC]/80 mb-4">
                                 Tenho grande prazer em ensinar e compartilhar o conhecimento que adquiri. Sinto-me realizado ao compreender as dores das pessoas e contribuir ativamente para o seu desenvolvimento.
-                                </p>
-                                Clique aqui para saber mais!
                             </p>
+                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
                         </div>
-
                     </div>
                 </div>
                 
                 <div id="experiencia" class="tab-content hidden">
                     <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Experiência Profissional</h3>
                     
-                    <!-- Linha do tempo -->
                     <div class="relative">
-                        <!-- Linha vertical -->
                         <div class="absolute left-4 h-full w-0.5 bg-[#A7A8F8]/30 top-0"></div>
 
-                        <!-- Item 1 -->
                         <div class="relative pl-12 pb-7">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Analista Corporativo de Operações</h4>
-                                <p class="text-[#A7A8F8] mb-2">Camed Microcrédito | Atual</p>
+                                <h4 class="text-xl font-bold mb-2">Desenvolvedor de BI</h4>
+                                <p class="text-[#A7A8F8] mb-2">PEEXL Transformação Digital | mar de 2022 - o momento | 4 anos 2 meses | Remoto · Autônomo</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuo no acompanhamento da performance do programa de microcrédito do Crediamigo, desenvolvendo análises de dados e modelos operacionais e financeiros. Colaboro na implementação de soluções tecnológicas, gestão de sistemas e suporte às equipes de vendas, contribuindo para maior eficiência dos processos.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Automate, Copilot, APIs, SQL, sistemas de gestão, entre outras. </li>
+                                    <li>Atuo no desenvolvimento e implementação de soluções de Business Intelligence, adaptando ferramentas e arquiteturas conforme o ambiente e as necessidades do cliente.</li>
+                                    <li>Trabalho com modelagem de dados, integração de múltiplas fontes e construção de pipelines seguindo práticas de ELT.</li>
+                                    <li>Desenvolvo dashboards, automações e aplicações com foco em performance, escalabilidade e geração de insights estratégicos para tomada de decisão.</li>
+                                    <li>Ferramentas: Excel, Power BI, SQL, Python, Fabric, Power Platform, Azure, Codex, Google Workspace, Google Cloud, Looker, Apps Script, BigQuery, APIs e Git.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Item 2 -->
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Instrutor de Excel e Power BI</h4>
+                                <p class="text-[#A7A8F8] mb-2">PEEXL Transformação Digital | mai de 2019 - mar de 2022 | 2 anos 11 meses | Remoto · Autônomo</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Ministrei aulas individuais e em grupo, capacitando alunos do básico ao avançado com foco prático e aplicado.</li>
+                                    <li>Atuei na preparação para testes técnicos e no desenvolvimento de projetos reais voltados a demandas corporativas e negócios próprios, com foco em automação, análise de dados e dashboards.</li>
+                                    <li>Ferramentas: Excel, Power BI e Microsoft Office.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Analista Comercial Pleno</h4>
+                                <p class="text-[#A7A8F8] mb-2">Cysy Fertilizantes | fev de 2026 - o momento | 3 meses | Criciúma, SC · Presencial</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Atuo na operação comercial com foco em dados e eficiência de processos, realizando atendimento interno e externo, gestão de pedidos, conferência de comissões e pós-venda.</li>
+                                    <li>Desenvolvo análises, controles comerciais, integrações e automações para apoiar a tomada de decisão e a melhoria contínua dos processos.</li>
+                                    <li>Ferramentas: Google Sheets, Apps Script, BigQuery, Gemini, Protheus e SQL.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="relative pl-12 pb-7">
+                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
+                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
+                            </div>
+                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
+                                <h4 class="text-xl font-bold mb-2">Analista de Operações de Vendas</h4>
+                                <p class="text-[#A7A8F8] mb-2">Camed Microcrédito | ago de 2025 - dez de 2025 | 5 meses | Fortaleza, CE · Presencial</p>
+                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
+                                    <li>Atuei no monitoramento da performance do programa Crediamigo, desenvolvendo análises operacionais e financeiras orientadas a dados.</li>
+                                    <li>Participei da implementação de soluções tecnológicas, integração de sistemas e suporte às equipes comerciais, contribuindo para ganho de eficiência e melhoria dos indicadores.</li>
+                                    <li>Ferramentas: Power BI, Excel, Power Automate, SQL, APIs e Copilot.</li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="relative pl-12 pb-7">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
                                 <h4 class="text-xl font-bold mb-2">Analista de Logística e Dados</h4>
-                                <p class="text-[#A7A8F8] mb-2">Grupo Cosampa | 2 Semanas</p>
+                                <p class="text-[#A7A8F8] mb-2">Grupo Cosampa | jul de 2025 - ago de 2025 | 2 meses | Fortaleza, CE · Presencial</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li> Atuei na logística analisando indicadores e controlando equipamentos, elaborando relatórios de disponibilidade e localização de ativos para apoiar a gestão e a tomada de decisão. </li>
-                                    <li>Ferramentas: Power BI, Excel, Python, APIs, ChatGPT, entre outras.</li>
+                                    <li>Atuei na análise de indicadores logísticos e no controle de ativos, elaborando relatórios de disponibilidade e rastreabilidade de equipamentos.</li>
+                                    <li>Contribuí para a gestão operacional e a tomada de decisão por meio de dados estruturados e análises direcionadas.</li>
+                                    <li>Ferramentas: Excel, Python, APIs e ChatGPT.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Item 3 -->
                         <div class="relative pl-12 pb-7">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
                                 <h4 class="text-xl font-bold mb-2">Analista de Dados</h4>
-                                <p class="text-[#A7A8F8] mb-2">UpValue Solutions | 9 Meses</p>
+                                <p class="text-[#A7A8F8] mb-2">Up Value Solutions | set de 2024 - mai de 2025 | 9 meses | Fortaleza, CE · Presencial</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Coletei, tratei e analisei dados para gerar insights estratégicos. Criei dashboards e automações, integrei sistemas e APIs, otimizando decisões e processos.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Automate, Python, APIs, SQL, Apache Hoop, Azure, ChatGPT, entre outras.</li>
+                                    <li>Atuei na coleta, tratamento e análise de dados para geração de insights estratégicos.</li>
+                                    <li>Desenvolvi dashboards, automações e pipelines de dados, integrando diferentes fontes e otimizando processos analíticos.</li>
+                                    <li>Ferramentas: Power BI, Excel, Power Automate, Azure, Apache Hop, Python, SQL, APIs, ChatGPT, Git e Docker.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Item 4 -->
                         <div class="relative pl-12 pb-7">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
                                 <h4 class="text-xl font-bold mb-2">Analista de Logística</h4>
-                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | 1 Ano e 8 Meses</p>
+                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | fev de 2023 - set de 2024 | 1 ano 8 meses | Caucaia, CE · Presencial</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Desenvolvi e apresentei indicadores de desempenho. Padronizei processos conforme normas ISO e implementei melhorias com Lean e Kaizen. Atuei no planejamento e controle de materiais.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Apps, Power Point, Word, SAP, Bizagi, Visio, Sistemas de Gestão, entre outras</li>
+                                    <li>Desenvolvi e acompanhei indicadores de desempenho logístico, liderando iniciativas de melhoria contínua com foco em eficiência operacional e redução de custos.</li>
+                                    <li>Atuei em projetos estruturados com metodologias Lean e Kaizen e também participei do planejamento e controle de materiais com aderência a processos e normas ISO.</li>
+                                    <li>Ferramentas: Power BI, Excel, Power Apps, SAP, Bizagi e Visio.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Item 5 -->
                         <div class="relative pl-12 pb-7">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
                                 <h4 class="text-xl font-bold mb-2">Assistente Administrativo</h4>
-                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | 11 Meses</p>
+                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | abr de 2022 - fev de 2023 | 11 meses | Caucaia, CE · Presencial</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atualizei controles e painéis de acompanhamento. Apoiei processos logísticos de pás eólicas, desde armazenagem até expedição.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Apps, Power Point, Word, SAP, Sistemas de Gestão, entre outras.</li>
+                                    <li>Desenvolvi dashboards e controles operacionais, otimizando fluxos e reduzindo tempo de execução de processos.</li>
+                                    <li>Atuei no suporte às operações logísticas de pás eólicas, incluindo armazenagem, movimentação e expedição.</li>
+                                    <li>Ferramentas: Power BI, Excel, Power Apps e SAP.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Item 6 -->
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Instrutor Independente</h4>
-                                <p class="text-[#A7A8F8] mb-2">EX DPT | 1 Ano e 1 Mês</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Ministrei aulas de Excel e Power BI e desenvolvi projetos personalizados para empresas e profissionais.</li>
-                                    <li>Ferramentas: Power BI e Excel.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Item 7 -->
                         <div class="relative pl-12 pb-7">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
                                 <h4 class="text-xl font-bold mb-2">Auxiliar Administrativo</h4>
-                                <p class="text-[#A7A8F8] mb-2">Tomé Equipamentos e Transportes | 1 Ano e 9 Meses</p>
+                                <p class="text-[#A7A8F8] mb-2">Tomé Equipamentos e Transportes | set de 2017 - mai de 2019 | 1 ano 9 meses | São Gonçalo do Amarante, CE · Presencial</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Gerenciei cadastros, autorizações e documentos fiscais. Automatizei processos e produzi relatórios gerenciais.</li>
-                                    <li>Ferramentas: Excel, Word e Sistemas de Gestão.</li>
+                                    <li>Realizei atividades administrativas e operacionais, contribuindo para melhoria de processos e controle de operações.</li>
+                                    <li>Participei da implementação de controles logísticos que reduziram custos e aumentaram a eficiência operacional.</li>
+                                    <li>Ferramentas: Excel, Word e sistemas de gestão.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Item 8 -->
                         <div class="relative pl-12 pb-7">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
                                 <h4 class="text-xl font-bold mb-2">Conferente</h4>
-                                <p class="text-[#A7A8F8] mb-2">Apm Terminals | 9 Meses</p>
+                                <p class="text-[#A7A8F8] mb-2">APM Terminals | dez de 2016 - jul de 2017 | 8 meses | São Gonçalo do Amarante, CE · Presencial</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuei no recebimento, armazenagem e embarque de cargas, garantindo atualização de documentos e sistemas operacionais.</li>
+                                    <li>Atuei em operações logísticas, incluindo recebimento, armazenagem, conferência, separação e movimentação de cargas.</li>
+                                    <li>Mantive sistemas e documentos atualizados, garantindo controle e rastreabilidade das operações.</li>
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- Item 9 -->
                         <div class="relative pl-12">
                             <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Assistente Operacional</h4>
-                                <p class="text-[#A7A8F8] mb-2">Tecer Terminais Portuários Ceará | 1 Ano e 6 Meses</p>
+                                <h4 class="text-xl font-bold mb-2">Conferente</h4>
+                                <p class="text-[#A7A8F8] mb-2">Tecer Terminais | ago de 2015 - dez de 2016 | 1 ano 5 meses | São Gonçalo do Amarante, CE · Presencial</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Realizei operações logísticas de recebimento, conferência e movimentação de cargas, mantendo registros e sistemas atualizados.</li>
+                                    <li>Executei atividades logísticas, incluindo recebimento, armazenagem, conferência, separação e amarração de cargas.</li>
+                                    <li>Mantive documentos e sistemas atualizados com as informações das operações realizadas.</li>
                                 </ul>
                             </div>
                         </div>
@@ -572,7 +1300,7 @@
                                         Conclusão do curso Algoritmos e Lógica de Programação com duração de 2 horas , iniciado no dia 28/12/24 e concluído no dia 31/01/25. Credencial ALGPAU1738346327.
                                     </p>
                                     <a href="https://portalhashtag.com/validacao-certificado/1738346329093x270078334260215800" 
-                                    target="_blank" 
+                                    target="_blank" rel="noopener noreferrer"
                                     class="inline-block mt-3 text-[#A7A8F8] hover:underline">
                                     Ver credencial <i class="fas fa-external-link-alt ml-1"></i>
                                     </a>
@@ -594,10 +1322,31 @@
                                         Conclusão do curso Green Belt Lean Seis Sigma (60h) pela FRONS. Certificado emitido em 27/05/2025, código 14B31626B-13EF92E17-12D18EB09.
                                     </p>
                                     <a href="https://frons.com.br/verificacao-certificados/14B31626B-13EF92E17-12D18EB09/" 
-                                    target="_blank" 
+                                    target="_blank" rel="noopener noreferrer"
                                     class="inline-block mt-3 text-[#A7A8F8] hover:underline">
                                     Ver credencial <i class="fas fa-external-link-alt ml-1"></i>
                                     </a>                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Certificação 3 -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex flex-col md:flex-row md:items-center">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <img src="https://lh3.googleusercontent.com/d/1LdoZbU_BFWl12R8jlhZOucLKbLQy4lr1=w800-h572" alt="Certificação" class="rounded-lg">
+                                </div>
+                                <div class="md:w-3/4 md:pl-6">
+                                    <h4 class="text-xl font-bold mb-2">Formação em Microfinança Urbana</h4>
+                                    <p class="text-[#A7A8F8] mb-3">Banco do Nordeste do Brasil | set de 2025</p>
+                                    <p class="text-[#F6F9DC]/80">
+                                        Paulo Estevão Freitas Maia concluiu o curso Formação em Microfinança Urbana, promovido pela Universidade Corporativa Banco do Nordeste, com carga horária de 28 horas.
+                                    </p>
+                                    <a href="https://bnb.gov.br/universidadebancodonordeste/mod/customcert/verify_certificate.php?code=7hnj7qlBYO&qrcode=1&contextid=18608" 
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-block mt-3 text-[#A7A8F8] hover:underline">
+                                    Ver credencial <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -640,79 +1389,84 @@
     </section>
 
     <!-- Seção Projetos -->
-    <section id="projetos" class="py-20">
+    <section id="projetos" class="section-band py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-12 text-center">
-                Meus Projetos
-            </h2>
-            
-            <!-- Filtros por categoria -->
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-4">
+                    Projetos em destaque
+                </h2>
+                <p class="text-lg text-[#F6F9DC]/80">
+                    Principais projetos desenvolvidos ao longo das minhas experiências.
+                </p>
+            </div>
+
             <div class="flex flex-wrap justify-center mb-12 gap-4">
                 <button class="project-filter active px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-full font-medium" data-filter="all">
                     Todos
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="html">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="web">
                     Web
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="ia">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="ia">
                     IA
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="api">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="api">
                     API
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="powerbi">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="power-bi">
                     Power BI
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="python">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="python">
                     Python
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="sql">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="sql">
                     SQL
-                </button>                        
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="html">
+                </button>
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="html">
                     HTML
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="css">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="css">
                     CSS
                 </button>
-                <button class="project-filter px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-full font-medium hover:bg-[#A7A8F8]/10 transition" data-filter="javascript">
+                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="javascript">
                     JavaScript
                 </button>
             </div>
-            
-            <!-- Grid de projetos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Projeto 1 -->
-                <div class="project-item html css web ia javascript animate-fadeIn delay-300">
-                    <div class="bg-[#0D0F2B] rounded-lg overflow-hidden border border-[#A7A8F8]/20 card-hover h-full flex flex-col">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://lh3.googleusercontent.com/d/1wPObjX2GDxyaMlU4tcOxZrIHsX0cajQA=w1371-h658" alt="Previsão de Séries Temporais" class="w-full h-full object-cover">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <div class="project-item web ia html css javascript animate-fadeIn delay-100">
+                    <div class="surface-card-interactive overflow-hidden card-hover h-full flex flex-col">
+                        <div class="project-frame h-48 overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/d/1n89FGEkWdoQbegi3M2I4WQ5K_yc85Heq=w1371-h658" alt="Captura do site portfólio de Paulo Estevão Maia" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6 flex-grow">
                             <div class="flex items-center mb-4">
                                 <div class="w-10 h-10 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-3">
                                     <i class="fas fa-code text-lg text-[#A7A8F8]"></i>
                                 </div>
-                                <h3 class="text-xl font-bold">Meu Site Portfólio</h3>
+                                <div>
+                                    <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80">Projeto autoral</p>
+                                    <h3 class="text-[1.45rem] font-bold leading-tight">Meu site portfólio</h3>
+                                </div>
                             </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Criei este portfólio aplicando técnicas, tecnologias e linguagens que contribuíram diretamente para o resultado final. Optei por apresentá-lo como projeto porque ele explora e evidencia minhas habilidades. O código desenvolvido para este site reflete meu conhecimento técnico e minha capacidade de transformar ideias em soluções funcionais.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
+
+                            <div class="space-y-3 text-[#F6F9DC]/82">
+                                <p><span class="text-[#F6F9DC] font-semibold">Problema:</span> apresentar meu perfil de forma mais clara, profissional e confiável para recrutadores e clientes.</p>
+                                <p><span class="text-[#F6F9DC] font-semibold">Solução:</span> construí uma landing page responsiva com foco em narrativa, escaneabilidade, filtros de projeto e interações leves.</p>
+                                <p><span class="text-[#F6F9DC] font-semibold">Resultado:</span> um portfólio próprio que funciona como vitrine de habilidades em HTML, Tailwind CSS, JavaScript e organização de conteúdo.</p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 mt-5">
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">HTML</span>
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Tailwind CSS</span>
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">JavaScript</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Desenvolvimento Web</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">DeepSite IA</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">ChatGPT IA</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">UX writing</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">IA generativa</span>
                             </div>
                         </div>
                         <div class="px-6 pb-6">
-                            <div class="flex space-x-3">
-                                <a href="https://github.com/paulomaia93/site_meuportfolio/blob/main/index.html"
-                                target="_blank"
-                                class="px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-lg font-medium hover:bg-[#6C63FF] transition flex items-center">
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://github.com/paulomaia93/site_meuportfolio/blob/main/index.html" target="_blank" rel="noopener noreferrer" class="btn-secondary px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-xl font-medium hover:bg-[#A7A8F8]/10 flex items-center">
                                     <i class="fab fa-github mr-2"></i> Código
                                 </a>
                             </div>
@@ -720,168 +1474,157 @@
                     </div>
                 </div>
 
-                <!-- Projeto 2 -->
-                <div class="project-item powerbi python sql api ia animate-fadeIn delay-300">
-                    <div class="bg-[#0D0F2B] rounded-lg overflow-hidden border border-[#A7A8F8]/20 card-hover h-full flex flex-col">
-                        <div class="h-48 overflow-hidden">
-                            <img src="https://lh3.googleusercontent.com/d/1PtEBIrYYnn7zD3iq8F_tMcmiNuQ5H7Fw=w1000-h488" alt="Previsão de Séries Temporais" class="w-full h-full object-cover">
+                <div class="project-item ia api power-bi python sql animate-fadeIn delay-200">
+                    <div class="surface-card-interactive overflow-hidden card-hover h-full flex flex-col">
+                        <div class="project-frame h-48 overflow-hidden">
+                            <img src="https://lh3.googleusercontent.com/d/1yZwlyKhWaDjiqW4RwiVTYds9ipaDNCGd=w1000-h488" alt="Dashboard sobre desempenho do emprego formal no Brasil" class="w-full h-full object-cover">
                         </div>
                         <div class="p-6 flex-grow">
                             <div class="flex items-center mb-4">
                                 <div class="w-10 h-10 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-3">
                                     <i class="fas fa-chart-column text-lg text-[#A7A8F8]"></i>
                                 </div>
-                                <h3 class="text-xl font-bold">Desempenho do Emprego Formal</h3>
+                                <div>
+                                    <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80">Dados públicos + BI</p>
+                                    <h3 class="text-[1.45rem] font-bold leading-tight">Desempenho do Emprego Formal</h3>
+                                </div>
                             </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Como forma de demonstrar minhas habilidades tanto em ferramentas de visualização quanto em programação, desenvolvi fluxos de ELT utilizando dados públicos disponibilizados pelo governo. Um exemplo disso é o uso dos dados do CAGED, que acompanham admissões e desligamentos no Brasil, servindo como uma fonte de informações sobre o mercado de trabalho.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
+
+                            <div class="space-y-3 text-[#F6F9DC]/82">
+                                <p><span class="text-[#F6F9DC] font-semibold">Problema:</span> acompanhar admissões e desligamentos exige consolidar dados públicos, tratar volumes altos e facilitar leitura executiva.</p>
+                                <p><span class="text-[#F6F9DC] font-semibold">Solução:</span> desenvolvi fluxo de ELT com Python, SQL e integração de dados do CAGED para alimentar visualizações em Power BI.</p>
+                                <p><span class="text-[#F6F9DC] font-semibold">Resultado:</span> um painel que organiza a leitura do mercado de trabalho e demonstra minha capacidade de unir engenharia de dados, análise e storytelling.</p>
+                            </div>
+
+                            <div class="flex flex-wrap gap-2 mt-5">
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Power BI</span>
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Python</span>
                                 <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">SQL</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">API</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">ChatGPT IA</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">ELT</span>
+                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">APIs</span>
                             </div>
                         </div>
                         <div class="px-6 pb-6">
-                            <div class="flex space-x-3">
-                                <a href="https://github.com/paulomaia93/DadosAntigosCAGED"
-                                target="_blank"
-                                class="px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-lg font-medium hover:bg-[#6C63FF] transition flex items-center">
-                                    <i class="fab fa-github mr-2"></i> Código
+                            <div class="flex flex-wrap gap-3">
+                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGE3YmM3ZDYtMzUxZi00MTJhLWI2M2EtOGMwOTFiZDVlYTQ2IiwidCI6IjdmMzE2ZDQxLTUxM2YtNDhjMi05NmFhLTlmMzA1NTk4YWI5NiJ9" target="_blank" rel="noopener noreferrer" class="btn-primary px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-xl font-medium hover:bg-[#6C63FF] flex items-center">
+                                    <i class="fas fa-chart-line mr-2"></i> Dashboard
                                 </a>
-                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGE3YmM3ZDYtMzUxZi00MTJhLWI2M2EtOGMwOTFiZDVlYTQ2IiwidCI6IjdmMzE2ZDQxLTUxM2YtNDhjMi05NmFhLTlmMzA1NTk4YWI5NiJ9"
-                                target="_blank"
-                                class="px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-lg font-medium hover:bg-[#A7A8F8]/10 transition flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i> Relatório
+                                <a href="https://github.com/paulomaia93/DadosAntigosCAGED" target="_blank" rel="noopener noreferrer" class="btn-secondary px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-xl font-medium hover:bg-[#A7A8F8]/10 flex items-center">
+                                    <i class="fab fa-github mr-2"></i> Código
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-            
-            <!-- Botão para ver mais projetos -->
-            <div class="text-center mt-12">
-                <button id="load-more" class="px-6 py-3 border-2 border-[#A7A8F8] text-[#A7A8F8] rounded-lg font-medium hover:bg-[#A7A8F8]/10 transition">
-                    Carregar Mais Projetos
-                </button>
             </div>
         </div>
     </section>
 
     <!-- Seção Contato -->
-    <section id="contato" class="py-20 bg-[#0D0F2B]">
+    <section id="contato" class="section-band py-20 bg-[#0D0F2B]">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-12 text-center">
-                Contato
-            </h2>
-            
-            <div class="flex flex-col lg:flex-row gap-12">
-                <!-- Formulário de contato -->
-                <div class="lg:w-1/2">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8] mb-4">
+                    Vamos conversar
+                </h2>
+                <p class="text-lg text-[#F6F9DC]/80">
+                    Estou aberto a oportunidades e parcerias.
+                </p>
+            </div>
 
-                    <form action="https://formspree.io/f/xanordvg" method="POST" class="bg-[#080A21] p-8 rounded-lg border border-[#A7A8F8]/20">
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2">
+                    <form id="contact-form" action="https://formspree.io/f/xanordvg" method="POST" accept-charset="UTF-8" class="surface-card-secondary p-8">
+                        <p class="text-[#F6F9DC]/75 mb-6">
+                            Preencha o formulário e sua mensagem será enviada diretamente para o meu e-mail.
+                        </p>
+
                         <div class="mb-6">
                             <label for="name" class="block text-[#A7A8F8] mb-2">Nome</label>
-                            <input type="text" name="name" id="name" required
-                                class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent">
+                            <input type="text" name="name" id="name" required placeholder="Seu nome completo" class="contact-field w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent transition">
                         </div>
 
                         <div class="mb-6">
                             <label for="email" class="block text-[#A7A8F8] mb-2">E-mail</label>
-                            <input type="email" name="email" id="email" required
-                                class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent">
+                            <input type="email" name="email" id="email" required placeholder="seuemail@exemplo.com" class="contact-field w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent transition">
                         </div>
 
                         <div class="mb-6">
                             <label for="subject" class="block text-[#A7A8F8] mb-2">Assunto</label>
-                            <input type="text" name="subject" id="subject" required
-                                class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent">
+                            <input type="text" name="subject" id="subject" required placeholder="Ex.: Oportunidade, projeto ou parceria" class="contact-field w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent transition">
                         </div>
 
                         <div class="mb-6">
                             <label for="message" class="block text-[#A7A8F8] mb-2">Mensagem</label>
-                            <textarea name="message" id="message" rows="5" required
-                                    class="w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent"></textarea>
+                            <textarea name="message" id="message" rows="5" required placeholder="Conte brevemente o motivo do contato." class="contact-field w-full px-4 py-3 bg-[#0D0F2B] border border-[#A7A8F8]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A7A8F8] focus:border-transparent transition"></textarea>
                         </div>
 
-                        <!-- Campo para evitar bots -->
-                        <input type="text" name="_gotcha" style="display:none">
+                        <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
+                        <input type="hidden" name="_subject" value="Novo contato pelo site do Paulo Estevão Maia">
 
-                        <!-- Redirecionamento ou mensagem de sucesso -->
-                        <input type="hidden" name="_subject" value="Novo contato pelo site do Paulo Estevão">
-                        <input type="hidden" name="_next" value="https://seusite.com.br/obrigado.html">
-
-                        <button type="submit"
-                                class="w-full px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-lg font-bold hover:bg-[#6C63FF] transition">
-                            Enviar Mensagem
+                        <button id="contact-submit" type="submit" class="contact-submit btn-primary w-full px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-xl font-bold hover:bg-[#6C63FF]">
+                            <span>Enviar mensagem</span>
                         </button>
+                        <p id="contact-form-status" class="contact-feedback mt-4 hidden" role="status" aria-live="polite"></p>
                     </form>
-
                 </div>
-                
-                <!-- Informações de contato -->
+
                 <div class="lg:w-1/2">
-                    <div class="bg-[#080A21] p-8 rounded-lg border border-[#A7A8F8]/20 h-full">
-                        <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Informações para Contato</h3>
-                        
+                    <div class="surface-card-secondary p-8 h-full">
+                        <h3 class="text-2xl font-bold text-[#A7A8F8] mb-3">Canais de contato</h3>
+                        <p class="text-[#F6F9DC]/75 mb-8">
+                            Se preferir, também podemos conversar diretamente pelos canais abaixo.
+                        </p>
+
                         <div class="space-y-6">
-                            <!-- Email -->
                             <div class="flex items-start">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="fas fa-envelope text-xl text-[#A7A8F8]"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">E-mail</h4>
-                                    <a href="mailto:seuemail@exemplo.com" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">auto.maia93@gmail.com</a>
+                                    <a href="mailto:auto.maia93@gmail.com" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">auto.maia93@gmail.com</a>
                                 </div>
                             </div>
-                            
-                            <!-- Telefone -->
+
                             <div class="flex items-start">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="fas fa-phone-alt text-xl text-[#A7A8F8]"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-lg font-bold mb-1">Telefone/WhatsApp</h4>
-                                    <a href="tel:+5511999999999" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">+55 (85) 9 9259-0695</a>
+                                    <h4 class="text-lg font-bold mb-1">Telefone / WhatsApp</h4>
+                                    <a href="tel:+5585992590695" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">+55 (85) 9 9259-0695</a>
                                 </div>
                             </div>
-                            
-                            <!-- LinkedIn -->
+
                             <div class="flex items-start">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="fab fa-linkedin-in text-xl text-[#A7A8F8]"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">LinkedIn</h4>
-                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">linkedin.com/in/pauloestevaofreitasmaia</a>
+                                    <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">linkedin.com/in/pauloestevaofreitasmaia</a>
                                 </div>
                             </div>
-                            
-                            <!-- GitHub -->
+
                             <div class="flex items-start">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="fab fa-github text-xl text-[#A7A8F8]"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">GitHub</h4>
-                                    <a href="#" target="_blank" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">github.com/paulomaia93</a>
+                                    <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" class="text-[#F6F9DC]/80 hover:text-[#A7A8F8] transition">github.com/paulomaia93</a>
                                 </div>
                             </div>
-                            
-                            <!-- Localização -->
+
                             <div class="flex items-start">
                                 <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4 flex-shrink-0">
                                     <i class="fas fa-map-marker-alt text-xl text-[#A7A8F8]"></i>
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-bold mb-1">Atuação</h4>
-                                    <p class="text-[#F6F9DC]/80">Fortaleza Ceará, Brasil</p>
-                                    <p class="text-[#F6F9DC]/80">Remoto, Brasil</p>
+                                    <p class="text-[#F6F9DC]/80">Criciúma, Santa Catarina · Brasil</p>
+                                    <p class="text-[#F6F9DC]/80">Trabalho remoto para todo o Brasil</p>
                                 </div>
                             </div>
                         </div>
@@ -892,28 +1635,28 @@
     </section>
 
     <!-- Rodapé -->
-    <footer class="bg-[#080A21] py-8 border-t border-[#A7A8F8]/20">
+    <footer class="bg-[#080A21] py-8 border-t border-[#A7A8F8]/14">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex flex-col gap-6 md:flex-row md:justify-between md:items-center">
                 <div class="mb-6 md:mb-0">
                     <p class="text-[#F6F9DC]/70">&copy; <span id="year"></span> Paulo Estevão Freitas Maia. Todos os direitos reservados.</p>
                 </div>
                 
-                <div class="flex justify-end pr-16 space-x-6">
-                    <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" 
-                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                <div class="flex items-center gap-6">
+                    <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" aria-label="Abrir GitHub" 
+                    class="icon-action text-xl text-[#F6F9DC]/70">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" 
-                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                    <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" aria-label="Abrir LinkedIn" 
+                    class="icon-action text-xl text-[#F6F9DC]/70">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a href="https://wa.me/5585992590695" target="_blank" rel="noopener noreferrer" 
-                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                    <a href="https://wa.me/5585992590695" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp" 
+                    class="icon-action text-xl text-[#F6F9DC]/70">
                         <i class="fab fa-whatsapp"></i>
                     </a>
-                    <a href="https://www.instagram.com/pauloestevao.maia" target="_blank" rel="noopener noreferrer" 
-                    class="text-xl text-[#F6F9DC]/70 hover:text-[#A7A8F8] transition">
+                    <a href="https://www.instagram.com/pauloestevao.maia" target="_blank" rel="noopener noreferrer" aria-label="Abrir Instagram" 
+                    class="icon-action text-xl text-[#F6F9DC]/70">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
@@ -922,288 +1665,679 @@
     </footer>
 
     <!-- Botão para voltar ao topo -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-[#A7A8F8] text-[#080A21] flex items-center justify-center shadow-lg hover:bg-[#6C63FF] transition hidden">
+    <button id="back-to-top" class="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-[#A7A8F8] text-[#080A21] flex items-center justify-center shadow-[0_18px_36px_rgba(108,99,255,0.24)] hover:bg-[#6C63FF]">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Modal para Habilidade Técnica -->
     <div id="modal-habilidade" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center hidden">
-        <div class="bg-[#0D0F2B] w-[90%] max-w-3xl rounded-xl shadow-2xl flex overflow-hidden relative animate-fade-in border border-[#A7A8F8]/30">
+        <div class="modal-content surface-card-primary flex overflow-hidden relative">
       
           <!-- Botão fechar -->
-          <button id="fechar-modal" class="absolute top-4 right-4 text-white text-2xl hover:text-[#6C63FF] transition   bg-black bg-opacity-30 rounded-full w-10 h-10 flex items-center justify-center leading-none">&times;</button>
+          <button id="fechar-modal" class="absolute top-4 right-4 text-white text-2xl hover:text-[#6C63FF] transition bg-black/30 rounded-full w-10 h-10 flex items-center justify-center leading-none">&times;</button>
       
           <!-- Conteúdo (texto) -->
-          <div class="w-1/2 p-8 text-[#F6F9DC] flex flex-col justify-center space-y-4">
+          <div class="modal-text-pane p-8 text-[#F6F9DC] flex flex-col justify-center space-y-4">
             <h2 id="modal-titulo" class="text-3xl font-bold"></h2>
             <ul id="modal-topicos" class="list-[square] pl-5 space-y-2 text-[#F6F9DC]/90 text-base"></ul>
           </div>
       
           <!-- Imagem -->
-          <div class="w-1/2 bg-[#0D0F2B] flex items-center justify-center">
-            <img id="modal-imagem" src="" alt="Imagem" class="h-full object-cover rounded-none border-l border-[#A7A8F8]/10">
+          <div class="modal-media-pane bg-[#0D0F2B] flex items-center justify-center">
+            <img id="modal-imagem" src="" alt="Imagem" class="rounded-none border-l border-[#A7A8F8]/10">
           </div>
         </div>
     </div>
 
     <!-- JavaScript -->
     <script>
-        // Função para inicializar o ano no rodapé
         document.addEventListener('DOMContentLoaded', function() {
-            // Atualiza o ano no rodapé
             document.getElementById('year').textContent = new Date().getFullYear();
-            
-            // Menu mobile
+
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-            // Abas do currículo
+            const mobileMenuIcon = mobileMenuButton ? mobileMenuButton.querySelector('i') : null;
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove a classe 'active' de todos os botões e conteúdos
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active');
-                        btn.classList.add('text-[#A7A8F8]/70');
-                    });
-                    
-                    tabContents.forEach(content => {
-                        content.classList.remove('active');
-                        content.classList.add('hidden');
-                    });
-                    
-                    // Adiciona a classe 'active' ao botão clicado
-                    this.classList.add('active');
-                    this.classList.remove('text-[#A7A8F8]/70');
-                    
-                    // Mostra o conteúdo correspondente
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(tabId).classList.add('active');
-                    document.getElementById(tabId).classList.remove('hidden');
-                });
-            });
-            
-            // Filtro de projetos
+            const heroTabLinks = document.querySelectorAll('.hero-tab-link');
+            const curriculoTabs = document.getElementById('curriculo-tabs');
+            const homeSection = document.getElementById('home');
+            const sobreResumoBloco = document.getElementById('sobre-resumo-bloco');
+            const sobreEntregasBloco = document.getElementById('sobre-entregas-bloco');
+            const navLinks = document.querySelectorAll('[data-nav-link]');
+            const sectionElements = Array.from(document.querySelectorAll('section[id]'));
             const projectFilters = document.querySelectorAll('.project-filter');
             const projectItems = document.querySelectorAll('.project-item');
-            
-            projectFilters.forEach(filter => {
-                filter.addEventListener('click', function() {
-                    // Remove a classe 'active' de todos os filtros
-                    projectFilters.forEach(f => {
-                        f.classList.remove('active', 'bg-[#A7A8F8]', 'text-[#080A21]');
-                        f.classList.add('border', 'border-[#A7A8F8]', 'text-[#A7A8F8]');
+            const backToTopButton = document.getElementById('back-to-top');
+
+            function smoothScrollToElement(targetElement) {
+                if (!targetElement) {
+                    return;
+                }
+
+                const offset = 88;
+                const top = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({
+                    top,
+                    behavior: 'smooth'
+                });
+            }
+
+            function setMobileMenuState(isOpen) {
+                if (!mobileMenu || !mobileMenuButton) {
+                    return;
+                }
+
+                mobileMenu.classList.toggle('is-open', isOpen);
+                mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
+
+                if (mobileMenuIcon) {
+                    mobileMenuIcon.classList.toggle('fa-bars', !isOpen);
+                    mobileMenuIcon.classList.toggle('fa-xmark', isOpen);
+                }
+            }
+
+            function closeMobileMenu() {
+                setMobileMenuState(false);
+            }
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    const isOpen = mobileMenu.classList.contains('is-open');
+                    setMobileMenuState(!isOpen);
+                });
+            }
+
+            function setActiveNavLink(sectionId) {
+                navLinks.forEach(link => {
+                    const isActive = link.getAttribute('data-nav-link') === sectionId;
+                    link.classList.toggle('nav-link-active', isActive);
+                });
+            }
+
+            function updateActiveSectionFromScroll() {
+                const scrollReference = window.scrollY + 140;
+                let currentSectionId = sectionElements[0] ? sectionElements[0].id : 'home';
+
+                sectionElements.forEach(section => {
+                    if (scrollReference >= section.offsetTop) {
+                        currentSectionId = section.id;
+                    }
+                });
+
+                const pageBottomReached = window.innerHeight + window.scrollY >= document.body.offsetHeight - 24;
+                if (pageBottomReached && sectionElements.length) {
+                    currentSectionId = sectionElements[sectionElements.length - 1].id;
+                }
+
+                setActiveNavLink(currentSectionId);
+            }
+
+            updateActiveSectionFromScroll();
+            window.addEventListener('scroll', updateActiveSectionFromScroll, { passive: true });
+
+            function activateTab(tabId) {
+                const activeButton = document.querySelector(`.tab-button[data-tab="${tabId}"]`);
+                const activeContent = document.getElementById(tabId);
+                const currentContent = document.querySelector('.tab-content.active');
+
+                if (!activeButton || !activeContent) {
+                    return;
+                }
+
+                if (currentContent && currentContent.id === tabId) {
+                    return;
+                }
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                activeButton.classList.add('active');
+
+                if (!currentContent) {
+                    activeContent.classList.add('active');
+                    activeContent.classList.remove('hidden');
+                    activeContent.classList.add('is-transitioning-in');
+                    requestAnimationFrame(() => {
+                        activeContent.classList.add('is-visible');
+                        updateCurriculoScrollState(activeContent);
                     });
-                    
-                    // Adiciona a classe 'active' ao filtro clicado
-                    this.classList.add('active', 'bg-[#A7A8F8]', 'text-[#080A21]');
-                    this.classList.remove('border', 'border-[#A7A8F8]', 'text-[#A7A8F8]');
-                    
-                    // Filtra os projetos
-                    const filterValue = this.getAttribute('data-filter');
-                    
-                    projectItems.forEach(item => {
-                        const itemClasses = item.className.split(/\s+/);
-                        const isVisible = filterValue === 'all' || itemClasses.includes(filterValue);
-                        item.style.display = isVisible ? 'block' : 'none';
+                    setTimeout(() => {
+                        activeContent.classList.remove('is-transitioning-in', 'is-visible');
+                    }, 320);
+                    return;
+                }
+
+                currentContent.classList.remove('active');
+                currentContent.classList.add('is-transitioning-out');
+
+                setTimeout(() => {
+                    currentContent.classList.add('hidden');
+                    currentContent.classList.remove('is-transitioning-out');
+
+                    activeContent.classList.add('active');
+                    activeContent.classList.remove('hidden');
+                    activeContent.classList.add('is-transitioning-in');
+
+                    requestAnimationFrame(() => {
+                        activeContent.classList.add('is-visible');
+                        updateCurriculoScrollState(activeContent);
                     });
+
+                    setTimeout(() => {
+                        activeContent.classList.remove('is-transitioning-in', 'is-visible');
+                    }, 320);
+                }, 180);
+            }
+
+            function getCurriculoReferenceHeight() {
+                if (window.innerWidth < 1024) {
+                    return null;
+                }
+
+                let totalHeight = 0;
+
+                if (sobreResumoBloco) {
+                    totalHeight += sobreResumoBloco.offsetHeight;
+                }
+
+                if (sobreEntregasBloco) {
+                    totalHeight += sobreEntregasBloco.offsetHeight;
+                }
+
+                if (totalHeight <= 0) {
+                    return null;
+                }
+
+                const heroReference = homeSection ? Math.max(560, Math.round(homeSection.offsetHeight * 0.74)) : null;
+                const viewportReference = Math.round(window.innerHeight * 0.72);
+                const finalReference = heroReference
+                    ? Math.min(totalHeight, heroReference, viewportReference)
+                    : Math.min(totalHeight, viewportReference);
+
+                return finalReference;
+            }
+
+            function updateCurriculoScrollState(targetContent) {
+                const activeContent = targetContent || document.querySelector('.tab-content.active');
+                const referenceHeight = getCurriculoReferenceHeight();
+
+                tabContents.forEach(content => {
+                    if (content !== activeContent) {
+                        content.classList.remove('tab-content-scrollable');
+                        content.style.maxHeight = '';
+                    }
+                });
+
+                if (!activeContent || !referenceHeight) {
+                    if (activeContent) {
+                        activeContent.classList.remove('tab-content-scrollable');
+                        activeContent.style.maxHeight = '';
+                    }
+                    return;
+                }
+
+                const shouldScroll = activeContent.scrollHeight > referenceHeight;
+                activeContent.classList.toggle('tab-content-scrollable', shouldScroll);
+                activeContent.style.maxHeight = shouldScroll ? `${referenceHeight}px` : '';
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    activateTab(this.getAttribute('data-tab'));
                 });
             });
-            
-            // Botão "Carregar Mais Projetos"
-            const loadMoreButton = document.getElementById('load-more');
-            let visibleProjects = 6;
-            const allProjects = document.querySelectorAll('.project-item');
-            
-            // Esconde projetos além dos 6 primeiros
-            for (let i = visibleProjects; i < allProjects.length; i++) {
-                allProjects[i].style.display = 'none';
+
+            heroTabLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                    activateTab(this.getAttribute('data-tab-target'));
+                    smoothScrollToElement(curriculoTabs);
+                });
+            });
+
+            const heroPhotoArea = document.getElementById('hero-photo-area');
+            const heroPhotoTooltip = document.getElementById('hero-photo-tooltip');
+
+            if (heroPhotoArea && heroPhotoTooltip) {
+                let heroPhotoTimer = null;
+                let lastPointer = { x: 0, y: 0 };
+
+                function hideHeroPhotoTooltip() {
+                    heroPhotoTooltip.classList.remove('opacity-100', 'translate-y-0');
+                    heroPhotoTooltip.classList.add('opacity-0', 'translate-y-2');
+                }
+
+                function clearHeroPhotoTimer() {
+                    if (heroPhotoTimer) {
+                        clearTimeout(heroPhotoTimer);
+                        heroPhotoTimer = null;
+                    }
+                }
+
+                function positionHeroPhotoTooltip() {
+                    const areaRect = heroPhotoArea.getBoundingClientRect();
+                    const tooltipRect = heroPhotoTooltip.getBoundingClientRect();
+                    const padding = 12;
+                    const offset = 18;
+
+                    let left = lastPointer.x + 10;
+                    let top = lastPointer.y - tooltipRect.height - offset;
+
+                    if (left + tooltipRect.width > areaRect.width - padding) {
+                        left = areaRect.width - tooltipRect.width - padding;
+                    }
+
+                    if (left < padding) {
+                        left = padding;
+                    }
+
+                    if (top < padding) {
+                        top = lastPointer.y + offset;
+                    }
+
+                    if (top + tooltipRect.height > areaRect.height - padding) {
+                        top = areaRect.height - tooltipRect.height - padding;
+                    }
+
+                    if (top < padding) {
+                        top = padding;
+                    }
+
+                    heroPhotoTooltip.style.left = `${left}px`;
+                    heroPhotoTooltip.style.top = `${top}px`;
+                }
+
+                function scheduleHeroPhotoTooltip() {
+                    clearHeroPhotoTimer();
+
+                    heroPhotoTimer = setTimeout(() => {
+                        positionHeroPhotoTooltip();
+                        heroPhotoTooltip.classList.remove('opacity-0', 'translate-y-2');
+                        heroPhotoTooltip.classList.add('opacity-100', 'translate-y-0');
+                    }, 1500);
+                }
+
+                heroPhotoArea.addEventListener('mouseenter', event => {
+                    const areaRect = heroPhotoArea.getBoundingClientRect();
+                    lastPointer = {
+                        x: event.clientX - areaRect.left,
+                        y: event.clientY - areaRect.top
+                    };
+                    scheduleHeroPhotoTooltip();
+                });
+
+                heroPhotoArea.addEventListener('mousemove', event => {
+                    const areaRect = heroPhotoArea.getBoundingClientRect();
+                    lastPointer = {
+                        x: event.clientX - areaRect.left,
+                        y: event.clientY - areaRect.top
+                    };
+                    hideHeroPhotoTooltip();
+                    scheduleHeroPhotoTooltip();
+                });
+
+                heroPhotoArea.addEventListener('mouseleave', () => {
+                    clearHeroPhotoTimer();
+                    hideHeroPhotoTooltip();
+                });
             }
-            
-            loadMoreButton.addEventListener('click', function() {
-                // Mostra mais 3 projetos
-                const nextProjects = visibleProjects + 3;
-                
-                for (let i = visibleProjects; i < nextProjects && i < allProjects.length; i++) {
-                    allProjects[i].style.display = 'block';
-                    allProjects[i].classList.add(`delay-${(i % 3) * 100}`);
+
+            const sobreResumoToggle = document.getElementById('sobre-resumo-toggle');
+            const sobreResumoCompleto = document.getElementById('sobre-resumo-completo');
+            const sobreResumoEllipsis = document.getElementById('sobre-resumo-ellipsis');
+
+            if (sobreResumoToggle && sobreResumoCompleto) {
+                const toggleLabel = sobreResumoToggle.querySelector('span');
+                const toggleIcon = sobreResumoToggle.querySelector('i');
+
+                sobreResumoToggle.addEventListener('click', () => {
+                    const expanded = sobreResumoToggle.getAttribute('aria-expanded') === 'true';
+                    sobreResumoToggle.setAttribute('aria-expanded', String(!expanded));
+                    sobreResumoCompleto.classList.toggle('is-open', !expanded);
+
+                    if (toggleLabel) {
+                        toggleLabel.textContent = expanded ? 'Ler mais' : 'Ler menos';
+                    }
+
+                    if (sobreResumoEllipsis) {
+                        sobreResumoEllipsis.classList.toggle('hidden', !expanded);
+                    }
+
+                    if (toggleIcon) {
+                        toggleIcon.classList.toggle('fa-chevron-down', expanded);
+                        toggleIcon.classList.toggle('fa-chevron-up', !expanded);
+                    }
+
+                    setTimeout(() => {
+                        updateCurriculoScrollState();
+                    }, 520);
+                });
+            }
+
+            function setProjectFilterState(activeFilter) {
+                projectFilters.forEach(filter => {
+                    const isActive = filter.getAttribute('data-filter') === activeFilter;
+                    filter.classList.toggle('active', isActive);
+                    filter.classList.toggle('bg-[#A7A8F8]', isActive);
+                    filter.classList.toggle('text-[#080A21]', isActive);
+
+                    if (!isActive) {
+                        filter.classList.add('text-[#A7A8F8]');
+                    } else {
+                        filter.classList.remove('text-[#A7A8F8]');
+                    }
+                });
+            }
+
+            const projectHideTimers = new WeakMap();
+
+            function filterProjects(filterValue) {
+                projectItems.forEach(item => {
+                    const existingTimer = projectHideTimers.get(item);
+                    if (existingTimer) {
+                        clearTimeout(existingTimer);
+                        projectHideTimers.delete(item);
+                    }
+
+                    const itemClasses = item.className.split(/\s+/);
+                    const shouldShow = filterValue === 'all' || itemClasses.includes(filterValue);
+
+                    if (shouldShow) {
+                        const needsReveal = item.hidden || item.classList.contains('is-exiting');
+                        item.hidden = false;
+                        item.classList.remove('is-exiting');
+
+                        if (needsReveal) {
+                            item.classList.add('is-entering');
+                            requestAnimationFrame(() => {
+                                item.classList.add('project-item-visible');
+                            });
+                            setTimeout(() => {
+                                item.classList.remove('is-entering', 'project-item-visible');
+                            }, 320);
+                        }
+                    } else if (!item.hidden) {
+                        item.classList.add('is-exiting');
+                        const hideTimer = setTimeout(() => {
+                            item.hidden = true;
+                            item.classList.remove('is-exiting');
+                            projectHideTimers.delete(item);
+                        }, 220);
+                        projectHideTimers.set(item, hideTimer);
+                    }
+                });
+            }
+
+            projectFilters.forEach(filter => {
+                filter.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    setProjectFilterState(filterValue);
+                    filterProjects(filterValue);
+                });
+            });
+
+            function updateBackToTopVisibility() {
+                if (!backToTopButton) {
+                    return;
                 }
-                
-                visibleProjects = nextProjects;
-                
-                // Esconde o botão se todos os projetos estiverem visíveis
-                if (visibleProjects >= allProjects.length) {
-                    loadMoreButton.style.display = 'none';
-                }
-                
-                // Rola suavemente para os novos projetos
-                allProjects[visibleProjects - 3].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+                backToTopButton.classList.toggle('is-visible', window.pageYOffset > 300);
+            }
+
+            window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
+            updateBackToTopVisibility();
+
+            if (backToTopButton) {
+                backToTopButton.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            window.addEventListener('resize', () => {
+                updateCurriculoScrollState();
             });
-            
-            // Botão "Voltar ao Topo"
-            const backToTopButton = document.getElementById('back-to-top');
-            
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopButton.classList.remove('hidden');
-                } else {
-                    backToTopButton.classList.add('hidden');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            
-            // Formulário de contato (simulado)
-            const contactForm = document.getElementById('contact-form');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Simula o envio do formulário
-                alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
-                contactForm.reset();
-            });
-            
-            // Suaviza o scroll para links internos
+
+            updateCurriculoScrollState();
+
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        // Fecha o menu mobile se estiver aberto
-                        mobileMenu.classList.add('hidden');
-                        
-                        // Scroll suave para o elemento
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
+
+                    if (!targetElement) {
+                        return;
+                    }
+
+                    e.preventDefault();
+                    closeMobileMenu();
+                    smoothScrollToElement(targetElement);
+                });
+            });
+
+            const contactForm = document.getElementById('contact-form');
+            const contactSubmit = document.getElementById('contact-submit');
+            const contactStatus = document.getElementById('contact-form-status');
+            const contactFields = contactForm ? contactForm.querySelectorAll('.contact-field') : [];
+            let contactStatusTimer = null;
+
+            function hideContactStatus() {
+                if (!contactStatus) {
+                    return;
+                }
+
+                contactStatus.classList.remove('is-visible', 'is-success', 'is-error');
+                contactStatus.classList.add('hidden');
+                contactStatus.textContent = '';
+            }
+
+            function showContactStatus(message, type = 'success', autoHide = false) {
+                if (!contactStatus) {
+                    return;
+                }
+
+                if (contactStatusTimer) {
+                    clearTimeout(contactStatusTimer);
+                    contactStatusTimer = null;
+                }
+
+                contactStatus.textContent = message;
+                contactStatus.classList.remove('hidden', 'is-success', 'is-error');
+                contactStatus.classList.add(type === 'success' ? 'is-success' : 'is-error');
+
+                requestAnimationFrame(() => {
+                    contactStatus.classList.add('is-visible');
+                });
+
+                if (autoHide) {
+                    contactStatusTimer = setTimeout(() => {
+                        hideContactStatus();
+                    }, 6500);
+                }
+            }
+
+            function setContactLoadingState(isLoading) {
+                if (!contactSubmit) {
+                    return;
+                }
+
+                contactSubmit.disabled = isLoading;
+                contactSubmit.setAttribute('aria-busy', String(isLoading));
+                const label = contactSubmit.querySelector('span');
+
+                if (label) {
+                    label.textContent = isLoading ? 'Enviando...' : 'Enviar mensagem';
+                }
+            }
+
+            function markFieldValidity(field) {
+                if (!field) {
+                    return;
+                }
+
+                field.classList.toggle('is-invalid', !field.checkValidity());
+            }
+
+            contactFields.forEach(field => {
+                field.addEventListener('invalid', () => {
+                    field.classList.add('is-invalid');
+                });
+
+                field.addEventListener('input', () => {
+                    field.classList.remove('is-invalid');
+                });
+
+                field.addEventListener('blur', () => {
+                    if (field.value.trim() !== '') {
+                        markFieldValidity(field);
                     }
                 });
             });
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', async event => {
+                    event.preventDefault();
+
+                    let isFormValid = true;
+                    contactFields.forEach(field => {
+                        markFieldValidity(field);
+                        if (!field.checkValidity()) {
+                            isFormValid = false;
+                        }
+                    });
+
+                    if (!isFormValid) {
+                        showContactStatus('Revise os campos destacados e tente novamente.', 'error');
+                        contactForm.reportValidity();
+                        return;
+                    }
+
+                    hideContactStatus();
+                    setContactLoadingState(true);
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json'
+                            },
+                            body: new FormData(contactForm)
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('request_failed');
+                        }
+
+                        contactForm.reset();
+                        contactFields.forEach(field => field.classList.remove('is-invalid'));
+                        showContactStatus('Mensagem enviada com sucesso. Vou retornar pelo canal informado assim que possível.', 'success', true);
+                    } catch (error) {
+                        showContactStatus('Não foi possível enviar agora. Tente novamente em instantes ou fale comigo por e-mail/WhatsApp.', 'error');
+                    } finally {
+                        setContactLoadingState(false);
+                    }
+                });
+            }
         });
 
         // Modal de Habilidades Técnicas
         const habilidadesDetalhes = {
             "analise-dados": {
                 titulo: "Análise de Dados",
-                imagem: "https://lh3.googleusercontent.com/d/1OgYXEFl0rNgjGodvU3BqqLSc5Lom_3i6=w766-h962",
+                imagem: "https://lh3.googleusercontent.com/d/1UrmAlJaQwws1YynVJvFEHsAIfxd754i_=w766-h962",
                 topicos: [
-                    "Manipulação e limpeza de dados, além da integração de múltiplas fontes via processos ETL com aplicação de automações e modelagem.",
-                    "Análise estatística e exploratória para identificação de padrões.",
-                    "Criação de visualizações eficientes e uso de storytelling para comunicar insights que apoiam decisões estratégicas.",
-                    "Conhecimento em bancos de dados e desenvolvimento de consultas otimizadas.",
-                    "Aplicação de pensamento crítico para resolução de problemas complexos, conectando habilidades técnicas a objetivos de negócio."
+                    "Análise de dados com foco em leitura de negócio, identificação de padrões e geração de insights acionáveis.",
+                    "Business Intelligence com Power BI e Microsoft Excel para construção de relatórios, indicadores e dashboards.",
+                    "Modelagem de dados, bancos de dados, SQL e estruturação analítica para suportar decisões.",
+                    "ETL/ELT, Linguagem M, pipelines de dados e integração de múltiplas fontes com foco em consistência e escala.",
+                    "Atuação com Apache Hop, BigQuery, Microsoft Fabric e visualização analítica."
                 ]
             },
             "inteligencia-artificial": {
                 titulo: "Inteligência Artificial",
-                imagem: "https://lh3.googleusercontent.com/d/10zQ1kRKeU6IAP_MpoGPfbn6dES9r10jH=w823-h1024",
+                imagem: "https://lh3.googleusercontent.com/d/1cj3qGIT_bk1z015Sn0075kkVFFcYXYy2=w823-h1024",
                 topicos: [
-                    "Aplicação de engenharia de prompt para gerar respostas precisas, criativas e adaptadas ao contexto, otimizando o uso de modelos generativos.",
-                    "Utilização de IAs generativas para desenvolvimento de scripts personalizados, automações inteligentes e integração eficiente de processos.",
-                    "Adoção de princípios éticos no uso da inteligência artificial, com atenção à mitigação de vieses e à proteção da privacidade dos dados.",
-                    "Compreensão dos fundamentos de machine learning e deep learning, com foco em suas aplicações.",
+                    "Aplicação prática de inteligência artificial para produtividade, análise, automação, programação e apoio à decisão.",
+                    "Uso de ChatGPT, Google Gemini, Microsoft Copilot e Codex como apoio técnico e estratégico.",
+                    "Estruturação de prompts, fluxos de trabalho e experimentação orientada a resultado.",
+                    "Uso de IA com foco em contexto, qualidade da resposta, utilidade e aceleração de entrega."
                 ]
             },
             "ferramentas": {
-                titulo: "Ferramentas",
-                imagem: "https://lh3.googleusercontent.com/d/10gES1MoMhhRyYM3bIy80qwU3Fzl_ASG1=w934-h1080",
+                titulo: "Ferramentas e Plataformas",
+                imagem: "https://lh3.googleusercontent.com/d/1dPGDTindIMe4tF4K2o6P8F9nKp6KFluP=w934-h1080",
                 topicos: [
-                    "Microsoft Excel",
-                    "Microsoft Power BI",
-                    "Microsoft Power Automate",
-                    "Microsoft Power Apps",
-                    "Microsoft Azure",
-                    "Microsoft OneDrive",
-                    "Microsoft SharePoint",
-                    "Microsoft Visio",
-                    "Linguagem SQL",
-                    "Linguagem Python",
-                    "Linguagens HTML, CSS e JavaScript",
-                    "Sistemas ERPs"
+                    "Ecossistema Microsoft: Excel, Power BI, Power Platform, Fabric, PowerPoint, Word, Visio e Azure.",
+                    "Ecossistema Google: Planilhas Google, Google Workspace, Google Cloud Platform, Apps Script, BigQuery e Looker.",
+                    "Plataformas e ambientes voltados a análise, automação e dados conforme o contexto da solução.",
+                    "ERPs e sistemas corporativos como TOTVS Protheus e SAP.",
+                    "Ferramentas de apoio à produtividade, estruturação e sustentação de entregas."
                 ]
             },
             "programacao-logica": {
-                titulo: "Programação e Lógica",
-                imagem: "https://lh3.googleusercontent.com/d/1EmNLF6xx77TdpGpPExMNjhaWySSfT_lz=w820-h928",
+                titulo: "Programação e Automação",
+                imagem: "https://lh3.googleusercontent.com/d/1ce_uhWVyeBKtd_jYdp_zonwnPD9zChjF=w820-h928",
                 topicos: [
-                    "Automação de processos com scripts, melhorando o fluxo de dados e tarefas repetitivas, com implantação em produção em servidores e nuvem.",
-                    "Uso de Estruturas (listas, dicionários, tuplas, conjuntos) e manipulação de strings e arquivos para processar informações em diversos formatos.",
-                    "Integração com APIs para troca automatizada e segura de dados entre sistemas.",
-                    "Criação de funções modulares, reutilizáveis, facilitando a organização do código.",
-                    "Testes e resolução de erros, correção eficaz e qualidade do sistema."
+                    "Programação com Python, JavaScript, HTML e CSS para automação, análise, sites e soluções web.",
+                    "Aplicação de lógica, algoritmos, análise de sistemas e desenvolvimento de software em projetos práticos.",
+                    "Construção de scripts, integrações com APIs e rotinas para automação de processos e tratamento de dados.",
+                    "Uso de Git e GitHub para versionamento, organização e evolução de projetos de desenvolvimento.",
+                    "Automação com VBA Excel, Apps Script e soluções orientadas a produtividade e escala."
                 ]
             },
             "qualidade-processos": {
                 titulo: "Qualidade e Processos",
-                imagem: "https://lh3.googleusercontent.com/d/1jUNcKgCwNXGLh_YXIs-y2ec3VWvt4E57=w735-h977",
+                imagem: "https://lh3.googleusercontent.com/d/13XSZD7WZ1XsOeC4vgDPmYJHxcYy6x423=w735-h977",
                 topicos: [
-                    "Gestão da qualidade, com foco na aplicação de metodologias como PDCA, Kaizen, 5S, Lean e Six Sigma.",
-                    "Mapeamento e otimização de processos, com uso de fluxogramas e análise de gargalos.",
-                    "Realização de auditorias internas, assegurando a conformidade com normas ISO e a execução de ações corretivas e preventivas.",
-                    "Definição e acompanhamento de KPIs, CEP e análise de dados com ferramentas de BI.",
-                    "Comunicação assertiva, com estímulo à cultura da qualidade e à melhoria contínua."
+                    "Melhoria de processos com foco em eficiência, padronização, redução de desperdícios e confiabilidade operacional.",
+                    "Aplicação de metodologias como Kaizen, DMAIC, Green Belt Seis Sigma e gestão da qualidade.",
+                    "Estabelecimento de processos e fluxos com apoio de Microsoft Visio.",
+                    "Atuação com sistema de qualidade, auditoria interna e acompanhamento de indicadores e planos de ação.",
+                    "Integração entre análise, melhoria contínua e organização de fluxos para sustentar evolução operacional."
                 ]
             },
             "gestao-projetos": {
-                titulo: "Gestão de Projetos",
-                imagem: "https://lh3.googleusercontent.com/d/1TJ1189s0JIAnp-HWVJuLFTdIe8fKAMMz=w901-h1024",
+                titulo: "Gestão e Liderança",
+                imagem: "https://lh3.googleusercontent.com/d/14dlnJC24dstiDXCPfNv8cS4L4S9bfo1J=w901-h1024",
                 topicos: [
-                    "Estruturação, padronização e gerenciamento de projetos para garantir a entrega alinhada às necessidades dos clientes.",
-                    "Planejamento e gestão de programas, priorizando projetos que gerem maior impacto para a organização.",
-                    "Treinamento e desenvolvimento das equipes para fortalecer a cultura de gestão focada em resultados e adoção de boas práticas.",
-                    "Monitoramento constante dos indicadores de desempenho e da maturidade dos projetos, garantindo melhorias contínuas."
+                    "Condução de projetos de desenvolvimento e melhoria com foco em escopo, prioridade, execução e resultado.",
+                    "Organização da entrega com acompanhamento de atividades, comunicação entre áreas e visão de impacto.",
+                    "Uso de práticas como Kanban para gestão visual, fluxo de trabalho e alinhamento contínuo.",
+                    "Apoio à liderança de equipe e à implementação de soluções junto a usuários, times e clientes."
                 ]
             },
             "planejamento": {
-                titulo: "Planejamento",
-                imagem: "https://lh3.googleusercontent.com/d/1qrApgHOe6WgpRX4vnSrI8Oew4_GLnhCI=w782-h1050",
+                titulo: "Planejamento e Operação",
+                imagem: "https://lh3.googleusercontent.com/d/1juXSYJYBM8CgHKcvMeRBqMBAsg694ufd=w782-h1050",
                 topicos: [
-                    "Análise para fundamentação do planejamento com dados concretos e cenários realistas.",
-                    "Estabelecimento de metas, mensuráveis e alinhadas à visão estratégica.",
-                    "Elaboração de planos de ação detalhados, contemplando recursos, prazos e responsáveis.",
-                    "Definição de processos de comunicação e alinhamento para garantir o engajamento de todas as partes envolvidas.",
-                    "Avaliação de riscos e desenvolvimento de planos de contingência para assegurar a continuidade das operações."
+                    "Planejamento operacional com base em dados, metas, prioridades e acompanhamento de execução.",
+                    "Atuação em administração, processos administrativos, suporte e organização de rotinas e controles.",
+                    "Controle financeiro, elaboração de documentos, manutenção de registros e apoio à operação.",
+                    "Conhecimento aplicado em sistemas operacionais, suporte técnico e sustentação de atividades administrativas e operacionais."
                 ]
             },
             "aprendizagem-rapida": {
-                titulo: "Aprendizagem Rápida",
-                imagem: "https://lh3.googleusercontent.com/d/1Pq7CclE9NfeHhKl_OmMNZ_KipLQJ6sCw=w765-h896",
+                titulo: "Aprendizado e Adaptabilidade",
+                imagem: "https://lh3.googleusercontent.com/d/1aCYNGDAm8QcwsZXxcbiawGcFY_wbQiqB=w765-h896",
                 topicos: [
-                    "Buscar constantemente novos conhecimentos com mente aberta, promovendo aprendizado contínuo.",
-                    "Atenção plena nas tarefas para absorver o conteúdo de forma eficiente e aprofundada.",
-                    "Avaliar criticamente as informações, focando no que realmente agrega valor e evitando superficialidades.",
-                    "Organização do conhecimento de forma clara e estruturada, facilitando a memorização.",
-                    "Autogestão e flexibilidade, monitorando o progresso e ajustando o estudo conforme os desafios."
+                    "Perfil autodidata com facilidade para aprender novas ferramentas, linguagens, plataformas e contextos de negócio.",
+                    "Adaptação rápida a diferentes arquiteturas, processos, sistemas e ambientes de trabalho.",
+                    "Busca contínua por aprofundamento técnico, experimentação prática e aplicação orientada a resultado.",
+                    "Capacidade de conectar aprendizado com execução, transformando conhecimento em solução útil e aplicável."
                 ]
             },
             "didatica-ensino": {
-                titulo: "Didática e Ensino",
-                imagem: "https://lh3.googleusercontent.com/d/1co7rOf4D_ZUNdvJ64YwfdvuPd-4zVPfn=w776-h1141",
+                titulo: "Comunicação e Treinamento",
+                imagem: "https://lh3.googleusercontent.com/d/1HMKEDPDb_UgB056nDeN78zX-1NZiAnDJ=w776-h1141",
                 topicos: [
-                    "Comunicação clara, garantindo que todos os alunos compreendam o conteúdo com facilidade.",
-                    "Planejamento e organização das aulas e treinamentos com objetivos bem definidos, facilitando o processo de aprendizagem.",
-                    "Conteúdo elaborado de forma coerente e estruturada.",
-                    "Aplicação de metodologias de ensino adaptadas ao perfil e às necessidades dos alunos, assegurando maior efetividade no aprendizado.",
-                    "Avaliação contínua do progresso dos alunos por meio de instrumentos eficazes."
+                    "Comunicação clara e estruturada para apresentações, alinhamentos, treinamentos e suporte ao usuário.",
+                    "Desenvolvimento de conteúdo técnico e didático com foco em aplicação prática e entendimento real.",
+                    "Atuação em treinamento, oratória e tradução de temas complexos para diferentes públicos.",
+                    "Relacionamento com cliente e atendimento com foco em clareza, confiança e resolução de necessidade."
                 ]
             }
         };
 
         const modal = document.getElementById('modal-habilidade');
-        const modalContent = document.querySelector('#modal-habilidade .modal-content');
 
         // Abrir modal com transição
         document.querySelectorAll('.open-modal').forEach(el => {
@@ -1214,6 +2348,7 @@
                 if (dados) {
                     document.getElementById('modal-titulo').textContent = dados.titulo;
                     document.getElementById('modal-imagem').src = dados.imagem;
+                    document.getElementById('modal-imagem').alt = dados.titulo;
 
                     const lista = document.getElementById('modal-topicos');
                     lista.innerHTML = "";
