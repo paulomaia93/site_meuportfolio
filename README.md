@@ -1,122 +1,82 @@
-# Portfólio Profissional
+# Portfólio Profissional — Paulo Estevão Maia
 
-Portfólio pessoal de Paulo Estevão Maia, desenvolvido como uma landing page estática em `HTML`, `Tailwind CSS` e `JavaScript`, com foco em apresentação profissional, projetos, competências e canais de contato.
+Portfólio pessoal estático que reúne apresentação profissional, trajetória, competências, formação, certificados, projetos e canais de contato. A identidade visual usa tema escuro em roxo e azul, com elementos inspirados na linguagem visual da PEEXL sem substituir a identidade pessoal.
 
-Site publicado em:
-[https://paulomaia93.github.io/site_meuportfolio/](https://paulomaia93.github.io/site_meuportfolio/)
+## Publicação
 
-## Visão Geral
+O endereço informado no próprio portfólio é [paulomaia93.github.io/site_meuportfolio](https://paulomaia93.github.io/site_meuportfolio/). O site está hospedado no GitHub e publicado pelo GitHub Pages, conforme informação fornecida pelo proprietário. A versão atualmente servida não foi verificada durante esta atualização do README.
 
-O projeto foi construído para funcionar como uma vitrine profissional de uma página só, com navegação fluida e conteúdo organizado para recrutadores, clientes e oportunidades da área de dados, BI, automação e desenvolvimento.
+O versionamento, os commits, o envio ao GitHub e a publicação são controlados manualmente por Paulo. Alterações locais neste repositório não significam que o site publicado foi atualizado.
 
-Atualmente, o site inclui:
+## Seções e recursos
 
-- hero com apresentação profissional, CTAs e links rápidos
-- seção `Sobre Mim` com resumo expansível e bloco de competências
-- seção `Perfil Profissional` com abas para experiências, formações e certificados
-- seção de projetos com filtros por tecnologia, três cards iniciais e botão `Ver mais` para os demais; inclui oito cases de dados da PEEXL, o site institucional, um gerenciador de tarefas, a solução de gestão empresarial com IA e o portfólio pessoal
-- formulário de contato integrado ao `Formspree`
-- bloco lateral com e-mail, WhatsApp, LinkedIn, GitHub e localização
+- **Home:** apresentação profissional, fotografia, texto de boas-vindas e acessos para projetos e contato.
+- **Sobre:** resumo profissional expansível e áreas de atuação/competências.
+- **Perfil:** abas para experiências, formação acadêmica, certificados e reconhecimentos.
+- **Projetos:** cartões responsivos, moldura de monitor, filtros, três destaques iniciais, botão “Ver mais” e detalhes em modal com galeria.
+- **Contato:** formulário Formspree e canais profissionais.
+- Navegação responsiva entre Home, Sobre, Perfil, Projetos e Contato; menu para celular e botão “Voltar ao topo”.
 
-## Principais Funcionalidades
+### Projetos ativos
 
-- navegação suave entre Home, Sobre, Perfil, Projetos e Contato
-- destaque automático do item ativo na navbar
-- menu mobile com animação de abertura e fechamento
-- tooltips em botões e ícones da hero
-- tooltip na foto do hero com atraso de exibição
-- resumo profissional com botão `Ler mais`
-- abas com transição suave no bloco `Perfil Profissional`
-- conteúdo das abas do perfil integrado à rolagem da página
-- filtros de projeto por categoria/stack
-- detalhes dos cases da PEEXL em janela acessível, sem imagens nesta etapa
-- botão `Voltar ao topo`
-- formulário com envio assíncrono, loading, validação leve e feedback inline de sucesso/erro
+O `index.html` contém dez projetos. Os três primeiros destaques, nessa ordem, são:
 
-## Stack Utilizada
+1. Gestão Empresarial no ChatGPT
+2. Destinação de Materiais Obsoletos
+3. Site Institucional
 
-- `HTML5`
-- `Tailwind CSS` via CDN
-- `JavaScript` puro
-- `Font Awesome`
-- `Google Fonts`
-- `Formspree` para o formulário de contato
+Os demais projetos ativos são:
 
-## Estrutura do Projeto
+- Meu Portfólio Profissional
+- Gerenciador de Tarefas
+- Controle Admin. e Orçamentário
+- Análise Financeira
+- Estoque e Suprimentos
+- Desempenho do Emprego Formal (CAGED)
+- Gestão e Análise de Vagas
+
+Os filtros organizam projetos por tipo de solução, área de aplicação e tecnologia/ferramenta. Um projeto pode corresponder a mais de um critério; com filtros ativos, a interface apresenta todos os resultados correspondentes e a contagem atualizada. Power BI e DAX são critérios distintos, e DAX avançado é descrito nos detalhes técnicos dos projetos em que está documentado.
+
+Os detalhes dos projetos seguem uma estrutura comum: resumo, implementação técnica, ferramentas e recursos, objetivos, o que foi feito e resultados. Cada projeto mantém seus próprios conteúdos, imagens, avisos de privacidade e links aplicáveis. Os cases premiados mostram um troféu amarelo no cartão e no título do modal.
+
+SIPOC Pecém e Logística Aeris foram retirados da lista ativa. Pastas de imagens desses cases ainda podem existir em `imagens/projetos/`, mas não são referenciadas pelos cartões atuais.
+
+## Imagens e privacidade
+
+Fotografia, fundos, certificados, capas e capturas usadas pelo site são arquivos locais. As capas e galerias ficam organizadas por projeto em `imagens/projetos/`. Alguns projetos usam capturas de páginas; outros usam ilustrações conceituais identificadas como ilustrativas.
+
+Nos projetos privados, as capturas do Gerenciador de Tarefas foram desfocadas para ocultar dados pessoais. Os detalhes aplicáveis informam que os dados foram ocultados em atenção à LGPD e que o acesso aos sistemas não está disponível publicamente. Verifique as imagens e avisos antes de substituir ou adicionar arquivos.
+
+## Tecnologias
+
+- HTML5
+- Tailwind CSS via CDN, complementado por CSS próprio
+- JavaScript sem framework
+- Font Awesome 6.4.0
+- Google Fonts: Inter e Hanken Grotesk
+- Formspree para envio do formulário de contato
+
+O JavaScript implementa navegação, menu móvel, abas do perfil, filtros de projeto, expansão da lista, galerias, modais e envio assíncrono do formulário.
+
+## Estrutura do repositório
 
 ```text
 site_meuportfolio/
-|-- index.html
-|-- README.md
-|-- README.legacy.md
-|-- imagens/
+├── index.html
+├── README.md
+└── imagens/
+    ├── certificados/
+    ├── projetos/
+    │   └── <pasta-do-projeto>/
+    ├── caminho-sobre.png
+    ├── fundo-hero.png
+    └── retrato-profissional-paulo-estevao.png
 ```
 
-As capas e galerias dos projetos ficam em `imagens/projetos/`, em uma pasta por projeto. Os oito cases da PEEXL usam as 23 imagens da versão local do site institucional. As capas do portfólio e do site da PEEXL são capturas das respectivas páginas locais. As capas do Gerenciador de Tarefas e da Gestão Empresarial com IA são ilustrações conceituais, sem dados operacionais.
+Os arquivos e nomes efetivos em `imagens/` são a referência para a estrutura atual. Não remova pastas de imagens apenas por não aparecerem na lista ativa de projetos: elas podem ser materiais arquivados.
 
-O fundo do hero (`imagens/fundo-hero.png`) e a arte do resumo Sobre Mim (`imagens/caminho-sobre.png`) são arquivos locais do repositório.
+## Formulário de contato
 
-## Formulário de Contato
+O formulário envia mensagens para o endpoint Formspree configurado no HTML. O envio é assíncrono, apresenta estado de carregamento e retorno de sucesso ou erro; limpa os campos apenas após sucesso e inclui um campo honeypot contra spam.
 
-O formulário envia mensagens para o endpoint do Formspree configurado em:
-
-```html
-https://formspree.io/f/xanordvg
-```
-
-Comportamento atual:
-
-- envio por `fetch`, sem recarregar a página
-- botão com estado `Enviando...`
-- mensagem inline de sucesso ou erro
-- limpeza do formulário apenas em caso de sucesso
-- preservação dos dados digitados em caso de falha
-- honeypot `_gotcha` para reduzir spam
-
-Se você for clonar esse projeto para uso próprio, lembre de trocar:
-
-- endpoint do Formspree
-- e-mail exibido
-- telefone/WhatsApp
-- LinkedIn
-- GitHub
-
-## Como Executar Localmente
-
-Como o projeto é estático, basta abrir o arquivo `index.html` no navegador.
-
-Se preferir servir localmente por um servidor simples, você pode usar, por exemplo:
-
-```powershell
-python -m http.server 8000
-```
-
-Depois acesse:
-
-```text
-http://localhost:8000
-```
-
-## Publicação no GitHub Pages
-
-O site pode ser publicado diretamente no GitHub Pages porque depende apenas de arquivos estáticos.
-
-Passos básicos:
-
-1. subir o repositório para o GitHub
-2. garantir que o arquivo principal esteja na raiz com o nome `index.html`
-3. ativar `Settings > Pages`
-4. selecionar a branch principal e a pasta `/root`
-
-Após a publicação, o GitHub gera uma URL no formato:
-
-```text
-https://seu-usuario.github.io/seu-repositorio/
-```
-
-## Observações
-
-- a estrutura, os dados e a apresentação dos doze projetos estão em `index.html`
-- o gerenciador de tarefas não apresenta link para o código privado
-- várias imagens são carregadas por links externos
-- as 23 imagens dos cases da PEEXL foram organizadas em oito subpastas de `C:\Users\paulo\Downloads\Projetos PEEXL - Portfolio Paulo 2026-10-30`, fora do site; o conteúdo é uma cópia da versão local do site institucional
+Ao reutilizar o projeto, substitua e confira o endpoint, o e-mail, o telefone/WhatsApp e os links profissionais antes de publicar.
