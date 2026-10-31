@@ -1,4 +1,4 @@
-# Portfólio Profissional — Paulo Estevão Maia
+# Portfólio Profissional — Paulo Estevão Freitas Maia
 
 Portfólio pessoal estático que reúne apresentação profissional, trajetória, competências, formação, certificados, projetos e canais de contato. A identidade visual usa tema escuro em roxo e azul, com elementos inspirados na linguagem visual da PEEXL sem substituir a identidade pessoal.
 
