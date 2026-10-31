@@ -12,7 +12,7 @@ O projeto foi construído para funcionar como uma vitrine profissional de uma p�
 Atualmente, o site inclui:
 
 - hero com apresentação profissional, CTAs e links rápidos
-- seção `Sobre Mim` com resumo expansível e bloco de entregas
+- seção `Sobre Mim` com resumo expansível e bloco de competências
 - seção `Perfil Profissional` com abas para experiências, formações e certificados
 - seção de projetos com filtros por tecnologia, três cards iniciais e botão `Ver mais` para os demais; inclui oito cases de dados da PEEXL, o site institucional, um gerenciador de tarefas, a solução de gestão empresarial com IA e o portfólio pessoal
 - formulário de contato integrado ao `Formspree`
@@ -20,14 +20,14 @@ Atualmente, o site inclui:
 
 ## Principais Funcionalidades
 
-- navegação suave entre seções
+- navegação suave entre Home, Sobre, Perfil, Projetos e Contato
 - destaque automático do item ativo na navbar
 - menu mobile com animação de abertura e fechamento
 - tooltips em botões e ícones da hero
 - tooltip na foto do hero com atraso de exibição
 - resumo profissional com botão `Ler mais`
 - abas com transição suave no bloco `Perfil Profissional`
-- rolagem interna automática em abas longas do perfil
+- conteúdo das abas do perfil integrado à rolagem da página
 - filtros de projeto por categoria/stack
 - detalhes dos cases da PEEXL em janela acessível, sem imagens nesta etapa
 - botão `Voltar ao topo`
@@ -49,8 +49,12 @@ site_meuportfolio/
 |-- index.html
 |-- README.md
 |-- README.legacy.md
-|-- Imagens.txt
+|-- imagens/
 ```
+
+As capas e galerias dos projetos ficam em `imagens/projetos/`, em uma pasta por projeto. Os oito cases da PEEXL usam as 23 imagens da versão local do site institucional. As capas do portfólio e do site da PEEXL são capturas das respectivas páginas locais. As capas do Gerenciador de Tarefas e da Gestão Empresarial com IA são ilustrações conceituais, sem dados operacionais.
+
+O fundo do hero (`imagens/fundo-hero.png`) e a arte do resumo Sobre Mim (`imagens/caminho-sobre.png`) são arquivos locais do repositório.
 
 ## Formulário de Contato
 

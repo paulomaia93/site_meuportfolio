@@ -66,39 +66,37 @@
 
         .nav-link {
             position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.55rem 0.8rem;
+            border-radius: 0.65rem;
             color: rgba(246, 249, 220, 0.86);
-            transition: color var(--motion-fast) var(--ease-standard);
-        }
-
-        .nav-link::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: -0.45rem;
-            height: 2px;
-            border-radius: 999px;
-            background: linear-gradient(90deg, rgba(167, 168, 248, 0.9), rgba(108, 99, 255, 0.9));
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform var(--motion-fast) var(--ease-standard), opacity var(--motion-fast) var(--ease-standard);
-            opacity: 0;
+            transition: color var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard);
         }
 
         .nav-link:hover,
         .nav-link-active {
             color: #A7A8F8;
+            background: rgba(167, 168, 248, .09);
         }
 
-        .nav-link:hover::after,
-        .nav-link-active::after {
-            transform: scaleX(1);
-            opacity: 1;
+        .nav-link-active {
+            background: rgba(167, 168, 248, .15);
+        }
+
+        .nav-link:focus-visible,
+        .mobile-nav-link:focus-visible {
+            outline: 2px solid rgba(167, 168, 248, .85);
+            outline-offset: 3px;
         }
 
         .mobile-menu-panel {
             overflow: hidden;
             max-height: 0;
+            margin-top: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            border-color: transparent;
             opacity: 0;
             transform: translateY(-10px);
             pointer-events: none;
@@ -110,6 +108,10 @@
 
         .mobile-menu-panel.is-open {
             max-height: 16rem;
+            margin-top: 1rem;
+            padding-top: .75rem;
+            padding-bottom: .25rem;
+            border-color: rgba(167, 168, 248, .1);
             opacity: 1;
             transform: translateY(0);
             pointer-events: auto;
@@ -117,15 +119,16 @@
 
         .mobile-nav-link {
             display: block;
-            padding: 0.6rem 0;
+            padding: 0.6rem 0.8rem;
+            border-radius: 0.65rem;
             color: rgba(246, 249, 220, 0.82);
-            transition: color var(--motion-fast) var(--ease-standard), padding-left var(--motion-fast) var(--ease-standard);
+            transition: color var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard);
         }
 
         .mobile-nav-link:hover,
         .mobile-nav-link.nav-link-active {
             color: #A7A8F8;
-            padding-left: 0.4rem;
+            background: rgba(167, 168, 248, .1);
         }
 
         .section-band {
@@ -293,14 +296,6 @@
             text-shadow: 0 0 18px rgba(167, 168, 248, 0.32);
         }
 
-        .tooltip-shell {
-            border-radius: 0.85rem;
-            border: 1px solid rgba(167, 168, 248, 0.18);
-            background: rgba(8, 10, 33, 0.96);
-            box-shadow: 0 12px 30px rgba(4, 7, 28, 0.28);
-            backdrop-filter: blur(10px);
-        }
-
         .section-lead {
             color: rgba(246, 249, 220, 0.75);
             line-height: 1.8;
@@ -327,7 +322,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background-image: url('https://lh3.googleusercontent.com/d/1uifbMnFCLVZoSn_S3V4xXK61RWcjhJ1i=w1075-h768');
+            background-image: url('imagens/caminho-sobre.png');
             background-size: cover;
             background-position: right center;
             opacity: 0.5;
@@ -378,23 +373,6 @@
             box-shadow: var(--shadow-soft);
         }
 
-        #experiencia .relative.pl-12 > div:last-child {
-            background: var(--surface-secondary);
-            border: 1px solid var(--border-soft);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-soft);
-            transition:
-                transform var(--motion-medium) var(--ease-standard),
-                box-shadow var(--motion-medium) var(--ease-standard),
-                border-color var(--motion-fast) var(--ease-standard);
-        }
-
-        #experiencia .relative.pl-12:hover > div:last-child {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 30px rgba(7, 10, 35, 0.1);
-            border-color: rgba(167, 168, 248, 0.26);
-        }
-
         #contact-form input:focus,
         #contact-form textarea:focus {
             box-shadow: 0 0 0 4px rgba(167, 168, 248, 0.12);
@@ -434,27 +412,6 @@
             transform: translateY(0);
         }
 
-        .tab-content.tab-content-scrollable {
-            overflow-y: auto;
-            overscroll-behavior: contain;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(167, 168, 248, 0.4) transparent;
-            padding-right: 0.75rem;
-        }
-
-        .tab-content.tab-content-scrollable::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .tab-content.tab-content-scrollable::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .tab-content.tab-content-scrollable::-webkit-scrollbar-thumb {
-            background: rgba(167, 168, 248, 0.28);
-            border-radius: 999px;
-        }
-
         .tab-content.is-transitioning-out {
             opacity: 0;
             transform: translateY(14px);
@@ -474,37 +431,6 @@
             transition:
                 opacity 260ms var(--ease-standard),
                 transform 320ms var(--ease-standard);
-        }
-
-        @media (max-width: 1023px) {
-            .tab-content.tab-content-scrollable {
-                max-height: none !important;
-                overflow: visible;
-                padding-right: 0;
-            }
-        }
-
-        .project-filter {
-            border-radius: 999px;
-            border: 1px solid rgba(167, 168, 248, 0.2);
-            background: rgba(167, 168, 248, 0.08);
-            color: #A7A8F8;
-            transition:
-                background var(--motion-fast) var(--ease-standard),
-                color var(--motion-fast) var(--ease-standard),
-                border-color var(--motion-fast) var(--ease-standard),
-                transform var(--motion-fast) var(--ease-standard),
-                box-shadow var(--motion-medium) var(--ease-standard);
-        }
-
-        .project-filter:hover {
-            transform: translateY(-2px);
-            border-color: rgba(167, 168, 248, 0.3);
-        }
-
-        .project-filter.active {
-            border-color: transparent;
-            box-shadow: 0 8px 18px rgba(108, 99, 255, 0.08);
         }
 
         .project-item {
@@ -567,6 +493,9 @@
             text-transform: uppercase;
         }
         .peexl-case-card h3 { margin: .2rem 0 0; font-size: 1.45rem; font-weight: 700; line-height: 1.2; }
+        .peexl-case-success-mark { display: inline-flex; align-items: center; margin-left: .55rem; color: #F4C95D; font-size: .82em; vertical-align: .04em; filter: drop-shadow(0 0 7px rgba(244, 201, 93, .32)); }
+        .peexl-case-action-row { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: auto; }
+        .peexl-case-action-row .peexl-case-button { align-self: center; margin-top: 0; }
         .peexl-case-badges { display: flex; flex-wrap: wrap; gap: .4rem; margin: .35rem 0 .8rem; }
         .peexl-case-badges span { padding: .3rem .55rem; border-radius: .4rem; background: rgba(167,168,248,.13); color: #F6F9DC; font-size: .75rem; }
         .peexl-case-teaser { margin: 1rem 0 1.25rem; color: rgba(246,249,220,.8); line-height: 1.5; }
@@ -594,10 +523,6 @@
         .surface-card-interactive:hover .cert-thumb img {
             transform: scale(1.03);
             filter: saturate(1.05);
-        }
-
-        .floating-divider {
-            border-color: rgba(167, 168, 248, 0.12);
         }
 
         @keyframes fadeIn {
@@ -648,12 +573,378 @@
             position: absolute;
             bottom: calc(100% + 1rem);
         }
+        #back-to-top.is-over-contact { opacity: 0; pointer-events: none; }
 
+        /* Camada visual: superfícies abertas, ritmo editorial e separações discretas. */
+        body {
+            background-color: #090b20;
+            background-image:
+                radial-gradient(ellipse at 78% 4%, rgba(92, 83, 206, .16), transparent 35%),
+                linear-gradient(180deg, #090b20 0%, #0d102c 48%, #090b20 100%);
+        }
+
+        .nav-shell { border-bottom-color: rgba(167, 168, 248, .07); box-shadow: none; }
+        .section-band::before { background: linear-gradient(90deg, transparent, rgba(167, 168, 248, .22), transparent); }
+        #sobre, #perfil, #projetos, #contato { padding-block: clamp(3.5rem, 5vw, 4.5rem); }
+        #sobre { background: linear-gradient(180deg, #0d102c, #0b0e28); }
+        #perfil { background: linear-gradient(180deg, #0b0e28, #0b0d25); }
+        #projetos { background: linear-gradient(180deg, #0b0d25, #090b20); }
+        #contato { background: linear-gradient(180deg, #090b20, #0d102b); }
+        #contato::before {
+            z-index: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(167, 168, 248, .38), transparent);
+        }
+        section h2 { letter-spacing: -.025em; }
+        .section-lead { color: rgba(246, 249, 220, .68); line-height: 1.65; }
+
+        .surface-card-primary,
+        .surface-card-secondary,
+        .surface-card-interactive {
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+        }
+        .surface-card-interactive:hover,
+        .card-hover:hover { transform: none; box-shadow: none; border-color: transparent; }
+
+        .hero-portrait {
+            border-radius: 1.25rem;
+            background: #151936;
+            box-shadow: 0 28px 72px rgba(2, 4, 20, .32);
+        }
+        .hero-portrait img { filter: brightness(.93); }
+        #home {
+            min-height: 40rem;
+            background-image:
+                linear-gradient(90deg, rgba(7, 9, 29, .88), rgba(7, 9, 29, .78)),
+                linear-gradient(180deg, rgba(7, 9, 29, .18) 25%, rgba(7, 9, 29, .55)),
+                url('imagens/fundo-hero.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-layout { max-width: 84rem; margin-inline: auto; }
+        .hero-content { position: relative; isolation: isolate; }
+        .hero-content::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: -1.5rem -2rem;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(5, 7, 25, .52) 0%, rgba(5, 7, 25, .34) 54%, rgba(5, 7, 25, .12) 76%, transparent 88%);
+            filter: blur(14px);
+        }
+        .hero-title { max-width: 45rem; font-size: clamp(2.6rem, 4vw, 3.75rem); letter-spacing: -.035em; }
+        .hero-welcome { margin-top: 1.25rem; color: #A7A8F8; font-size: clamp(1.25rem, 2vw, 1.5rem); font-weight: 600; line-height: 1.35; }
+        .hero-intro { max-width: 39rem; margin: .75rem 0 2rem; color: rgba(246, 249, 220, .82); font-size: 1.125rem; line-height: 1.7; }
+        .hero-title, .hero-welcome, .hero-intro { text-shadow: 0 2px 12px rgba(2, 4, 20, .38); }
+        #home .hero-actions a {
+            display: inline-flex;
+            min-height: 3rem;
+            min-width: 9.5rem;
+            align-items: center;
+            justify-content: center;
+            padding: .7rem 1.35rem;
+            border: 0;
+            border-radius: .6rem;
+            font-size: .95rem;
+            line-height: 1.25;
+            text-align: center;
+        }
+        #home .hero-actions .btn-secondary {
+            border: 0;
+            background: rgba(167, 168, 248, .16);
+            box-shadow: 0 8px 24px rgba(2, 4, 20, .2);
+        }
+        #home .hero-actions .btn-secondary:hover {
+            background: rgba(167, 168, 248, .25);
+        }
         @media (max-width: 767px) {
-            .section-band::before {
-                width: calc(100% - 3rem);
-            }
+            #home { min-height: auto; }
+            .hero-photo-column .hero-portrait { width: 15rem; height: 18.75rem; }
+            .hero-intro { font-size: 1rem; }
+        }
 
+        .ui-pill {
+            border: 0;
+            background: rgba(167, 168, 248, .08);
+        }
+        .ui-pill:hover { border-color: transparent; background: rgba(167, 168, 248, .14); }
+        .sobre-resumo-card {
+            border: 0;
+            border-radius: 1.1rem;
+            background: linear-gradient(110deg, #080b20 12%, #111634 100%);
+            box-shadow: none;
+        }
+        #sobre-competencias-bloco {
+            padding: 2.25rem 0 0;
+            border: 0;
+            border-radius: 0;
+            background: none;
+            box-shadow: none;
+        }
+        #sobre-competencias-bloco .grid > div {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(167, 168, 248, .1);
+        }
+        #sobre-competencias-bloco h3 { margin-bottom: .75rem; color: #A7A8F8; font-size: .75rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; }
+        #sobre-competencias-bloco .grid p { color: #F6F9DC; font-size: 1.05rem; font-weight: 600; line-height: 1.6; }
+
+        #curriculo-tabs .profile-tablist {
+            width: fit-content;
+            max-width: 100%;
+            margin-inline: auto;
+            padding: .35rem;
+            border-radius: .85rem;
+            background: rgba(167, 168, 248, .07);
+        }
+        #curriculo-tabs .tab-button {
+            min-height: 2.75rem;
+            padding: .65rem 1.2rem;
+            border: 0;
+            border-radius: .6rem;
+            color: rgba(203, 204, 255, .78);
+            font-size: .9rem;
+            white-space: nowrap;
+        }
+        #curriculo-tabs .tab-button:hover { background: rgba(167, 168, 248, .09); color: #F6F9DC; }
+        #curriculo-tabs .tab-button.active { background: #30345f; color: #F6F9DC; box-shadow: 0 4px 14px rgba(2, 4, 20, .15); }
+        #curriculo-tabs .tab-content > h3 { margin-bottom: 1.5rem; color: #A7A8F8; font-size: .78rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        #experiencia .experience-list { display: grid; gap: 1rem; }
+        #experiencia .experience-entry {
+            padding: clamp(1.35rem, 2.5vw, 2rem);
+            border-radius: 1rem;
+            background: linear-gradient(145deg, rgba(31, 35, 75, .72), rgba(16, 19, 47, .86));
+        }
+        #experiencia .experience-entry h4 { display: flex; align-items: center; gap: .65rem; margin-bottom: .35rem; }
+        #experiencia .experience-role-icon { display: inline-grid; flex: none; width: 1.75rem; height: 1.75rem; place-items: center; border-radius: 50%; background: rgba(167, 168, 248, .12); color: #A7A8F8; font-size: .9rem; }
+        #experiencia .experience-entry .experience-meta { margin-bottom: 1.1rem; color: #A7A8F8; font-size: .9rem; line-height: 1.6; }
+        #experiencia .experience-entry > p:not(.experience-meta) { margin-bottom: 1rem; line-height: 1.65; }
+        #experiencia .experience-entry ul,
+        #educacao .card-hover ul { line-height: 1.65; }
+        #educacao .card-hover,
+        #certificacoes .card-hover {
+            padding: clamp(1.35rem, 2.5vw, 2rem);
+            border: 0;
+            border-radius: 1rem;
+            background: linear-gradient(145deg, rgba(31, 35, 75, .72), rgba(16, 19, 47, .86));
+            box-shadow: none;
+        }
+        #educacao .card-hover:hover,
+        #certificacoes .card-hover:hover { transform: none; border-color: transparent; box-shadow: none; }
+        #certificacoes img {
+            display: block;
+            width: 100%;
+            max-width: 18rem;
+            height: auto;
+            max-height: none;
+            aspect-ratio: 1.43;
+            object-fit: contain;
+            object-position: center;
+            background: #f4f5f8;
+        }
+        @media (min-width: 768px) {
+            #certificacoes .card-hover > .flex > div:first-child { width: 30%; flex: 0 0 30%; }
+            #certificacoes .card-hover > .flex > div:last-child { width: 70%; flex: 0 0 70%; }
+        }
+        @media (max-width: 480px) {
+            #curriculo-tabs .profile-tablist { width: 100%; }
+            #curriculo-tabs .tab-button { flex: 1; padding-inline: .45rem; font-size: .82rem; }
+        }
+
+        .project-filters { max-width: 70rem; margin: 2.25rem auto 3rem; }
+        .project-filter-heading { display: flex; align-items: center; justify-content: flex-end; padding-bottom: .65rem; }
+        .project-filter-total { display: inline-flex; align-items: baseline; gap: .4rem; flex: none; margin: 0; color: rgba(246, 249, 220, .68); }
+        .project-filter-total strong { color: #A7A8F8; font-size: 1.35rem; font-weight: 700; line-height: 1; }
+        .project-filter-fields { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+        .project-filter-field { display: grid; gap: .35rem; min-width: 0; }
+        .project-filter-field > span { color: rgba(167, 168, 248, .88); font-size: .74rem; font-weight: 700; letter-spacing: .035em; }
+        .project-filter-field select { width: 100%; min-height: 2.65rem; padding: .55rem 1.8rem .55rem .1rem; border: 0; border-bottom: 1px solid rgba(167, 168, 248, .2); border-radius: 0; background-color: transparent; color: #F6F9DC; font: inherit; }
+        .project-filter-field select option { background: #0D0F2B; color: #F6F9DC; }
+        .project-filter-field select:focus-visible, #project-filter-clear:focus-visible { outline: 2px solid #A7A8F8; outline-offset: 3px; }
+        .project-filter-summary { display: flex; justify-content: flex-end; margin-top: .5rem; }
+        .project-filter-summary[hidden] { display: none; }
+        #project-filter-clear { padding: .35rem .5rem; border: 0; border-radius: .4rem; background: transparent; color: #A7A8F8; font: inherit; font-size: .84rem; font-weight: 700; cursor: pointer; }
+        #project-filter-clear:hover { background: rgba(167, 168, 248, .1); color: #F6F9DC; }
+        #project-filter-clear[hidden] { display: none; }
+        .peexl-case-card,
+        .peexl-case-card.surface-card-interactive {
+            border: 0;
+            border-radius: 1.25rem;
+            background: linear-gradient(145deg, rgba(31, 35, 75, .9), rgba(14, 17, 44, .96));
+            box-shadow: 0 16px 38px rgba(3, 5, 22, .16);
+            transition: transform var(--motion-medium) var(--ease-standard), background var(--motion-medium) var(--ease-standard), box-shadow var(--motion-medium) var(--ease-standard);
+        }
+        .peexl-case-card.surface-card-interactive:hover {
+            border: 0;
+            background: linear-gradient(145deg, rgba(39, 42, 88, .96), rgba(17, 20, 51, .98));
+            box-shadow: 0 20px 44px rgba(3, 5, 22, .25);
+        }
+        .peexl-case-card:focus-within { box-shadow: 0 0 0 2px rgba(167, 168, 248, .72), 0 20px 44px rgba(3, 5, 22, .25); }
+        .peexl-case-media {
+            display: grid;
+            height: 15rem;
+            place-items: center;
+            padding: 1rem 1rem .75rem;
+            border-radius: 0;
+            background-image:
+                linear-gradient(180deg, rgba(31, 35, 75, .76), rgba(14, 17, 44, .92)),
+                url('imagens/fundo-hero.png');
+            background-size: cover;
+            background-position: center 64%;
+        }
+        .peexl-monitor { display: flex; width: min(100%, 22rem); flex-direction: column; align-items: center; }
+        .peexl-monitor-screen {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            padding: .38rem;
+            overflow: hidden;
+            border-radius: .7rem .7rem .5rem .5rem;
+            background: linear-gradient(145deg, #68708e, #292e4e 28%, #0a0d22 78%);
+            box-shadow: 0 12px 28px rgba(2, 4, 20, .35), inset 0 0 0 1px rgba(220, 224, 255, .12);
+        }
+        .peexl-monitor-screen::before {
+            content: "";
+            position: absolute;
+            top: .16rem;
+            left: 50%;
+            width: .16rem;
+            height: .16rem;
+            border-radius: 50%;
+            background: rgba(167, 168, 248, .5);
+            transform: translateX(-50%);
+        }
+        .peexl-monitor-screen img { display: block; width: 100%; height: 100%; border-radius: .35rem; background: #080A21; object-fit: contain; object-position: center; }
+        .peexl-monitor-stand { width: 14%; height: .48rem; background: linear-gradient(180deg, #353a5a, #1a1e39); }
+        .peexl-monitor-base { width: 34%; height: .34rem; border-radius: 0 0 .5rem .5rem; background: linear-gradient(180deg, #3e4464, #202440); box-shadow: 0 5px 12px rgba(2, 4, 20, .3); }
+        .peexl-case-media--empty {
+            background: radial-gradient(ellipse at 50% 35%, rgba(108, 99, 255, .22), transparent 66%), rgba(25, 28, 66, .48);
+            color: rgba(167, 168, 248, .76);
+            font-size: 2rem;
+        }
+        .peexl-case-content { padding: 1.5rem 1.5rem 1.7rem; }
+        .peexl-case-icon { width: 2rem; height: 2rem; background: none; }
+        .peexl-case-badges { gap: .7rem; margin-bottom: 1.5rem; }
+        .peexl-case-badges span { padding: 0; background: none; color: rgba(167, 168, 248, .85); }
+        .peexl-case-badges span + span::before { content: '·'; padding-right: .7rem; color: rgba(167, 168, 248, .45); }
+        #project-toggle { min-height: 2.75rem; border: 0; border-radius: .65rem; background: rgba(167, 168, 248, .09); }
+        #project-toggle:hover { background: rgba(167, 168, 248, .16); }
+        #peexl-case-dialog { width: min(1320px, calc(100vw - 4rem)); height: min(760px, calc(100dvh - 2rem)); max-width: calc(100vw - 1rem); max-height: calc(100dvh - 1rem); overflow: auto; border: 0; border-radius: 1.25rem; background: #10132c; color: #F6F9DC; box-shadow: 0 24px 80px rgba(0, 0, 0, .58); scrollbar-color: rgba(167, 168, 248, .4) transparent; }
+        #peexl-case-dialog::backdrop { background: rgba(3, 5, 18, .82); backdrop-filter: blur(6px); }
+        .peexl-case-dialog-body { display: grid; width: 100%; min-height: 100%; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto; align-content: start; gap: 1rem 1.4rem; padding: clamp(1rem, 2.4vw, 2rem); }
+        .peexl-case-dialog-head { grid-column: 1 / -1; align-items: center; }
+        .peexl-case-overview { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(15rem, .9fr); align-items: center; gap: 1.4rem; }
+        .peexl-case-visuals { min-width: 0; }
+        .peexl-case-summary { min-width: 0; }
+        .peexl-case-summary > p { margin: 0 0 1rem; }
+        .peexl-case-technical-panel { margin-top: .75rem; }
+        .peexl-case-technical-panel[hidden] { display: none; }
+        .peexl-case-technical-panel h3 { margin: .8rem 0 .4rem; color: #A7A8F8; font-size: .95rem; font-weight: 700; }
+        .peexl-case-technical-panel > p { margin: 0; font-size: .84rem; line-height: 1.45; }
+        .peexl-case-tools { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .4rem; }
+        .peexl-case-tool { display: flex; flex-direction: column; gap: .15rem; min-width: 0; padding: .45rem .55rem; border-radius: .5rem; background: rgba(167, 168, 248, .07); }
+        .peexl-case-tool strong { color: #F6F9DC; font-size: .75rem; line-height: 1.2; }
+        .peexl-case-tool span { color: rgba(246, 249, 220, .78); font-size: .68rem; line-height: 1.3; }
+        .peexl-case-sections { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1.25rem; }
+        .peexl-case-detail { min-width: 0; }
+        .peexl-case-dialog-body .peexl-case-detail h3 { margin: 0 0 .5rem; font-size: 1rem; }
+        .peexl-case-dialog-body .peexl-case-detail ul { padding-left: 1.1rem; font-size: .9rem; line-height: 1.45; }
+        .peexl-case-dialog-body .peexl-case-detail li { margin: .35rem 0; }
+        .peexl-case-dialog-actions { display: flex; flex-shrink: 0; align-items: center; justify-content: flex-end; gap: 1.1rem; }
+        #peexl-case-dialog #peexl-case-links { display: flex; flex-wrap: wrap; gap: .75rem; margin: 0; }
+        #peexl-case-note { grid-column: 1 / -1; }
+        #peexl-case-note[hidden] { display: none; }
+        #peexl-case-dialog .peexl-case-privacy-note { max-width: 72rem; margin: .15rem 0 0; color: rgba(246, 249, 220, .72); font-size: .84rem; line-height: 1.5; }
+        #peexl-case-close { display: inline-flex; min-height: 2.75rem; flex-shrink: 0; align-items: center; justify-content: center; padding: .65rem 1.15rem; border: 0; border-radius: .65rem; background: rgba(167, 168, 248, .1); color: #F6F9DC; font-weight: 600; transition: background var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard); }
+        #peexl-case-close:hover { transform: translateY(-1px); background: rgba(167, 168, 248, .18); color: #fff; }
+        #peexl-case-close:focus-visible, .peexl-case-button:focus-visible, #peexl-case-gallery button:focus-visible { outline: 2px solid #A7A8F8; outline-offset: 3px; }
+        .peexl-case-link { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; padding: .65rem 1.15rem; border: 0; border-radius: .65rem; background: rgba(167, 168, 248, .1); color: #A7A8F8; font-weight: 700; text-decoration: none; transition: transform var(--motion-fast) var(--ease-standard), background var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard), box-shadow var(--motion-fast) var(--ease-standard); }
+        .peexl-case-link:hover { transform: translateY(-2px); background: rgba(167, 168, 248, .18); color: #F6F9DC; box-shadow: 0 8px 24px rgba(2, 4, 20, .2); text-decoration: none; }
+        .peexl-case-link:focus-visible { outline: 2px solid #A7A8F8; outline-offset: 3px; }
+        #peexl-case-image-link { display: flex; height: clamp(16rem, 38vh, 20rem); margin: 0; border-radius: .75rem; overflow: hidden; background: #1b2042; }
+        #peexl-case-image { display: block; width: 100%; height: 100%; max-height: none; object-fit: contain; }
+        #peexl-case-gallery { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0 0; }
+        #peexl-case-gallery[hidden] { display: none; }
+        #peexl-case-gallery button { width: 4.25rem; height: 3rem; padding: 0; overflow: hidden; border: 0; border-radius: .4rem; background: #242950; opacity: .65; }
+        #peexl-case-gallery button[aria-pressed="true"] { opacity: 1; box-shadow: 0 0 0 2px #A7A8F8; }
+        #peexl-case-gallery button:hover { opacity: 1; }
+        #peexl-case-gallery img { width: 100%; height: 100%; object-fit: cover; }
+        @media (max-width: 900px) {
+            #peexl-case-dialog { width: calc(100vw - 2rem); height: min(760px, calc(100dvh - 2rem)); }
+            .peexl-case-overview { grid-template-columns: minmax(0, 1fr) minmax(13rem, .9fr); gap: 1rem; }
+            .peexl-case-sections { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+        }
+        @media (max-width: 680px) {
+            #peexl-case-dialog { width: calc(100vw - 1rem); height: calc(100dvh - 1rem); max-height: calc(100dvh - 1rem); }
+            .peexl-case-dialog-body { gap: .85rem; }
+            .peexl-case-dialog-head { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: .75rem; }
+            .peexl-case-dialog-actions { justify-content: flex-end; gap: 1rem; }
+            .peexl-case-overview, .peexl-case-sections { grid-template-columns: minmax(0, 1fr); }
+            .peexl-case-overview { gap: .85rem; }
+            #peexl-case-image-link { height: min(52vw, 15rem); }
+        }
+
+        #contact-form {
+            padding: clamp(1.35rem, 2.4vw, 2rem);
+            border: 0;
+            border-radius: 1.25rem;
+            background: linear-gradient(145deg, rgba(31, 35, 75, .78), rgba(14, 17, 44, .94));
+            box-shadow: 0 18px 42px rgba(3, 5, 22, .22);
+        }
+        #contato .contact-channels > div {
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            background: none;
+            box-shadow: none;
+        }
+        #contact-form .contact-field {
+            border: 0;
+            border-bottom: 1px solid rgba(167, 168, 248, .3);
+            border-radius: .3rem .3rem 0 0;
+            background: rgba(167, 168, 248, .035);
+        }
+        #contact-form .contact-field:focus {
+            border-bottom-color: #A7A8F8;
+            box-shadow: 0 2px 0 #A7A8F8;
+        }
+        #contact-form .contact-field.is-invalid { border-bottom-color: #f87171; box-shadow: 0 2px 0 #f87171; }
+        #contact-submit { min-height: 3rem; border-radius: .65rem; }
+        #contato .contact-channels .space-y-6 > div > div:first-child { background: none; width: 2.4rem; height: 2.4rem; }
+        #contato .contact-channels .space-y-6 > div { padding-top: 1rem; border-top: 1px solid rgba(167, 168, 248, .1); }
+        #contato .contact-channels h4 { font-size: 1rem; }
+        :where(a, button, input, textarea):focus-visible { outline: 2px solid #A7A8F8; outline-offset: 3px; }
+
+        @media (min-width: 1024px) {
+            #contato .contact-channels {
+                padding-left: clamp(2rem, 4vw, 4rem);
+                border-left: 1px solid rgba(167, 168, 248, .16);
+            }
+        }
+        @media (max-width: 1023px) {
+            #contato .contact-channels { padding-top: 2.5rem; border-top: 1px solid rgba(167, 168, 248, .16); }
+        }
+
+        @media (max-width: 900px) {
+            .project-filter-fields { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .project-filter-field:last-child { grid-column: 1 / -1; }
+        }
+        @media (max-width: 560px) {
+            .project-filters { margin: 1.75rem auto 2.25rem; }
+            .project-filter-heading { align-items: flex-start; gap: .75rem; }
+            .project-filter-fields { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
+            .project-filter-field:last-child { grid-column: auto; }
+        }
+        @media (max-width: 767px) {
+            .hero-photo-column .hero-portrait { width: 14rem; height: 17.5rem; }
+            .hero-layout { gap: 2rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html, body { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
         }
     </style>
 </head>
@@ -666,23 +957,25 @@
                 <a href="#home" class="text-2xl font-bold gradient-text">Portfólio Profissional</a>
                 
                 <!-- Menu para desktop -->
-                <div class="hidden md:flex space-x-8">
+                <div class="hidden lg:flex gap-6 xl:gap-8">
                     <a href="#home" class="nav-link" data-nav-link="home">Home</a>
                     <a href="#sobre" class="nav-link" data-nav-link="sobre">Sobre</a>
+                    <a href="#perfil" class="nav-link" data-nav-link="perfil">Perfil</a>
                     <a href="#projetos" class="nav-link" data-nav-link="projetos">Projetos</a>
                     <a href="#contato" class="nav-link" data-nav-link="contato">Contato</a>
                 </div>
                 
                 <!-- Botão mobile menu -->
-                <button id="mobile-menu-button" class="md:hidden text-[#A7A8F8] transition hover:text-[#F6F9DC]" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
+                <button id="mobile-menu-button" class="lg:hidden text-[#A7A8F8] transition hover:text-[#F6F9DC]" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="mobile-menu">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
             
             <!-- Menu mobile (oculto por padrão) -->
-            <div id="mobile-menu" class="mobile-menu-panel md:hidden mt-4 border-t border-[#A7A8F8]/10 pt-3 pb-1">
+            <div id="mobile-menu" class="mobile-menu-panel lg:hidden" inert aria-hidden="true">
                 <a href="#home" class="mobile-nav-link" data-nav-link="home">Home</a>
                 <a href="#sobre" class="mobile-nav-link" data-nav-link="sobre">Sobre</a>
+                <a href="#perfil" class="mobile-nav-link" data-nav-link="perfil">Perfil</a>
                 <a href="#projetos" class="mobile-nav-link" data-nav-link="projetos">Projetos</a>
                 <a href="#contato" class="mobile-nav-link" data-nav-link="contato">Contato</a>
             </div>
@@ -690,115 +983,28 @@
     </nav>
 
     <!-- Seção Home -->
-    <section id="home" class="relative min-h-[86vh] flex items-center pt-16 overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center opacity-5 z-0" style="background-image: url('https://lh3.googleusercontent.com/d/1JQCeIj9BD_EY2TX7p8SBlJ4SCOmTSAlZ=w1259-h664');"></div>
-        <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,_rgba(167,168,248,0.18),_transparent_32%),radial-gradient(circle_at_bottom_left,_rgba(108,99,255,0.15),_transparent_28%)]"></div>
+    <section id="home" class="relative flex items-center pt-16 overflow-hidden">
         <div class="container mx-auto px-6 py-8 md:py-14 relative z-10">
-            <div class="flex flex-col lg:flex-row items-center gap-10 md:gap-12">
-                <div class="w-full lg:w-[34%] flex flex-col items-center">
-                    <div id="hero-photo-area" class="relative mb-6">
-                        <div class="w-72 h-[22.5rem] md:w-[24rem] md:h-[30rem] rounded-[2rem] overflow-hidden border-4 border-[#A7A8F8] shadow-[0_20px_60px_rgba(108,99,255,0.18)] animate-imageFloat">
-                    <img src="https://lh3.googleusercontent.com/d/14f-Hvz7XkOCkA6P5x2PeMVbW3GV-Ap7b=w920-h1152" alt="Foto de Paulo Estevão Maia" class="w-full h-full object-cover object-top">
-                        </div>
-                        <div id="hero-photo-tooltip" class="tooltip-shell pointer-events-none absolute left-0 top-0 z-20 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 translate-y-2 transition duration-200 whitespace-nowrap">
-                            Este sou eu! <span aria-hidden="true">&#128521;</span>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap justify-center gap-3 mb-5">
-                        <div class="relative group">
-                            <a href="#curriculo-tabs" data-tab-target="experiencia" class="hero-tab-link ui-pill px-4 py-2 text-sm">
-                                Experiências
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Mostra sua trajetória
-                            </span>
-                        </div>
-                        <div class="relative group">
-                            <a href="#curriculo-tabs" data-tab-target="educacao" class="hero-tab-link ui-pill px-4 py-2 text-sm">
-                                Formações
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Exibe sua formação
-                            </span>
-                        </div>
-                        <div class="relative group">
-                            <a href="#curriculo-tabs" data-tab-target="certificacoes" class="hero-tab-link ui-pill px-4 py-2 text-sm">
-                                Certificados
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Abre seus certificados
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="flex space-x-4">
-                        <div class="relative group">
-                            <a href="https://github.com/paulomaia93" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil do GitHub" class="icon-action text-2xl">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Abre meu GitHub
-                            </span>
-                        </div>
-                        <div class="relative group">
-                            <a href="https://www.linkedin.com/in/pauloestevaofreitasmaia" target="_blank" rel="noopener noreferrer" aria-label="Abrir perfil do LinkedIn" class="icon-action text-2xl">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Abre meu LinkedIn
-                            </span>
-                        </div>
-                        <div class="relative group">
-                            <a href="https://wa.me/5585992590695" target="_blank" rel="noopener noreferrer" aria-label="Abrir conversa no WhatsApp" class="icon-action text-2xl">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Abre o WhatsApp
-                            </span>
-                        </div>
-                        <div class="relative group">
-                            <a href="mailto:auto.maia93@gmail.com" aria-label="Enviar e-mail" class="icon-action text-2xl">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Envia um e-mail
-                            </span>
-                        </div>
+            <div class="hero-layout flex flex-col lg:flex-row items-center gap-10 md:gap-12">
+                <div class="hero-photo-column w-full lg:w-[34%] flex justify-center">
+                    <div class="hero-portrait w-72 h-[22.5rem] md:w-[21rem] md:h-[26.25rem] overflow-hidden">
+                        <img src="imagens/retrato-profissional-paulo-estevao.png" alt="Foto de Paulo Estevão Maia" class="w-full h-full object-cover object-top" fetchpriority="high">
                     </div>
                 </div>
 
-                <div class="w-full lg:w-[66%]">
-                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-5">
+                <div class="hero-content w-full lg:w-[66%]">
+                    <h1 class="hero-title font-bold leading-tight">
                         Olá, aqui é o <span class="gradient-text">Paulo Estevão</span>
                     </h1>
-                    <h2 class="text-2xl md:text-4xl text-[#9797E8] font-semibold mb-6 leading-tight">
-                        Seja bem-vindo(a) ao meu portfólio!
-                    </h2>
-                    <p class="text-lg md:text-xl text-[#F6F9DC]/85 leading-relaxed max-w-5xl mb-8">
-                        É um prazer ter você por aqui! Fico muito feliz pelo seu interesse em conhecer mais sobre minha trajetória e o que posso oferecer. Tudo o que encontrará é reflexo da minha dedicação, das entregas realizadas e das parcerias construídas ao longo do tempo. Também, neste espaço, compartilho minhas principais competências e projetos desenvolvidos. Sinta-se à vontade para explorar!
+                    <h2 class="hero-welcome">Seja bem-vindo(a) ao meu portfólio!</h2>
+                    <p class="hero-intro">
+                        Conheça minha trajetória profissional, principais competências e projetos desenvolvidos. Aqui, compartilho experiências, resultados e parcerias que refletem minha dedicação e evolução ao longo dos anos. Sinta-se à vontade para explorar!
                     </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                        <div class="surface-card-secondary p-5">
-                            <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Especialidade</p>
-                            <p class="font-semibold text-lg">Engenharia de Dados, Análise de Dados, Business Intelligence e Inteligência Artificial</p>
-                        </div>
-                        <div class="surface-card-secondary p-5">
-                            <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Stack principal</p>
-                            <p class="font-semibold text-lg">SQL, Python, Power BI, BigQuery, Microsoft Fabric, Apps Script, APIs, Git e Codex</p>
-                        </div>
-                        <div class="surface-card-secondary p-5">
-                            <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Diferencial profissional</p>
-                            <p class="font-semibold text-lg">Visão estratégica, qualidade de processos, melhoria contínua e adaptação ao contexto</p>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#projetos" class="btn-primary px-6 py-3 bg-[#A7A8F8] text-[#080A21] rounded-xl font-semibold hover:bg-[#6C63FF]">
+                    <div class="hero-actions flex flex-wrap gap-3">
+                        <a href="#projetos" class="btn-primary bg-[#A7A8F8] text-[#080A21] font-semibold hover:bg-[#6C63FF]">
                             Ver projetos
                         </a>
-                        <a href="#contato" class="btn-secondary px-6 py-3 border-2 border-[#A7A8F8] text-[#A7A8F8] rounded-xl font-semibold hover:bg-[#A7A8F8]/10">
+                        <a href="#contato" class="btn-secondary text-[#A7A8F8] font-semibold">
                             Falar comigo
                         </a>
                     </div>
@@ -848,98 +1054,77 @@
                 </div>
             </div>
 
-            <div id="sobre-entregas-bloco" class="surface-card-secondary p-8 md:p-10 mb-16 lg:max-w-[75%] lg:mx-auto">
-                <p class="text-sm uppercase tracking-[0.25em] text-[#A7A8F8] mb-5">O que eu entrego</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:pr-4">
-                        <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
-                            <i class="fas fa-database text-[#A7A8F8] text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-bold mb-3">Engenharia e integração de dados</h3>
-                        <p class="text-[#F6F9DC]/80 leading-relaxed">
-                            Organizo e integro dados de diferentes fontes, com modelagem, pipelines e processos de ETL/ELT para apoiar análises e soluções adaptadas ao contexto de cada projeto.
-                        </p>
+            <div id="sobre-competencias-bloco" class="surface-card-secondary lg:max-w-[75%] lg:mx-auto">
+                <h2 class="text-sm uppercase tracking-[0.25em] text-[#A7A8F8] mb-5">Atuação e competências</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div>
+                        <h3>Especialidade</h3>
+                        <p>Engenharia de Dados, Análise de Dados, Business Intelligence e Inteligência Artificial</p>
                     </div>
-                    <div class="md:px-4 md:border-x floating-divider md:border-x-[#A7A8F8]/12">
-                        <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
-                            <i class="fas fa-chart-line text-[#A7A8F8] text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-bold mb-3">Business Intelligence e análise</h3>
-                        <p class="text-[#F6F9DC]/80 leading-relaxed">
-                            Desenvolvo indicadores, dashboards e análises que tornam os dados mais acessíveis e ajudam equipes e gestores a acompanhar resultados e tomar decisões.
-                        </p>
+                    <div>
+                        <h3>Stack principal</h3>
+                        <p>SQL, Python, Power BI, BigQuery, Microsoft Fabric, Apps Script, APIs, Git e Codex</p>
                     </div>
-                    <div class="md:pl-4">
-                        <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
-                            <i class="fas fa-gears text-[#A7A8F8] text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-bold mb-3">Automação e IA aplicada</h3>
-                        <p class="text-[#F6F9DC]/80 leading-relaxed">
-                            Crio scripts, integrações e aplicações para simplificar processos. Uso ferramentas de inteligência artificial como apoio à análise, programação e produtividade, com atenção à qualidade das entregas.
-                        </p>
+                    <div>
+                        <h3>Diferencial profissional</h3>
+                        <p>Visão estratégica, qualidade de processos, melhoria contínua e adaptação ao contexto</p>
                     </div>
                 </div>
             </div>
 
-            <div id="curriculo-tabs" class="scroll-mt-28 pt-4 md:pt-8 lg:max-w-[75%] lg:mx-auto">
+        </div>
+    </section>
+
+    <!-- Seção Perfil -->
+    <section id="perfil" class="section-band">
+        <div class="container mx-auto px-6">
+            <div id="curriculo-tabs" class="lg:max-w-[75%] lg:mx-auto">
                 <div class="text-center mb-10">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8]">Perfil Profissional</h2>
                     <p class="section-lead text-lg md:text-xl max-w-3xl mx-auto mt-4">
                         Uma visão organizada das minhas experiências, formações e certificações.
                     </p>
                 </div>
-                <div class="mb-8 flex flex-wrap gap-x-1 border-b border-[#A7A8F8]/20">
-                    <button class="tab-button active px-6 py-3 font-medium text-[#A7A8F8]" data-tab="experiencia">
+                <div class="profile-tablist mb-8 flex gap-1" role="tablist" aria-label="Informações do perfil profissional">
+                    <button id="tab-experiencia" class="tab-button active px-6 py-3 font-medium text-[#A7A8F8]" role="tab" data-tab="experiencia" aria-selected="true" aria-controls="experiencia" tabindex="0">
                         Experiências
                     </button>
-                    <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="educacao">
+                    <button id="tab-educacao" class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" role="tab" data-tab="educacao" aria-selected="false" aria-controls="educacao" tabindex="-1">
                         Formações
                     </button>
-                    <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="certificacoes">
+                    <button id="tab-certificacoes" class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" role="tab" data-tab="certificacoes" aria-selected="false" aria-controls="certificacoes" tabindex="-1">
                         Certificados
                     </button>
                 </div>
                 
                 <!-- Conteúdo das abas -->
-                <div id="experiencia" class="tab-content active">
+                <div id="experiencia" class="tab-content active" role="tabpanel" aria-labelledby="tab-experiencia" tabindex="0">
                     <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Experiência Profissional</h3>
                     
-                    <div class="relative">
-                        <div class="absolute left-4 h-full w-0.5 bg-[#A7A8F8]/30 top-0"></div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Fundador</h4>
-                                <p class="text-[#A7A8F8] mb-2">PEEXL BI, Dados e Automação | março de 2019 – atual | atuação autônoma, remota</p>
+                    <div class="experience-list">
+                        <article class="experience-entry">
+                                <h4 class="text-xl font-bold mb-2"><i class="fas fa-briefcase experience-role-icon" aria-hidden="true"></i>Fundador</h4>
+                                <p class="experience-meta">PEEXL BI, Dados e Automação | mar. de 2019 – atual | atuação autônoma, remota</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
                                     <li>Iniciei a atuação com treinamentos práticos de Excel e Power BI, individuais e em grupo; depois ampliei o trabalho para dados, BI, automação e soluções sob medida.</li>
                                     <li>Analiso processos e fontes, realizo diagnósticos, defino a abordagem técnica e desenvolvo modelos, integrações, pipelines, relatórios e automações; acompanho a sustentação das soluções.</li>
                                     <li>Implantei painéis para áreas comercial, financeira, saúde, manutenção e logística; desenvolvi um sistema personalizado e atuei em projetos de migração e recuperação de relatórios.</li>
                                 </ul>
-                            </div>
-                        </div>
+                        </article>
 
-                        <div class="relative pl-12">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Trajetória em diferentes empresas</h4>
-                                <p class="text-[#A7A8F8] mb-2">Operações, processos e dados | agosto de 2015 – setembro de 2026 | Brasil</p>
+                        <article class="experience-entry">
+                                <h4 class="text-xl font-bold mb-2"><i class="fas fa-briefcase experience-role-icon" aria-hidden="true"></i>Trajetória em diferentes empresas</h4>
+                                <p class="experience-meta">11 anos de experiência | Negócios, processos e tecnologia | ago. de 2015 – set. de 2026 | Brasil</p>
                                 <p class="text-[#F6F9DC]/80 mb-3">Tecer Terminais, APM Terminals, Tomé Equipamentos e Transportes, Aeris Energy, Up Value Solutions, Grupo Cosampa, Camed Microcrédito e Cysy Fertilizantes.</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
                                     <li>Evoluí de funções de conferência e apoio administrativo para posições de assistente e analista em logística, operações comerciais e dados.</li>
                                     <li>Trabalhei com controle e melhoria de processos, indicadores e análises, Business Intelligence, integração de fontes e automações para apoiar decisões operacionais e comerciais.</li>
                                 </ul>
-                            </div>
-                        </div>
+                        </article>
                     </div>
                 </div>
                 
-                <div id="educacao" class="tab-content hidden">
+                <div id="educacao" class="tab-content hidden" role="tabpanel" aria-labelledby="tab-educacao" tabindex="0">
                     <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Formação Acadêmica</h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -955,13 +1140,13 @@
                                 </div>
                             </div>
                             <p class="text-[#FFFFFF] mb-3">
-                                Estácio | Em andamento · set/2026 a dez/2027 (previsão)
+                                Estácio | Em andamento | set. de 2026 – dez. de 2027 (previsão)
                             </p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
                                     <li>Desenvolvimento e manutenção de sistemas, com foco em lógica de programação, estruturas de dados e performance.</li>
                                     <li>Domínio de bancos de dados, análise de requisitos, arquitetura de software e metodologias ágeis.</li>
                                     <li>Uso de tecnologias atuais, boas práticas e aplicação de segurança da informação.</li>
-                            </p>
+                                </ul>
                         </div>
                         
                         <!-- Formação 2 -->
@@ -972,22 +1157,22 @@
                                 </div>
                                 <div>
                                     <h4 class="text-[17px] font-bold">Engenharia de Dados e Inteligência Artificial</h4>
-                                    <p class="text-[#A7A8F8]">Especialização lato sensu | Em andamento</p>
+                                    <p class="text-[#A7A8F8]">Especialização lato sensu</p>
                                 </div>
                             </div>
                             <p class="text-[#FFFFFF] mb-3">
-                                Estácio | set/2026 a dez/2027 (previsão)
+                                Estácio | Em andamento | set. de 2026 – dez. de 2027 (previsão)
                             </p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
                                     <li>Estudos em engenharia de dados, integração, processamento e arquitetura de soluções.</li>
-                                    <li>Formação em andamento; competências estudadas não representam conclusão do curso.</li>
+                                    <li>As competências estudadas não representam conclusão do curso.</li>
                                     <li>Aplicação prática dos conhecimentos conforme experiência e projetos apresentados.</li>
-                            </p>
+                                </ul>
                         </div>
                     </div>
                 </div>
                 
-                <div id="certificacoes" class="tab-content hidden">
+                <div id="certificacoes" class="tab-content hidden" role="tabpanel" aria-labelledby="tab-certificacoes" tabindex="0">
                     <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Certificados e Reconhecimentos</h3>
                     
                     <div class="space-y-6">                       
@@ -995,7 +1180,7 @@
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
                             <div class="flex flex-col md:flex-row md:items-center">
                                 <div class="md:w-1/4 mb-4 md:mb-0">
-                                    <img src="https://lh3.googleusercontent.com/d/1J54YjGMAzifAUUuQiq3Nf4rYEyjKnLu_=w1075-h768" alt="Certificação" class="rounded-lg">
+                                    <img src="imagens/certificados/certificado-ia.jpg" alt="Certificado de conclusão da formação Inteligência Artificial Impressionador" class="rounded-lg" loading="lazy">
                                 </div>
                                 <div class="md:w-3/4 md:pl-6">
                                     <h4 class="text-xl font-bold mb-2">Formação Inteligência Artificial</h4>
@@ -1016,8 +1201,8 @@
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
                             <div class="flex flex-col md:flex-row md:items-center">
                                 <div class="md:w-1/4 mb-4 md:mb-0">
-                                    <img src="https://lh3.googleusercontent.com/d/1EDRJ4HKeh__TC5t79QV2RCUgyMYGmmLx=w800-h566"
-                                    alt="Certificação" class="rounded-lg">
+                                    <img src="imagens/certificados/green-belt.jpg"
+                                    alt="Certificado de conclusão Green Belt Lean Seis Sigma" class="rounded-lg" loading="lazy">
                                 </div>
                                 <div class="md:w-3/4 md:pl-6">
                                     <h4 class="text-xl font-bold mb-2">Green Belt Lean Six Sigma</h4>
@@ -1038,7 +1223,7 @@
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
                             <div class="flex flex-col md:flex-row md:items-center">
                                 <div class="md:w-1/4 mb-4 md:mb-0">
-                                    <img src="https://lh3.googleusercontent.com/d/1MtfMmHRqSxrwrsOV7n5uYsYfJBQo9vSV=w800-h572" alt="Certificação" class="rounded-lg">
+                                    <img src="imagens/certificados/reconhecimento-aeris.jpg" alt="Reconhecimento na 2ª Semana da Qualidade Aeris" class="rounded-lg" loading="lazy">
                                 </div>
                                 <div class="md:w-3/4 md:pl-6">
                                     <h4 class="text-xl font-bold mb-2">2ª Semana da Qualidade Aeris</h4>
@@ -1054,7 +1239,7 @@
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
                             <div class="flex flex-col md:flex-row md:items-center">
                                 <div class="md:w-1/4 mb-4 md:mb-0">
-                                    <img src="https://lh3.googleusercontent.com/d/1BGrStngxq7yIWmS2N-vwWrwmn637E99h=w800-h542" alt="Certificação" class="rounded-lg">
+                                    <img src="imagens/certificados/programa-visa.jpg" alt="Certificado de inovador do Programa VISA da Aeris" class="rounded-lg" loading="lazy">
                                 </div>
                                 <div class="md:w-3/4 md:pl-6">
                                     <h4 class="text-xl font-bold mb-2">Programa VISA (Valorizando Ideias e Soluções na Aeris)</h4>
@@ -1083,37 +1268,57 @@
                 </p>
             </div>
 
-            <div class="flex flex-wrap justify-center mb-12 gap-4">
-                <button class="project-filter active px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-full font-medium" data-filter="all">
-                    Todos
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="web">
-                    Web
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="ia">
-                    IA
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="api">
-                    API
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="power-bi">
-                    Power BI
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="python">
-                    Python
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="sql">
-                    SQL
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="html">
-                    HTML
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="css">
-                    CSS
-                </button>
-                <button class="project-filter ui-pill px-4 py-2 font-medium" data-filter="javascript">
-                    JavaScript
-                </button>
+            <div id="project-filters" class="project-filters" role="group" aria-label="Filtros dos projetos">
+                <div class="project-filter-heading">
+                    <p class="project-filter-total"><strong id="project-total-count">10</strong><span> projetos</span></p>
+                </div>
+                <div class="project-filter-fields">
+                    <label class="project-filter-field" for="project-filter-solution">
+                        <span>Tipo de solução</span>
+                        <select id="project-filter-solution">
+                            <option value="">Todas as soluções</option>
+                            <option value="site">Sites</option>
+                            <option value="web-app">Sistemas web</option>
+                            <option value="ai">Inteligência artificial</option>
+                            <option value="bi">Dados e BI</option>
+                            <option value="process">Mapeamento de processos</option>
+                        </select>
+                    </label>
+                    <label class="project-filter-field" for="project-filter-area">
+                        <span>Área de aplicação</span>
+                        <select id="project-filter-area">
+                            <option value="">Todas as áreas</option>
+                            <option value="digital">Presença digital</option>
+                            <option value="management">Gestão e processos</option>
+                            <option value="operations">Operações e logística</option>
+                            <option value="finance">Finanças</option>
+                            <option value="supply">Estoque e suprimentos</option>
+                            <option value="people">Pessoas e mercado de trabalho</option>
+                        </select>
+                    </label>
+                    <label class="project-filter-field" for="project-filter-technology">
+                        <span>Tecnologia ou ferramenta</span>
+                        <select id="project-filter-technology">
+                            <option value="">Todas as tecnologias</option>
+                            <option value="web-dev">Desenvolvimento web</option>
+                            <option value="chatgpt">ChatGPT</option>
+                            <option value="apps-script">Google Apps Script</option>
+                            <option value="bigquery">BigQuery</option>
+                            <option value="api">APIs</option>
+                            <option value="sharepoint">SharePoint</option>
+                            <option value="microsoft-lists">Microsoft Lists</option>
+                            <option value="power-bi">Power BI</option>
+                            <option value="python">Python</option>
+                            <option value="sql">SQL</option>
+                            <option value="protheus">ERP Protheus</option>
+                            <option value="dax">DAX</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="project-filter-summary" class="project-filter-summary" hidden>
+                    <button id="project-filter-clear" type="button" hidden>Limpar filtros</button>
+                </div>
+                <p id="project-results-status" class="sr-only" aria-live="polite"></p>
             </div>
 
             <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -1136,7 +1341,7 @@
                 </p>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-12">
+            <div class="contact-layout flex flex-col lg:flex-row gap-12">
                 <div class="lg:w-1/2">
                     <form id="contact-form" action="https://formspree.io/f/xanordvg" method="POST" accept-charset="UTF-8" class="surface-card-secondary p-8">
                         <p class="text-[#F6F9DC]/75 mb-6">
@@ -1173,7 +1378,7 @@
                     </form>
                 </div>
 
-                <div class="lg:w-1/2">
+                <div class="contact-channels lg:w-1/2">
                     <div class="surface-card-secondary p-8 h-full">
                         <h3 class="text-2xl font-bold text-[#A7A8F8] mb-3">Canais de contato</h3>
                         <p class="text-[#F6F9DC]/75 mb-8">
@@ -1274,12 +1479,28 @@
 
     <dialog id="peexl-case-dialog" aria-labelledby="peexl-case-title">
         <div class="peexl-case-dialog-body">
-            <div class="peexl-case-dialog-head"><div><p class="peexl-case-category" id="peexl-case-category"></p><h2 id="peexl-case-title"></h2></div><button id="peexl-case-close" type="button" aria-label="Fechar detalhes do projeto">Fechar ×</button></div>
-            <p id="peexl-case-description"></p>
-            <h3>Objetivos</h3><ul id="peexl-case-objectives"></ul>
-            <h3>O que foi feito</h3><ul id="peexl-case-actions"></ul>
-            <h3 id="peexl-case-results-heading">Resultados descritos no portfólio da PEEXL</h3><ul id="peexl-case-results"></ul>
-            <div id="peexl-case-links"></div>
+            <div class="peexl-case-dialog-head"><div><p class="peexl-case-category" id="peexl-case-category"></p><h2 id="peexl-case-title"></h2></div><div class="peexl-case-dialog-actions"><div id="peexl-case-links"></div><button id="peexl-case-close" type="button" aria-label="Fechar detalhes do projeto">Fechar ×</button></div></div>
+            <div id="peexl-case-note" hidden></div>
+            <div class="peexl-case-overview">
+                <div class="peexl-case-visuals">
+                    <a id="peexl-case-image-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir imagem do projeto em tamanho original"><img id="peexl-case-image" alt=""></a>
+                    <div id="peexl-case-gallery" role="group" aria-label="Imagens do projeto"></div>
+                </div>
+                <div class="peexl-case-summary">
+                    <p id="peexl-case-description"></p>
+                    <section id="peexl-case-technical-panel" class="peexl-case-technical-panel" aria-label="Implementação técnica do projeto" hidden>
+                        <h3>Implementação técnica</h3>
+                        <p id="peexl-case-technical"></p>
+                        <h3>Ferramentas e recursos</h3>
+                        <div id="peexl-case-tools" class="peexl-case-tools" role="list"></div>
+                    </section>
+                </div>
+            </div>
+            <div class="peexl-case-sections">
+                <section class="peexl-case-detail"><h3>Objetivos</h3><ul id="peexl-case-objectives"></ul></section>
+                <section class="peexl-case-detail"><h3>O que foi feito</h3><ul id="peexl-case-actions"></ul></section>
+                <section class="peexl-case-detail"><h3 id="peexl-case-results-heading">Resultados descritos no portfólio da PEEXL</h3><ul id="peexl-case-results"></ul></section>
+            </div>
         </div>
     </dialog>
 
@@ -1288,6 +1509,15 @@ const projectCaseContent = {
         portfolio: {
             badgeOne: 'HTML',
             badgeTwo: 'JavaScript',
+            technical: 'Página estática estruturada em HTML5. O Tailwind CSS compõe o layout responsivo por classes utilitárias, complementadas por CSS próprio para tema, espaçamentos e pontos de quebra. JavaScript sem framework controla navegação, abas do perfil, filtros, galeria e o modal nativo de detalhes. O formulário de contato encaminha as mensagens pelo Formspree.',
+            tools: [
+                ['HTML5', 'Estrutura semântica das seções e do conteúdo.'],
+                ['Tailwind CSS', 'Composição do layout responsivo com classes utilitárias.'],
+                ['CSS3', 'Tema visual, ajustes responsivos e estados de interação.'],
+                ['JavaScript', 'Menu, abas, filtros, galeria e modal de projetos.'],
+                ['Font Awesome', 'Ícones usados na navegação e nos componentes.'],
+                ['Formspree', 'Recebimento das mensagens enviadas pelo formulário.']
+            ],
             objectives: [
                 'Apresentar meu perfil de forma mais clara, profissional e confiável para recrutadores e clientes.'
             ],
@@ -1301,13 +1531,21 @@ const projectCaseContent = {
         'peexl-site': {
             badgeOne: 'Desenvolvimento Web',
             badgeTwo: 'Site institucional',
+            technical: 'Site institucional estático com marcação semântica em HTML5 e estilos próprios combinados ao Tailwind CSS, compilado para produção. Módulos JavaScript controlam interações como navegação móvel, seleção de planos, carrossel de dashboards e galeria de projetos. A página também inclui metadados estruturados para mecanismos de busca e recursos de acessibilidade na navegação e nos componentes.',
+            tools: [
+                ['HTML5', 'Estrutura semântica das seções e do conteúdo institucional.'],
+                ['Tailwind CSS', 'Classes utilitárias compiladas para compor a interface responsiva.'],
+                ['CSS3', 'Identidade visual, componentes e ajustes responsivos próprios.'],
+                ['JavaScript ES Modules', 'Menu móvel, planos, carrossel de dashboards e detalhes dos projetos.'],
+                ['Schema.org', 'Dados estruturados para descrever a organização e seus serviços.'],
+                ['Google Fonts', 'Tipografia Hanken Grotesk, Inter e ícones Material Symbols.']
+            ],
             objectives: [
                 'Apresentar a PEEXL, suas soluções, seus projetos e seus canais de contato em uma experiência organizada e responsiva.'
             ],
             actions: [
-                'Estruturei a página principal com seções de soluções, jornada, apresentação institucional, projetos e Self-Service BI.',
-                'Desenvolvi navegação por âncoras, menu para celular e detalhes interativos dos projetos.',
-                'Organizei páginas de privacidade, termos de uso e metadados para mecanismos de busca.'
+                'Organizei as seções de soluções, jornada, apresentação institucional, projetos e Self-Service BI.',
+                'Implementei menu móvel, planos interativos, carrossel, galeria de projetos e páginas legais.'
             ],
             results: [
                 ['Site institucional', 'Página estática organizada para apresentar a PEEXL, suas soluções e seus cases.']
@@ -1316,13 +1554,22 @@ const projectCaseContent = {
         'task-manager': {
             badgeOne: 'Sistema web',
             badgeTwo: 'Gestão de tarefas',
+            technical: 'Aplicação web interna implementada como Web App no Google Apps Script V8, com interface em HTML, CSS e JavaScript. Os módulos organizam tarefas, permissões por ação, notificações, usuários e registros relacionados. Consultas SQL no BigQuery apoiam o processamento dos dados; o Google Drive recebe arquivos e uma API externa é consultada por UrlFetch para importação de pedidos em lotes com possibilidade de retomada.',
+            tools: [
+                ['Google Apps Script V8', 'Camada de aplicação e publicação como Web App.'],
+                ['HTML, CSS e JavaScript', 'Interface do sistema, formulários e interações.'],
+                ['BigQuery', 'Consultas e processamento dos dados operacionais.'],
+                ['SQL', 'Consultas usadas para acessar e processar dados no BigQuery.'],
+                ['Google Drive', 'Armazenamento de arquivos associados aos fluxos.'],
+                ['UrlFetch e API REST', 'Consulta à API externa para importar pedidos.']
+            ],
             objectives: [
                 'Desenvolver um sistema sob medida para organizar tarefas e substituir a ferramenta de gestão usada anteriormente, conforme o objetivo relatado para o projeto.'
             ],
             actions: [
-                'Implementei interface para painel, consulta e acompanhamento de tarefas, com permissões independentes por tipo de ação.',
-                'Estruturei registros de histórico, notificações, chat e laudos vinculados às tarefas.',
-                'Integrei a importação de pedidos de uma API ao Google Drive e ao BigQuery, com processamento em lotes e retomada.'
+                'Implementei painel para consulta e acompanhamento de tarefas, com permissões por tipo de ação.',
+                'Registrei histórico, notificações, chat e laudos vinculados às tarefas.',
+                'Integrei pedidos de uma API ao Google Drive e ao BigQuery, com processamento em lotes e retomada.'
             ],
             results: [
                 ['Aplicação desenvolvida', 'O código local reúne os módulos de tarefas, usuários, pedidos, notificações e laudos.']
@@ -1331,6 +1578,12 @@ const projectCaseContent = {
         'peexl-management-ai': {
             badgeOne: 'IA aplicada',
             badgeTwo: 'Gestão empresarial',
+            technical: 'Estrutura de gestão apoiada pelo ChatGPT e por fontes locais de contexto. O fluxo organiza informações para preparar análises e recomendações, distinguindo fatos, evidências e hipóteses e mantendo as decisões sob responsabilidade do proprietário. Não há integração automatizada registrada para este projeto.',
+            tools: [
+                ['ChatGPT', 'Apoio à análise, síntese e preparação de recomendações.'],
+                ['Fontes locais de contexto', 'Registros de estratégia, operação e planejamento da PEEXL.'],
+                ['Registros de decisão', 'Referência para acompanhar decisões e distinguir fatos, hipóteses e aprovações.']
+            ],
             objectives: [
                 'Organizar o contexto da PEEXL e apoiar análises e decisões do proprietário com informações rastreáveis.'
             ],
@@ -1346,6 +1599,15 @@ const projectCaseContent = {
         vagas: {
             badgeOne: 'Gestão de RH',
             badgeTwo: 'Prazos e Status',
+            technical: 'Os dados de vagas organizados no SharePoint alimentam indicadores e painéis no Power BI para acompanhar o funil de recrutamento. Medidas em DAX avançado apoiam a análise de status, prazos, responsáveis e andamento para priorizar processos e identificar gargalos.',
+            tools: [
+                ['Power BI', 'Painéis e indicadores para acompanhar o funil de recrutamento.'],
+                ['DAX avançado', 'Medidas para analisar status, prazos e andamento das vagas.'],
+                ['SharePoint', 'Fonte e organização dos dados de vagas.'],
+                ['Dados de vagas', 'Informações organizadas por processo e etapa do funil.'],
+                ['Indicadores de RH', 'Status, prazos, responsáveis e andamento das vagas.'],
+                ['Visão gerencial', 'Leitura para destacar gargalos, prioridades e próximos passos.']
+            ],
             objectives: [
                 'Apoiar o RH na priorização de vagas, prazos e status de cada processo.',
                 'Identificar gargalos de recrutamento para acelerar decisões de contratação.',
@@ -1361,27 +1623,17 @@ const projectCaseContent = {
                 ['Decisão com Direção', 'As decisões sobre recrutamento passaram a considerar indicadores mais objetivos.'],
             ],
         },
-        'aeris-logistica': {
-            badgeOne: 'Indicadores Logísticos',
-            badgeTwo: 'Performance Operacional',
-            objectives: [
-                'Transformar dados logísticos em indicadores de desempenho operacional.',
-                'Apoiar decisões diárias sobre processos, desvios e pontos de atenção.',
-            ],
-            actions: [
-                'Mapeamento dos indicadores mais importantes para a rotina logística.',
-                'Organização das fontes de dados para reduzir leituras fragmentadas da operação.',
-                'Criação de painéis para acompanhar desempenho, evolução e exceções.',
-            ],
-            results: [
-                ['Operação Monitorada', 'Gestores passaram a acompanhar indicadores logísticos em uma base mais confiável.'],
-                ['Desvios Priorizados', 'Pontos de atenção ficaram mais fáceis de transformar em ação.'],
-                ['Decisão Mais Rápida', 'A leitura dos dados ajudou a orientar ações no dia a dia da operação.'],
-            ],
-        },
         materials: {
             badgeOne: 'Projeto Premiado',
             badgeTwo: 'Destaque do Mês',
+            technical: 'Dados de materiais, locais e responsáveis foram consolidados a partir de fontes do SharePoint e listas do Microsoft Lists. Os indicadores resultantes alimentam um painel de prioridades para orientar destinação, reaproveitamento e devolução.',
+            tools: [
+                ['SharePoint', 'Fonte dos dados operacionais usados no projeto.'],
+                ['Microsoft Lists', 'Listas utilizadas para organizar os registros de materiais.'],
+                ['Fontes de dados', 'Informações consolidadas sobre materiais, locais e responsáveis.'],
+                ['Indicadores de materiais', 'Volumes e locais de concentração para definir prioridades.'],
+                ['Painel de acompanhamento', 'Visão das ações de destinação, reaproveitamento e devolução.']
+            ],
             objectives: [
                 'Criar indicadores executivos sobre materiais parados, volumes e locais de concentração.',
                 'Apoiar decisões de destinação, reaproveitamento e devolução com dados confiáveis.',
@@ -1400,6 +1652,15 @@ const projectCaseContent = {
         trimark: {
             badgeOne: 'Dashboard Financeiro',
             badgeTwo: 'APIs e ERPs',
+            technical: 'Dados financeiros de diferentes fontes são integrados por APIs e organizados por cliente, categoria, período e resultado. O painel executivo em Power BI reúne os indicadores, com medidas em DAX avançado para apoiar a análise da saúde financeira; os nomes dos ERPs não estão especificados na fonte do case.',
+            tools: [
+                ['Power BI', 'Painel executivo para analisar receitas, despesas e resultados.'],
+                ['DAX avançado', 'Medidas para acompanhar indicadores financeiros por cliente e período.'],
+                ['APIs', 'Integração dos dados financeiros para atualização dos indicadores.'],
+                ['ERPs', 'Fontes financeiras; os produtos utilizados não foram identificados na fonte.'],
+                ['Indicadores financeiros', 'Receitas, despesas e resultados por cliente e período.'],
+                ['Painel executivo', 'Visão consolidada para análise da saúde financeira.']
+            ],
             objectives: [
                 'Consolidar receitas, despesas e resultados financeiros em indicadores confiáveis.',
                 'Reduzir dependência de controles manuais para acompanhar clientes e períodos.',
@@ -1418,6 +1679,15 @@ const projectCaseContent = {
         'aeris-he': {
             badgeOne: 'Controle Orçamentário',
             badgeTwo: 'Horas Extras',
+            technical: 'Indicadores são mapeados para localizar exceções e organizados em dashboards no Power BI, com medidas em DAX avançado e visões de horas extras, guindastes, veículos, consumo e centros de custo. O acompanhamento recorrente apoia ações de controle administrativo e orçamentário.',
+            tools: [
+                ['Power BI', 'Dashboards para acompanhar indicadores operacionais e orçamentários.'],
+                ['DAX avançado', 'Medidas para analisar indicadores operacionais e orçamentários.'],
+                ['Horas extras', 'Visão das exceções relacionadas à jornada.'],
+                ['Recursos logísticos', 'Acompanhamento de guindastes, veículos e consumo.'],
+                ['Centros de custo', 'Recorte orçamentário para apoiar decisões de controle.'],
+                ['Acompanhamento recorrente', 'Leitura dos dados para orientar ações de redução e controle.']
+            ],
             objectives: [
                 'Dar direção às ações sobre horas extras e exceções que impactavam o orçamento da logística.',
                 'Acompanhar insumos, veículos e equipamentos com maior controle operacional.',
@@ -1437,6 +1707,15 @@ const projectCaseContent = {
         maxsul: {
             badgeOne: 'DAX Avançado',
             badgeTwo: 'ERP Protheus',
+            technical: 'Os dados do ERP Protheus e do SharePoint são organizados para acompanhar consumo médio, ponto de pedido e cobertura de estoque. No Power BI, as visões de Pareto, pedidos, itens críticos e sugestão de compra apoiam as decisões de reposição, com regras calculadas em DAX avançado.',
+            tools: [
+                ['Power BI', 'Painéis para acompanhar estoque, pedidos e apoiar decisões de reposição.'],
+                ['ERP Protheus', 'Fonte de dados de estoque, fornecedores e pedidos.'],
+                ['SharePoint', 'Fonte de informações operacionais do projeto.'],
+                ['DAX avançado', 'Regras de cálculo para consumo, ponto de pedido e cobertura.'],
+                ['Análise de Pareto', 'Visão para priorizar itens e situações relevantes.'],
+                ['Sugestão de compra', 'Recurso para apoiar decisões de reposição.']
+            ],
             objectives: [
                 'Ajudar a gestão a entender quando comprar, quanto comprar e quais itens exigiam atenção.',
                 'Acompanhar fornecedores, pedidos e cobertura de estoque com informação confiável.',
@@ -1456,6 +1735,15 @@ const projectCaseContent = {
         caged: {
             badgeOne: 'Dados Públicos',
             badgeTwo: 'SQL Integrado',
+            technical: 'Dados públicos do CAGED são extraídos e organizados em uma base estruturada. A modelagem contempla admissões, desligamentos e saldo de empregos, com medidas em DAX avançado; painéis permitem consultas e comparações por região, capital, setor e atividade.',
+            tools: [
+                ['CAGED', 'Fonte pública dos dados sobre emprego formal.'],
+                ['Python', 'Recurso identificado no projeto para trabalhar os dados.'],
+                ['SQL', 'Organização e consulta da base estruturada.'],
+                ['Power BI', 'Painéis para consulta visual e comparação de tendências.'],
+                ['DAX avançado', 'Medidas para analisar admissões, desligamentos e saldo de empregos.'],
+                ['API', 'Recurso identificado entre as tecnologias do projeto.']
+            ],
             objectives: [
                 'Transformar dados públicos complexos em indicadores úteis sobre emprego formal.',
                 'Permitir análises por região, capital, setor, atividade e indicadores de saldo.',
@@ -1472,35 +1760,17 @@ const projectCaseContent = {
                 ['Direção de Tendência', 'O projeto permitiu observar movimentos do mercado formal com mais segurança.'],
             ],
         },
-        sipoc: {
-            badgeOne: 'Mapeamento de Processo',
-            badgeTwo: 'Direção Operacional',
-            objectives: [
-                'Organizar processos, fornecedores, entradas, saídas e clientes internos em uma leitura gerencial.',
-                'Ajudar a operação a enxergar responsabilidades, dependências e pontos de melhoria.',
-            ],
-            actions: [
-                'Estruturação das etapas do processo em uma base simples de acompanhamento.',
-                'Mapeamento dos principais relacionamentos entre áreas, entradas e entregas.',
-                'Construção de uma leitura visual para apoiar alinhamentos internos.',
-            ],
-            results: [
-                ['Processo Organizado', 'A equipe passou a visualizar melhor como as etapas se conectam.'],
-                ['Responsabilidades Visíveis', 'Fornecedores, entradas, entregas e clientes internos ficaram mais organizados.'],
-                ['Melhoria Contínua', 'O mapeamento facilitou conversas sobre gargalos e oportunidades de ajuste.'],
-            ],
-        },
     };
 
 const cases = {
-  portfolio: { category: 'Projeto autoral', title: 'Meu site portfólio', teaser: 'Uma apresentação clara da minha trajetória, competências e projetos.', description: 'Landing page responsiva que reúne minha trajetória, competências e projetos em um único espaço.', badges: ['Desenvolvimento Web'], icon: 'fa-code', image: 'https://lh3.googleusercontent.com/d/1n89FGEkWdoQbegi3M2I4WQ5K_yc85Heq=w1371-h658', tags: ['web', 'html', 'css', 'javascript'], links: [
-    ['Código', 'https://github.com/paulomaia93/site_meuportfolio/blob/main/index.html']
+  portfolio: { category: 'Projeto autoral', title: 'Meu Portfólio Profissional', teaser: 'Uma apresentação da minha trajetória e projetos, hospedada no GitHub e publicada pelo GitHub Pages.', description: 'Landing page responsiva que reúne minha trajetória, competências e projetos em um único espaço. Está hospedada no GitHub e publicada pelo GitHub Pages.', badges: ['Desenvolvimento Web'], icon: 'fa-code', tags: ['web', 'html', 'css', 'javascript'], links: [
+    ['GitHub', 'https://github.com/paulomaia93/site_meuportfolio/blob/main/index.html']
   ] },
-  'peexl-site': { category: 'Projeto PEEXL', title: 'Site institucional da PEEXL', teaser: 'Soluções, projetos e canais de contato reunidos em uma experiência responsiva.', description: 'Site institucional estático desenvolvido para apresentar a PEEXL, suas soluções em dados e automação e os projetos da empresa.', badges: ['Desenvolvimento Web', 'Site institucional'], icon: 'fa-globe', tags: ['web', 'html', 'css', 'javascript'], links: [
+  'peexl-site': { category: 'Projeto PEEXL', title: 'Site Institucional', teaser: 'Site da PEEXL hospedado na Hostinger, publicado e disponível na web.', description: 'Site institucional estático desenvolvido para apresentar a PEEXL, suas soluções em dados e automação e os projetos da empresa. Está hospedado na Hostinger, publicado e disponível em peexl.com.br.', badges: ['Desenvolvimento Web', 'Site institucional'], icon: 'fa-globe', tags: ['web', 'html', 'css', 'javascript'], links: [
     ['Acessar site', 'https://peexl.com.br/']
   ] },
-  'task-manager': { category: 'Sistema sob medida', title: 'Gerenciador de Tarefas', teaser: 'Tarefas, pedidos e acompanhamento operacional em um sistema próprio.', description: 'Aplicação web desenvolvida para organizar tarefas e fluxos operacionais. O código local reúne interface, regras de acesso, persistência em BigQuery e integração de pedidos.', badges: ['Sistema web', 'Gestão de tarefas'], icon: 'fa-list-check', tags: ['web', 'api', 'html', 'css', 'javascript'] },
-  'peexl-management-ai': { category: 'Solução de IA', title: 'Gestão Empresarial da PEEXL no ChatGPT', teaser: 'Contexto, planejamento e decisões organizados para apoiar a gestão com IA.', description: 'Estrutura de gestão empresarial aplicada à PEEXL com apoio do ChatGPT. Reúne fontes locais e orientações para que a IA prepare análises e recomendações, mantendo as decisões sob responsabilidade do proprietário.', badges: ['IA aplicada', 'Gestão empresarial'], icon: 'fa-brain', tags: ['ia'] },
+  'task-manager': { category: 'Sistema sob medida', title: 'Gerenciador de Tarefas', teaser: 'Aplicação web interna para gestão de tarefas, usuários e fluxos de atendimento.', description: 'Aplicação web interna para organizar tarefas e fluxos operacionais, administrar permissões e usuários e integrar pedidos a serviços de dados e arquivos.', badges: ['Sistema web', 'Gestão de tarefas'], icon: 'fa-list-check', tags: ['web', 'api', 'html', 'css', 'javascript'] },
+  'peexl-management-ai': { category: 'Solução de IA', title: 'Gestão Empresarial no ChatGPT', teaser: 'Contexto, planejamento e decisões organizados para apoiar a gestão com IA.', description: 'Estrutura de gestão empresarial aplicada à PEEXL com apoio do ChatGPT. Reúne fontes locais e orientações para que a IA prepare análises e recomendações, mantendo as decisões sob responsabilidade do proprietário.', badges: ['IA aplicada', 'Gestão empresarial'], icon: 'fa-brain', tags: ['ia'] },
   materials: { category: 'Logística', title: 'Destinação de Materiais Obsoletos', teaser: 'Indicadores para orientar a destinação de materiais parados.', description: 'Projeto criado para transformar dados dispersos sobre materiais obsoletos em indicadores de destinação, reaproveitamento e devolução, apoiando decisões com gerentes e diretoria industrial.', tags: [] },
   'aeris-he': { category: 'Logística', title: 'Controle Admin. e Orçamentário', teaser: 'Horas extras e recursos logísticos em uma leitura de gestão.', description: 'Projeto desenvolvido para dar controle administrativo a uma operação logística com mais de 400 funcionários, reunindo dados de horas extras, atividades, insumos, abastecimento e equipamentos para reduzir exceções e apoiar decisões semanais de gestão.', tags: [] },
   trimark: { category: 'Financeiro', title: 'Análise Financeira', teaser: 'Receitas, despesas e resultados reunidos para decidir.', description: 'Solução desenvolvida para consolidar informações financeiras de diferentes clientes e ERPs, permitindo acompanhar receitas, despesas e resultados com mais segurança e menos dependência de controles manuais.', tags: ['api'] },
@@ -1510,9 +1780,57 @@ const cases = {
     ['Código', 'https://github.com/paulomaia93/DadosAntigosCAGED']
   ] },
   vagas: { category: 'RH', title: 'Gestão e Análise de Vagas', teaser: 'Prazos, status e gargalos do recrutamento mais visíveis.', description: 'Solução criada para ajudar o RH a acompanhar vagas, prazos e status de cada processo, facilitando a identificação de gargalos e a escolha das prioridades de contratação.', tags: [] },
-  'aeris-logistica': { category: 'Logística', title: 'Logística Aeris', teaser: 'Desempenho logístico acompanhado no dia a dia.', description: 'Projeto voltado a transformar dados da operação logística em indicadores de desempenho, permitindo acompanhar processos, identificar desvios e agir com mais velocidade no dia a dia.', tags: [] },
-  sipoc: { category: 'SIPOC', title: 'SIPOC Pecém', teaser: 'Processos e responsabilidades organizados visualmente.', description: 'Mapeamento criado para organizar a leitura de processos, fornecedores, entradas, saídas e clientes internos, ajudando a operação a enxergar responsabilidades e pontos de melhoria.', tags: [] }
 };
+
+const projectFacets = {
+  portfolio: { solution: ['site'], area: ['digital'], technology: ['web-dev'] },
+  'peexl-site': { solution: ['site'], area: ['digital'], technology: ['web-dev'] },
+  'task-manager': { solution: ['web-app'], area: ['management', 'operations'], technology: ['web-dev', 'apps-script', 'bigquery', 'sql', 'api'] },
+  'peexl-management-ai': { solution: ['ai'], area: ['management'], technology: ['chatgpt'] },
+  materials: { solution: ['bi'], area: ['operations', 'management'], technology: ['sharepoint', 'microsoft-lists'] },
+  'aeris-he': { solution: ['bi'], area: ['operations', 'finance', 'management'], technology: ['power-bi', 'dax'] },
+  trimark: { solution: ['bi'], area: ['finance'], technology: ['api', 'power-bi', 'dax'] },
+  maxsul: { solution: ['bi'], area: ['supply', 'operations'], technology: ['power-bi', 'sharepoint', 'protheus', 'dax'] },
+  caged: { solution: ['bi'], area: ['people'], technology: ['power-bi', 'python', 'sql', 'api', 'dax'] },
+  vagas: { solution: ['bi'], area: ['people', 'management'], technology: ['power-bi', 'sharepoint', 'dax'] },
+};
+const featuredProjectOrder = ['peexl-management-ai', 'materials', 'peexl-site'];
+const projectOrder = [...featuredProjectOrder, ...Object.keys(cases).filter(key => !featuredProjectOrder.includes(key))];
+
+const caseImages = {
+  portfolio: ['secao-home.png', 'secao-sobre.png', 'perfil-formacoes.png', 'perfil-certificados.png', 'secao-contato.png'],
+  'peexl-site': ['home-hero.png', 'jornada-diagnostico.png', 'self-service-bi.png', 'secao-projetos.png', 'sobre-peexl.png', 'planos-peexl.png'],
+  'task-manager': ['login.png', 'dashboard.png', 'tarefas.png', 'configuracoes.png', 'usuarios.png'],
+  'peexl-management-ai': ['capa.svg', 'Screenshot_2.png', 'Screenshot_1.png', 'Screenshot_14.png', 'Screenshot_3.png'],
+  materials: ['aeris3.png', 'aeris4.png', 'aeris-premiacao-1.png', 'aeris-premiacao-2.png'],
+  'aeris-he': ['aeris-controle-he.png', 'aeris-guindastes.png', 'aeris-veiculos.png'],
+  trimark: ['trimark-financeiro-1.png', 'trimark-financeiro-2.png', 'trimark-financeiro-3.png', 'trimark-financeiro-4.png'],
+  maxsul: ['maxsul-sugestao-compra.png', 'maxsul-intro.png', 'maxsul-pareto.png', 'maxsul-pedidos.png', 'maxsul-indicadores.png'],
+  caged: ['caged-desempenho-formal.png', 'caged-regioes-capitais.png', 'caged-setores-atividades.png', 'caged-geral.png'],
+  vagas: ['vagas.png'],
+};
+const caseCovers = {
+  portfolio: 'secao-home.png',
+  'peexl-site': 'home-hero.png',
+  'task-manager': 'login.png'
+};
+const caseImageLabels = {
+  portfolio: ['Seção Home', 'Seção Sobre Mim', 'Perfil profissional — Formações', 'Perfil profissional — Certificados e reconhecimentos', 'Seção Contato'],
+  'peexl-site': ['Home — Dados que impulsionam resultados', 'Jornada e diagnóstico gratuito', 'Self-Service BI', 'Projetos PEEXL', 'Sobre e apresentação institucional', 'Planos, benefícios e preços'],
+  'task-manager': ['Acesso à plataforma', 'Painel de indicadores', 'Consulta e acompanhamento de tarefas', 'Configurações do sistema', 'Gerenciamento de usuários'],
+  'peexl-management-ai': ['Ilustração conceitual da gestão com IA', 'Projeto Gestão Empresarial PEEXL no ChatGPT', 'Plugins e recursos disponíveis', 'Aplicação do projeto ao portfólio', 'Orientações de contexto da instância']
+};
+const privateCaseNote = 'Por se tratarem de projetos reais em contextos empresariais privados, informações internas e dados pessoais não são disponibilizados publicamente, em atenção à LGPD e à confidencialidade. O acesso aos sistemas não está disponível; as imagens são ilustrativas.';
+const caseNotes = {
+  'task-manager': 'Por se tratar de um projeto real de uso privado, as informações foram desfocadas para preservar dados pessoais, em atenção à LGPD. O acesso ao sistema não está disponível; as imagens são ilustrativas.',
+  'peexl-management-ai': 'Por se tratar de um projeto interno da PEEXL, as capturas apresentam exemplos do contexto de gestão com IA. O ambiente e os registros internos não estão disponíveis publicamente; as imagens são ilustrativas.',
+  materials: privateCaseNote,
+  'aeris-he': privateCaseNote,
+  trimark: privateCaseNote,
+  maxsul: privateCaseNote,
+  vagas: privateCaseNote,
+};
+const caseImagePath = (key, file) => `imagens/projetos/${key}/${file}`;
 
 const grid = document.getElementById('project-grid');
 const dialog = document.getElementById('peexl-case-dialog');
@@ -1532,23 +1850,28 @@ const fillList = (id, values, titled = false) => {
   }));
 };
 
-Object.entries(cases).forEach(([key, item], index) => {
+projectOrder.forEach((key, index) => {
+  const item = cases[key];
   const detail = projectCaseContent[key];
-  const wrapper = make('article', ['project-item', ...item.tags].join(' '));
+  const wrapper = make('article', 'project-item');
+  wrapper.dataset.projectKey = key;
   wrapper.hidden = index >= 3;
   const card = make('div', 'peexl-case-card surface-card-interactive');
-  const media = make('div', 'peexl-case-media' + (item.image ? '' : ' peexl-case-media--empty'));
-  if (item.image) {
-    const image = make('img');
-    image.src = item.image;
-    image.alt = 'Captura do site portfólio de Paulo Estevão Maia';
-    media.append(image);
-  } else {
-    const icon = make('i', 'fas ' + (item.icon || 'fa-chart-line'));
-    icon.setAttribute('aria-hidden', 'true');
-    media.append(icon);
-    media.setAttribute('aria-hidden', 'true');
-  }
+  const media = make('div', 'peexl-case-media');
+  const image = make('img');
+  image.src = caseImagePath(key, caseCovers[key] || caseImages[key][0]);
+  image.alt = key === 'portfolio' ? 'Captura atual da seção Home do portfólio profissional' : key === 'task-manager' ? 'Captura do painel do Gerenciador de Tarefas com dados pessoais ocultados' : key === 'peexl-management-ai' ? `Ilustração do projeto ${item.title}` : `Imagem do projeto ${item.title}`;
+  image.loading = index < 3 ? 'eager' : 'lazy';
+  image.decoding = 'async';
+  const monitor = make('div', 'peexl-monitor');
+  const screen = make('div', 'peexl-monitor-screen');
+  const stand = make('span', 'peexl-monitor-stand');
+  const base = make('span', 'peexl-monitor-base');
+  stand.setAttribute('aria-hidden', 'true');
+  base.setAttribute('aria-hidden', 'true');
+  screen.append(image);
+  monitor.append(screen, stand, base);
+  media.append(monitor);
   const content = make('div', 'peexl-case-content');
   const heading = make('div', 'peexl-case-heading');
   const iconWrap = make('span', 'peexl-case-icon');
@@ -1567,7 +1890,16 @@ Object.entries(cases).forEach(([key, item], index) => {
   button.type = 'button';
   button.dataset.case = key;
   button.setAttribute('aria-label', 'Ver projeto completo: ' + item.title);
-  content.append(heading, teaser, badges, button);
+  const actionRow = make('div', 'peexl-case-action-row');
+  actionRow.append(button);
+  if (key === 'materials') {
+    const successMark = make('span', 'peexl-case-success-mark');
+    successMark.setAttribute('role', 'img');
+    successMark.setAttribute('aria-label', 'Case de sucesso');
+    successMark.append(make('i', 'fas fa-trophy'));
+    actionRow.append(successMark);
+  }
+  content.append(heading, teaser, badges, actionRow);
   card.append(media, content);
   wrapper.append(card);
   grid.append(wrapper);
@@ -1578,15 +1910,70 @@ grid.addEventListener('click', event => {
   if (!button) return;
   const item = cases[button.dataset.case];
   const detail = projectCaseContent[button.dataset.case];
+  const projectKey = button.dataset.case;
+  const technicalPanel = document.getElementById('peexl-case-technical-panel');
+  const hasTechnicalDetails = Boolean(detail.technical && detail.tools?.length);
+  technicalPanel.hidden = !hasTechnicalDetails;
+  document.getElementById('peexl-case-technical').textContent = detail.technical || '';
+  const toolsList = document.getElementById('peexl-case-tools');
+  toolsList.replaceChildren(...(detail.tools || []).map(([name, description]) => {
+    const tool = make('div', 'peexl-case-tool');
+    tool.setAttribute('role', 'listitem');
+    tool.append(make('strong', '', name), make('span', '', description));
+    return tool;
+  }));
   document.getElementById('peexl-case-category').textContent = item.category;
-  document.getElementById('peexl-case-title').textContent = item.title;
+  const dialogTitle = document.getElementById('peexl-case-title');
+  dialogTitle.textContent = item.title;
+  if (button.dataset.case === 'materials') {
+    const successMark = make('span', 'peexl-case-success-mark');
+    successMark.setAttribute('role', 'img');
+    successMark.setAttribute('aria-label', 'Case de sucesso');
+    const trophyIcon = make('i', 'fas fa-trophy');
+    trophyIcon.setAttribute('aria-hidden', 'true');
+    successMark.append(trophyIcon);
+    dialogTitle.append(' ', successMark);
+  }
   document.getElementById('peexl-case-description').textContent = item.description;
+  const images = caseImages[button.dataset.case];
+  const mainImage = document.getElementById('peexl-case-image');
+  const imageLink = document.getElementById('peexl-case-image-link');
+  const gallery = document.getElementById('peexl-case-gallery');
+  const selectImage = (file, selected) => {
+    const path = caseImagePath(button.dataset.case, file);
+    mainImage.src = path;
+    const sectionLabel = caseImageLabels[projectKey]?.[selected];
+    mainImage.alt = sectionLabel || `${['task-manager', 'peexl-management-ai'].includes(projectKey) ? 'Ilustração' : 'Imagem'} ${selected + 1} do projeto ${item.title}`;
+    imageLink.href = path;
+    gallery.querySelectorAll('button').forEach((thumb, index) => thumb.setAttribute('aria-pressed', String(index === selected)));
+  };
+  gallery.replaceChildren();
+  gallery.hidden = images.length < 2;
+  images.forEach((file, index) => {
+    if (images.length < 2) return;
+    const thumb = make('button');
+    thumb.type = 'button';
+    const sectionLabel = caseImageLabels[projectKey]?.[index];
+    thumb.setAttribute('aria-label', sectionLabel ? `Mostrar ${sectionLabel}` : `Mostrar imagem ${index + 1} do projeto ${item.title}`);
+    thumb.setAttribute('aria-pressed', String(index === 0));
+    const preview = make('img');
+    preview.src = caseImagePath(button.dataset.case, file);
+    preview.alt = '';
+    preview.loading = 'lazy';
+    thumb.append(preview);
+    thumb.addEventListener('click', () => selectImage(file, index));
+    gallery.append(thumb);
+  });
+  selectImage(images[0], 0);
   document.getElementById('peexl-case-results-heading').textContent = ['portfolio', 'peexl-site', 'task-manager', 'peexl-management-ai'].includes(button.dataset.case) ? 'Resultado' : 'Resultados descritos no portfólio da PEEXL';
   fillList('peexl-case-objectives', detail.objectives);
   fillList('peexl-case-actions', detail.actions);
   fillList('peexl-case-results', detail.results, true);
   const links = document.getElementById('peexl-case-links');
   links.replaceChildren();
+  const noteContainer = document.getElementById('peexl-case-note');
+  noteContainer.replaceChildren();
+  noteContainer.hidden = true;
   (item.links || []).forEach(([label, href]) => {
     const anchor = make('a', 'peexl-case-link', label);
     anchor.href = href;
@@ -1594,6 +1981,12 @@ grid.addEventListener('click', event => {
     anchor.rel = 'noopener noreferrer';
     links.append(anchor);
   });
+  if (caseNotes[projectKey]) {
+    const note = make('p', 'peexl-case-privacy-note', caseNotes[projectKey]);
+    note.setAttribute('role', 'note');
+    noteContainer.append(note);
+    noteContainer.hidden = false;
+  }
   dialog.showModal();
 });
 document.getElementById('peexl-case-close').addEventListener('click', () => dialog.close());
@@ -1609,17 +2002,19 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
             const mobileMenu = document.getElementById('mobile-menu');
             const mobileMenuIcon = mobileMenuButton ? mobileMenuButton.querySelector('i') : null;
             const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-            const heroTabLinks = document.querySelectorAll('.hero-tab-link');
-            const curriculoTabs = document.getElementById('curriculo-tabs');
-            const homeSection = document.getElementById('home');
-            const sobreResumoBloco = document.getElementById('sobre-resumo-bloco');
-            const sobreEntregasBloco = document.getElementById('sobre-entregas-bloco');
             const navLinks = document.querySelectorAll('[data-nav-link]');
             const sectionElements = Array.from(document.querySelectorAll('section[id]'));
-            const projectFilters = document.querySelectorAll('.project-filter');
+            const projectFilterControls = {
+                solution: document.getElementById('project-filter-solution'),
+                area: document.getElementById('project-filter-area'),
+                technology: document.getElementById('project-filter-technology')
+            };
             const projectItems = document.querySelectorAll('.project-item');
             const projectToggle = document.getElementById('project-toggle');
+            const projectFilterClear = document.getElementById('project-filter-clear');
+            const projectFilterSummary = document.getElementById('project-filter-summary');
+            const projectResultsStatus = document.getElementById('project-results-status');
+            const projectTotalCount = document.getElementById('project-total-count');
             const backToTopButton = document.getElementById('back-to-top');
             const siteFooter = document.getElementById('site-footer');
 
@@ -1628,11 +2023,11 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
                     return;
                 }
 
-                const offset = 88;
+                const offset = window.innerWidth < 768 ? 80 : 88;
                 const top = targetElement.getBoundingClientRect().top + window.scrollY - offset;
                 window.scrollTo({
                     top,
-                    behavior: 'smooth'
+                    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
                 });
             }
 
@@ -1642,6 +2037,8 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
                 }
 
                 mobileMenu.classList.toggle('is-open', isOpen);
+                mobileMenu.inert = !isOpen;
+                mobileMenu.setAttribute('aria-hidden', String(!isOpen));
                 mobileMenuButton.setAttribute('aria-expanded', String(isOpen));
 
                 if (mobileMenuIcon) {
@@ -1702,8 +2099,12 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
                     return;
                 }
 
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                activeButton.classList.add('active');
+                tabButtons.forEach(btn => {
+                    const isActive = btn === activeButton;
+                    btn.classList.toggle('active', isActive);
+                    btn.setAttribute('aria-selected', String(isActive));
+                    btn.tabIndex = isActive ? 0 : -1;
+                });
 
                 if (!currentContent) {
                     activeContent.classList.add('active');
@@ -1711,7 +2112,6 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
                     activeContent.classList.add('is-transitioning-in');
                     requestAnimationFrame(() => {
                         activeContent.classList.add('is-visible');
-                        updateCurriculoScrollState(activeContent);
                     });
                     setTimeout(() => {
                         activeContent.classList.remove('is-transitioning-in', 'is-visible');
@@ -1732,7 +2132,6 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
 
                     requestAnimationFrame(() => {
                         activeContent.classList.add('is-visible');
-                        updateCurriculoScrollState(activeContent);
                     });
 
                     setTimeout(() => {
@@ -1741,159 +2140,22 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
                 }, 180);
             }
 
-            function getCurriculoReferenceHeight() {
-                if (window.innerWidth < 1024) {
-                    return null;
-                }
-
-                let totalHeight = 0;
-
-                if (sobreResumoBloco) {
-                    totalHeight += sobreResumoBloco.offsetHeight;
-                }
-
-                if (sobreEntregasBloco) {
-                    totalHeight += sobreEntregasBloco.offsetHeight;
-                }
-
-                if (totalHeight <= 0) {
-                    return null;
-                }
-
-                const heroReference = homeSection ? Math.max(560, Math.round(homeSection.offsetHeight * 0.74)) : null;
-                const viewportReference = Math.round(window.innerHeight * 0.72);
-                const finalReference = heroReference
-                    ? Math.min(totalHeight, heroReference, viewportReference)
-                    : Math.min(totalHeight, viewportReference);
-
-                return finalReference;
-            }
-
-            function updateCurriculoScrollState(targetContent) {
-                const activeContent = targetContent || document.querySelector('.tab-content.active');
-                const referenceHeight = getCurriculoReferenceHeight();
-
-                tabContents.forEach(content => {
-                    if (content !== activeContent) {
-                        content.classList.remove('tab-content-scrollable');
-                        content.style.maxHeight = '';
-                    }
-                });
-
-                if (!activeContent || !referenceHeight) {
-                    if (activeContent) {
-                        activeContent.classList.remove('tab-content-scrollable');
-                        activeContent.style.maxHeight = '';
-                    }
-                    return;
-                }
-
-                const shouldScroll = activeContent.scrollHeight > referenceHeight;
-                activeContent.classList.toggle('tab-content-scrollable', shouldScroll);
-                activeContent.style.maxHeight = shouldScroll ? `${referenceHeight}px` : '';
-            }
-
             tabButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     activateTab(this.getAttribute('data-tab'));
                 });
-            });
-
-            heroTabLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
+                button.addEventListener('keydown', function(event) {
+                    const index = Array.from(tabButtons).indexOf(this);
+                    const nextIndex = event.key === 'ArrowRight' ? (index + 1) % tabButtons.length
+                        : event.key === 'ArrowLeft' ? (index - 1 + tabButtons.length) % tabButtons.length
+                        : event.key === 'Home' ? 0
+                        : event.key === 'End' ? tabButtons.length - 1 : null;
+                    if (nextIndex === null) return;
                     event.preventDefault();
-                    event.stopImmediatePropagation();
-                    activateTab(this.getAttribute('data-tab-target'));
-                    smoothScrollToElement(curriculoTabs);
+                    tabButtons[nextIndex].focus();
+                    activateTab(tabButtons[nextIndex].getAttribute('data-tab'));
                 });
             });
-
-            const heroPhotoArea = document.getElementById('hero-photo-area');
-            const heroPhotoTooltip = document.getElementById('hero-photo-tooltip');
-
-            if (heroPhotoArea && heroPhotoTooltip) {
-                let heroPhotoTimer = null;
-                let lastPointer = { x: 0, y: 0 };
-
-                function hideHeroPhotoTooltip() {
-                    heroPhotoTooltip.classList.remove('opacity-100', 'translate-y-0');
-                    heroPhotoTooltip.classList.add('opacity-0', 'translate-y-2');
-                }
-
-                function clearHeroPhotoTimer() {
-                    if (heroPhotoTimer) {
-                        clearTimeout(heroPhotoTimer);
-                        heroPhotoTimer = null;
-                    }
-                }
-
-                function positionHeroPhotoTooltip() {
-                    const areaRect = heroPhotoArea.getBoundingClientRect();
-                    const tooltipRect = heroPhotoTooltip.getBoundingClientRect();
-                    const padding = 12;
-                    const offset = 18;
-
-                    let left = lastPointer.x + 10;
-                    let top = lastPointer.y - tooltipRect.height - offset;
-
-                    if (left + tooltipRect.width > areaRect.width - padding) {
-                        left = areaRect.width - tooltipRect.width - padding;
-                    }
-
-                    if (left < padding) {
-                        left = padding;
-                    }
-
-                    if (top < padding) {
-                        top = lastPointer.y + offset;
-                    }
-
-                    if (top + tooltipRect.height > areaRect.height - padding) {
-                        top = areaRect.height - tooltipRect.height - padding;
-                    }
-
-                    if (top < padding) {
-                        top = padding;
-                    }
-
-                    heroPhotoTooltip.style.left = `${left}px`;
-                    heroPhotoTooltip.style.top = `${top}px`;
-                }
-
-                function scheduleHeroPhotoTooltip() {
-                    clearHeroPhotoTimer();
-
-                    heroPhotoTimer = setTimeout(() => {
-                        positionHeroPhotoTooltip();
-                        heroPhotoTooltip.classList.remove('opacity-0', 'translate-y-2');
-                        heroPhotoTooltip.classList.add('opacity-100', 'translate-y-0');
-                    }, 1500);
-                }
-
-                heroPhotoArea.addEventListener('mouseenter', event => {
-                    const areaRect = heroPhotoArea.getBoundingClientRect();
-                    lastPointer = {
-                        x: event.clientX - areaRect.left,
-                        y: event.clientY - areaRect.top
-                    };
-                    scheduleHeroPhotoTooltip();
-                });
-
-                heroPhotoArea.addEventListener('mousemove', event => {
-                    const areaRect = heroPhotoArea.getBoundingClientRect();
-                    lastPointer = {
-                        x: event.clientX - areaRect.left,
-                        y: event.clientY - areaRect.top
-                    };
-                    hideHeroPhotoTooltip();
-                    scheduleHeroPhotoTooltip();
-                });
-
-                heroPhotoArea.addEventListener('mouseleave', () => {
-                    clearHeroPhotoTimer();
-                    hideHeroPhotoTooltip();
-                });
-            }
 
             const sobreResumoToggle = document.getElementById('sobre-resumo-toggle');
             const sobreResumoCompleto = document.getElementById('sobre-resumo-completo');
@@ -1921,36 +2183,26 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
                         toggleIcon.classList.toggle('fa-chevron-up', !expanded);
                     }
 
-                    setTimeout(() => {
-                        updateCurriculoScrollState();
-                    }, 520);
-                });
-            }
-
-            function setProjectFilterState(activeFilter) {
-                projectFilters.forEach(filter => {
-                    const isActive = filter.getAttribute('data-filter') === activeFilter;
-                    filter.classList.toggle('active', isActive);
-                    filter.classList.toggle('bg-[#A7A8F8]', isActive);
-                    filter.classList.toggle('text-[#080A21]', isActive);
-
-                    if (!isActive) {
-                        filter.classList.add('text-[#A7A8F8]');
-                    } else {
-                        filter.classList.remove('text-[#A7A8F8]');
-                    }
                 });
             }
 
             const projectHideTimers = new WeakMap();
-            let activeProjectFilter = 'all';
             let projectsExpanded = false;
 
-            function filterProjects(filterValue) {
-                const matchingItems = Array.from(projectItems).filter(item =>
-                    filterValue === 'all' || item.classList.contains(filterValue)
+            function filterProjects() {
+                const selectedFilters = Object.fromEntries(
+                    Object.entries(projectFilterControls).map(([facet, control]) => [facet, control.value])
                 );
-                const visibleItems = projectsExpanded ? matchingItems : matchingItems.slice(0, 3);
+                const hasActiveFilters = Object.values(selectedFilters).some(Boolean);
+                const matchingItems = Array.from(projectItems).filter(item => {
+                    const facets = projectFacets[item.dataset.projectKey];
+                    return Object.entries(selectedFilters).every(([facet, value]) =>
+                        !value || facets[facet].includes(value)
+                    );
+                });
+                const visibleItems = (projectsExpanded || hasActiveFilters)
+                    ? matchingItems
+                    : matchingItems.slice(0, 3);
 
                 projectItems.forEach(item => {
                     const existingTimer = projectHideTimers.get(item);
@@ -1986,26 +2238,41 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
                     }
                 });
 
-                projectToggle.hidden = matchingItems.length <= 3;
+                projectTotalCount.textContent = projectItems.length;
+                projectToggle.hidden = hasActiveFilters || matchingItems.length <= 3;
                 projectToggle.textContent = projectsExpanded ? 'Ver menos' : 'Ver mais';
                 projectToggle.setAttribute('aria-expanded', String(projectsExpanded));
+                projectFilterClear.hidden = !hasActiveFilters;
+                projectFilterSummary.hidden = !hasActiveFilters;
+                if (matchingItems.length === 0) {
+                    projectResultsStatus.textContent = 'Nenhum projeto encontrado. Ajuste ou limpe os filtros.';
+                } else if (hasActiveFilters) {
+                    projectResultsStatus.textContent = `Todos os ${matchingItems.length} projetos encontrados estão exibidos.`;
+                } else if (projectsExpanded) {
+                    projectResultsStatus.textContent = `Exibindo todos os ${matchingItems.length} projetos. Os três primeiros são destaques.`;
+                } else {
+                    projectResultsStatus.textContent = `Exibindo os ${visibleItems.length} projetos em destaque de ${projectItems.length}.`;
+                }
             }
 
-            projectFilters.forEach(filter => {
-                filter.addEventListener('click', function() {
-                    const filterValue = this.getAttribute('data-filter');
-                    activeProjectFilter = filterValue;
+            Object.values(projectFilterControls).forEach(control => {
+                control.addEventListener('change', () => {
                     projectsExpanded = false;
-                    setProjectFilterState(filterValue);
-                    filterProjects(filterValue);
+                    filterProjects();
                 });
+            });
+
+            projectFilterClear.addEventListener('click', () => {
+                Object.values(projectFilterControls).forEach(control => { control.value = ''; });
+                projectsExpanded = false;
+                filterProjects();
             });
 
             projectToggle.addEventListener('click', () => {
                 projectsExpanded = !projectsExpanded;
-                filterProjects(activeProjectFilter);
+                filterProjects();
             });
-            filterProjects(activeProjectFilter);
+            filterProjects();
 
             function updateBackToTopVisibility() {
                 if (!backToTopButton) {
@@ -2014,6 +2281,8 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
 
                 backToTopButton.classList.toggle('is-visible', window.pageYOffset > 300);
                 backToTopButton.classList.toggle('is-near-footer', siteFooter.getBoundingClientRect().top < window.innerHeight);
+                const contactRect = document.getElementById('contato').getBoundingClientRect();
+                backToTopButton.classList.toggle('is-over-contact', window.innerWidth < 768 && contactRect.top < window.innerHeight && contactRect.bottom > 0);
             }
 
             window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
@@ -2021,16 +2290,13 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
 
             if (backToTopButton) {
                 backToTopButton.addEventListener('click', function() {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
                 });
             }
 
             window.addEventListener('resize', () => {
-                updateCurriculoScrollState();
                 updateBackToTopVisibility();
             });
-
-            updateCurriculoScrollState();
 
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -2043,6 +2309,9 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
 
                     e.preventDefault();
                     closeMobileMenu();
+                    if (window.location.hash !== targetId) {
+                        history.replaceState(null, '', targetId);
+                    }
                     smoothScrollToElement(targetElement);
                 });
             });
