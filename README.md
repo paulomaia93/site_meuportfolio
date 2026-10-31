@@ -1,4 +1,4 @@
-﻿# Portfólio Profissional
+# Portfólio Profissional
 
 Portfólio pessoal de Paulo Estevão Maia, desenvolvido como uma landing page estática em `HTML`, `Tailwind CSS` e `JavaScript`, com foco em apresentação profissional, projetos, competências e canais de contato.
 
@@ -13,9 +13,8 @@ Atualmente, o site inclui:
 
 - hero com apresentação profissional, CTAs e links rápidos
 - seção `Sobre Mim` com resumo expansível e bloco de entregas
-- seção `Perfil Profissional` com abas para habilidades, experiências, formações e certificados
-- modais de habilidades com imagem e tópicos detalhados
-- seção de projetos com filtros por tecnologia
+- seção `Perfil Profissional` com abas para experiências, formações e certificados
+- seção de projetos com filtros por tecnologia, três cards iniciais e botão `Ver mais` para os demais; inclui oito cases de dados da PEEXL, o site institucional, um gerenciador de tarefas, a solução de gestão empresarial com IA e o portfólio pessoal
 - formulário de contato integrado ao `Formspree`
 - bloco lateral com e-mail, WhatsApp, LinkedIn, GitHub e localização
 
@@ -30,7 +29,7 @@ Atualmente, o site inclui:
 - abas com transição suave no bloco `Perfil Profissional`
 - rolagem interna automática em abas longas do perfil
 - filtros de projeto por categoria/stack
-- modal de habilidades com conteúdo dinâmico
+- detalhes dos cases da PEEXL em janela acessível, sem imagens nesta etapa
 - botão `Voltar ao topo`
 - formulário com envio assíncrono, loading, validação leve e feedback inline de sucesso/erro
 
@@ -113,5 +112,7 @@ https://seu-usuario.github.io/seu-repositorio/
 
 ## Observações
 
-- o projeto está centralizado em um único arquivo `index.html`
+- a estrutura, os dados e a apresentação dos doze projetos estão em `index.html`
+- o gerenciador de tarefas não apresenta link para o código privado
 - várias imagens são carregadas por links externos
+- as 23 imagens dos cases da PEEXL foram organizadas em oito subpastas de `C:\Users\paulo\Downloads\Projetos PEEXL - Portfolio Paulo 2026-10-30`, fora do site; o conteúdo é uma cópia da versão local do site institucional

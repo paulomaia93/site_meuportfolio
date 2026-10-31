@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<!-- TESTE_LOCAL_GIT_2026_10_30: alteração de teste no clone pessoal. -->
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portf&oacute;lio profissional de Paulo Estev&atilde;o Maia com projetos em dados, automa&ccedil;&atilde;o, Power BI, Python, SQL e melhoria de processos.">
+    <meta name="description" content="Portfólio de Paulo Estevão Maia: Engenharia de Dados, Análise de Dados, Business Intelligence, Inteligência Artificial e projetos de tecnologia na PEEXL.">
     <meta name="theme-color" content="#080A21">
-    <title>Portf&oacute;lio Profissional | Paulo Estev&atilde;o Maia</title>
+    <title>Portfólio Profissional | Paulo Estevão Maia</title>
+    <link rel="canonical" href="https://paulomaia93.github.io/site_meuportfolio/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Portfólio Profissional | Paulo Estevão Maia">
+    <meta property="og:description" content="Portfólio profissional, projetos e trajetória de Paulo Estevão Maia, fundador da PEEXL.">
+    <meta property="og:url" content="https://paulomaia93.github.io/site_meuportfolio/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -33,7 +37,7 @@
 
         body {
             scroll-behavior: smooth;
-            font-family: 'Manrope', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: #080A21;
             background-image:
                 radial-gradient(circle at top center, rgba(108, 99, 255, 0.08), transparent 28%),
@@ -41,7 +45,7 @@
         }
 
         h1, h2, h3, h4, .font-display {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Hanken Grotesk', sans-serif;
         }
 
         section[id] {
@@ -366,24 +370,12 @@
             margin-top: 1.25rem;
         }
 
-        #habilidades .open-modal,
         #educacao .card-hover,
         #certificacoes .card-hover {
             background: var(--surface-interactive);
             border: 1px solid var(--border-soft);
             border-radius: var(--radius-xl);
             box-shadow: var(--shadow-soft);
-        }
-
-        #habilidades .open-modal {
-            min-height: 18.25rem;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        #habilidades .open-modal > p {
-            flex-grow: 1;
         }
 
         #experiencia .relative.pl-12 > div:last-child {
@@ -534,6 +526,65 @@
             transform: translateY(0) scale(1);
         }
 
+        #project-toggle {
+            padding: .75rem 1.5rem;
+            border: 1px solid rgba(167, 168, 248, .45);
+            border-radius: 999px;
+            background: rgba(167, 168, 248, .1);
+            color: #A7A8F8;
+            font-weight: 700;
+            transition: background var(--motion-fast) var(--ease-standard), transform var(--motion-fast) var(--ease-standard);
+        }
+        #project-toggle:hover { background: rgba(167, 168, 248, .2); transform: translateY(-2px); }
+        #project-toggle[hidden] { display: none; }
+
+        .peexl-case-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden;
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-xl);
+            background: var(--surface-interactive);
+        }
+        .peexl-case-media { height: 12rem; overflow: hidden; }
+        .peexl-case-media img { width: 100%; height: 100%; object-fit: cover; }
+        .peexl-case-media--empty {
+            display: grid;
+            place-items: center;
+            background: radial-gradient(circle at 70% 30%, rgba(108,99,255,.28), transparent 45%), linear-gradient(135deg, #131638, #090B23);
+            color: #A7A8F8;
+            font-size: 2.5rem;
+        }
+        .peexl-case-content { display: flex; flex: 1; flex-direction: column; padding: 1.5rem; }
+        .peexl-case-heading { display: flex; align-items: center; gap: .85rem; }
+        .peexl-case-icon { display: grid; flex: none; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: rgba(167,168,248,.12); color: #A7A8F8; }
+        .peexl-case-category {
+            color: #A7A8F8;
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        .peexl-case-card h3 { margin: .2rem 0 0; font-size: 1.45rem; font-weight: 700; line-height: 1.2; }
+        .peexl-case-badges { display: flex; flex-wrap: wrap; gap: .4rem; margin: .35rem 0 .8rem; }
+        .peexl-case-badges span { padding: .3rem .55rem; border-radius: .4rem; background: rgba(167,168,248,.13); color: #F6F9DC; font-size: .75rem; }
+        .peexl-case-teaser { margin: 1rem 0 1.25rem; color: rgba(246,249,220,.8); line-height: 1.5; }
+        .peexl-case-button { align-self: flex-start; margin-top: auto; color: #A7A8F8; font-weight: 700; }
+        .peexl-case-button:hover { text-decoration: underline; }
+        #peexl-case-dialog { width: min(92vw, 760px); max-height: min(86vh, 850px); padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius-xl); background: #0D0F2B; color: #F6F9DC; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
+        #peexl-case-dialog::backdrop { background: rgba(0,0,0,.75); }
+        .peexl-case-dialog-body { padding: clamp(1.25rem, 4vw, 2.25rem); }
+        .peexl-case-dialog-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+        #peexl-case-title { margin: .4rem 0 1rem; font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; line-height: 1.2; }
+        #peexl-case-close { flex-shrink: 0; padding: .45rem .75rem; border: 1px solid var(--border-strong); border-radius: .6rem; color: #F6F9DC; }
+        .peexl-case-dialog-body h3 { margin: 1.5rem 0 .5rem; color: #A7A8F8; font-size: 1.1rem; font-weight: 700; }
+        .peexl-case-dialog-body ul { padding-left: 1.35rem; list-style: disc; }
+        .peexl-case-dialog-body li { margin: .45rem 0; }
+        #peexl-case-links { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.5rem; }
+        .peexl-case-link { padding: .5rem .8rem; border: 1px solid #A7A8F8; border-radius: .6rem; color: #A7A8F8; }
+        #contato a { overflow-wrap: anywhere; }
+
         .project-frame img,
         .cert-thumb img {
             transition: transform 700ms var(--ease-standard), filter var(--motion-medium) var(--ease-standard);
@@ -593,70 +644,9 @@
             pointer-events: auto;
         }
 
-        #modal-habilidade {
-            backdrop-filter: blur(0px);
-            transition:
-                backdrop-filter 0.45s var(--ease-standard),
-                background-color 0.45s var(--ease-standard),
-                opacity 0.35s var(--ease-standard);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        #modal-habilidade.active {
-            backdrop-filter: blur(10px);
-            background-color: rgba(0, 0, 0, 0.74);
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        #modal-habilidade .modal-content {
-            opacity: 0;
-            transform: translateY(18px) scale(0.97);
-            transition: opacity 0.3s var(--ease-standard), transform 0.3s var(--ease-standard);
-            width: min(92vw, 980px);
-            height: min(78vh, 34rem);
-        }
-
-        #modal-habilidade.active .modal-content {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .modal-text-pane {
-            width: 52%;
-            height: 100%;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: rgba(167, 168, 248, 0.4) transparent;
-        }
-
-        .modal-text-pane::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .modal-text-pane::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .modal-text-pane::-webkit-scrollbar-thumb {
-            background: rgba(167, 168, 248, 0.28);
-            border-radius: 999px;
-        }
-
-        .modal-media-pane {
-            width: 48%;
-            height: 100%;
-        }
-
-        .modal-media-pane img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        #modal-topicos li::marker {
-            color: #6C63FF;
+        #back-to-top.is-near-footer {
+            position: absolute;
+            bottom: calc(100% + 1rem);
         }
 
         @media (max-width: 767px) {
@@ -664,25 +654,6 @@
                 width: calc(100% - 3rem);
             }
 
-            #modal-habilidade .modal-content {
-                width: min(92vw, 34rem);
-                height: auto;
-                max-height: 82vh;
-                flex-direction: column;
-            }
-
-            .modal-text-pane,
-            .modal-media-pane {
-                width: 100%;
-            }
-
-            .modal-text-pane {
-                max-height: 24rem;
-            }
-
-            .modal-media-pane {
-                height: 15rem;
-            }
         }
     </style>
 </head>
@@ -735,14 +706,6 @@
                     </div>
 
                     <div class="flex flex-wrap justify-center gap-3 mb-5">
-                        <div class="relative group">
-                            <a href="#curriculo-tabs" data-tab-target="habilidades" class="hero-tab-link ui-pill px-4 py-2 text-sm">
-                                Habilidades
-                            </a>
-                            <span class="tooltip-shell pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 px-3 py-1.5 text-xs text-[#F6F9DC] opacity-0 shadow-lg transition duration-200 group-hover:opacity-100 whitespace-nowrap">
-                                Abre suas competências
-                            </span>
-                        </div>
                         <div class="relative group">
                             <a href="#curriculo-tabs" data-tab-target="experiencia" class="hero-tab-link ui-pill px-4 py-2 text-sm">
                                 Experiências
@@ -819,11 +782,11 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                         <div class="surface-card-secondary p-5">
                             <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Especialidade</p>
-                            <p class="font-semibold text-lg">Desenvolvimento de soluções, Business Intelligence, aplicações, automação de processos e performance</p>
+                            <p class="font-semibold text-lg">Engenharia de Dados, Análise de Dados, Business Intelligence e Inteligência Artificial</p>
                         </div>
                         <div class="surface-card-secondary p-5">
                             <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Stack principal</p>
-                            <p class="font-semibold text-lg">Excel, Power BI, SQL, Python, Fabric, Power Platform, Google e Cloud, Looker, Apps Script, BigQuery e IA</p>
+                            <p class="font-semibold text-lg">SQL, Python, Power BI, BigQuery, Microsoft Fabric, Apps Script, APIs, Git e Codex</p>
                         </div>
                         <div class="surface-card-secondary p-5">
                             <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80 mb-2">Diferencial profissional</p>
@@ -860,22 +823,21 @@
                 <div class="surface-card-primary sobre-resumo-card relative overflow-hidden p-8 md:p-10">
                     <div class="sobre-resumo-visual" aria-hidden="true"></div>
                     <div class="sobre-resumo-content">
-                        <p class="text-sm uppercase tracking-[0.25em] text-[#A7A8F8] mb-7">Resumo profissional</p>
                         <p class="text-lg leading-relaxed text-[#F6F9DC]/88">
                             Sou um profissional em constante evolução, movido pela transformação digital.
                         </p>
                         <p class="mt-5 text-lg leading-relaxed text-[#F6F9DC]/82">
-                            Iniciei minha trajetória como auxiliar de operações, onde aprendi o valor do trabalho. Cresci à medida que fui adquirindo e aplicando conhecimento, construíndo uma carreira sólida.<span id="sobre-resumo-ellipsis" class="text-[#F6F9DC]/68"> ...</span>
+                            Iniciei minha trajetória como auxiliar de operações, onde aprendi o valor do trabalho. À medida que fui adquirindo e aplicando conhecimentos, construí uma carreira sólida, impulsionada também pela minha aptidão para a tecnologia.<span id="sobre-resumo-ellipsis" class="text-[#F6F9DC]/68"> ...</span>
                         </p>
                         <div id="sobre-resumo-completo" class="sobre-resumo-collapse space-y-5">
                             <p class="text-lg leading-relaxed text-[#F6F9DC]/82">
-                                Ao longo dos anos, me especializei no desenvolvimento de soluções de BI. Hoje, atuo com modelagem de dados, integração de múltiplas fontes, construção de pipelines e processos de ELT, além da criação e aprimoramento de dashboards, automações e aplicações voltadas à performance e escala.
+                                Ao longo dos anos, especializei-me no desenvolvimento de soluções no universo dos dados. Atuo com engenharia e arquitetura de dados, modelagem, integração, construção de pipelines e processos de ELT, além da criação e do aprimoramento de dashboards, automações e aplicações voltadas à performance e à escala.
                             </p>
                             <p class="text-lg leading-relaxed text-[#F6F9DC]/82">
-                                Tenho domínio em ferramentas e linguagens como Power BI, Excel, IA, SQL, Python, entre outras. Por ser autodidata, exploro, testo e aprofundo cada recurso até transformá-lo em uma extensão da minha própria capacidade, adaptando arquiteturas e soluções conforme a necessidade.
+                                Tenho domínio de ferramentas e linguagens de programação e amplio essas competências com o uso da inteligência artificial. Por ser autodidata, exploro, testo e aprofundo cada recurso até transformá-lo em uma extensão da minha própria capacidade, adaptando arquiteturas e soluções conforme a necessidade.
                             </p>
                             <p class="text-lg leading-relaxed text-[#F6F9DC]/82">
-                                Quero continuar aprendendo, mantendo-me sempre constante, por meio do estudo, da prática e da busca por formas de gerar mais impacto. Meu objetivo é crescer com propósito e contribuir para a construção de soluções cada vez mais eficientes.
+                                Quero continuar aprendendo e me manter constante por meio do estudo, da prática e da busca por formas de gerar mais impacto. Meu objetivo é crescer com propósito e contribuir para a construção de soluções cada vez mais eficientes.
                             </p>
                         </div>
                         <button id="sobre-resumo-toggle" type="button" class="ui-pill mt-6 inline-flex items-center gap-2 px-5 py-2.5 font-medium" aria-expanded="false" aria-controls="sobre-resumo-completo">
@@ -891,29 +853,29 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="md:pr-4">
                         <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
-                            <i class="fas fa-robot text-[#A7A8F8] text-lg"></i>
+                            <i class="fas fa-database text-[#A7A8F8] text-lg"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-3">Desenvolvimento e Automação</h3>
+                        <h3 class="text-lg font-bold mb-3">Engenharia e integração de dados</h3>
                         <p class="text-[#F6F9DC]/80 leading-relaxed">
-                            Desenvolvo soluções, aplicações, scripts, integrações e automações para transformar necessidades operacionais em entregas mais ágeis, úteis, escaláveis e bem conectadas ao contexto.
+                            Organizo e integro dados de diferentes fontes, com modelagem, pipelines e processos de ETL/ELT para apoiar análises e soluções adaptadas ao contexto de cada projeto.
                         </p>
                     </div>
                     <div class="md:px-4 md:border-x floating-divider md:border-x-[#A7A8F8]/12">
                         <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
                             <i class="fas fa-chart-line text-[#A7A8F8] text-lg"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-3">Dados para decisão</h3>
+                        <h3 class="text-lg font-bold mb-3">Business Intelligence e análise</h3>
                         <p class="text-[#F6F9DC]/80 leading-relaxed">
-                            Transformo bases e indicadores em painéis, análises e narrativas que apoiam acompanhamento, leitura executiva e tomada de decisão com mais clareza e direcionamento.
+                            Desenvolvo indicadores, dashboards e análises que tornam os dados mais acessíveis e ajudam equipes e gestores a acompanhar resultados e tomar decisões.
                         </p>
                     </div>
                     <div class="md:pl-4">
                         <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 shadow-[0_0_24px_rgba(167,168,248,0.10)] flex items-center justify-center mb-4">
                             <i class="fas fa-gears text-[#A7A8F8] text-lg"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-3">Melhoria contínua</h3>
+                        <h3 class="text-lg font-bold mb-3">Automação e IA aplicada</h3>
                         <p class="text-[#F6F9DC]/80 leading-relaxed">
-                            Levo para a tecnologia uma base forte em qualidade, planejamento e metodologia para construir soluções mais sustentáveis, consistentes e preparadas para evoluir com segurança.
+                            Crio scripts, integrações e aplicações para simplificar processos. Uso ferramentas de inteligência artificial como apoio à análise, programação e produtividade, com atenção à qualidade das entregas.
                         </p>
                     </div>
                 </div>
@@ -923,14 +885,11 @@
                 <div class="text-center mb-10">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#A7A8F8]">Perfil Profissional</h2>
                     <p class="section-lead text-lg md:text-xl max-w-3xl mx-auto mt-4">
-                        Uma visão organizada das minhas competências, experiências, formações e certificações.
+                        Uma visão organizada das minhas experiências, formações e certificações.
                     </p>
                 </div>
                 <div class="mb-8 flex flex-wrap gap-x-1 border-b border-[#A7A8F8]/20">
-                    <button class="tab-button active px-6 py-3 font-medium text-[#A7A8F8]" data-tab="habilidades">
-                        Habilidades
-                    </button>
-                    <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="experiencia">
+                    <button class="tab-button active px-6 py-3 font-medium text-[#A7A8F8]" data-tab="experiencia">
                         Experiências
                     </button>
                     <button class="tab-button px-6 py-3 font-medium text-[#A7A8F8]/70 hover:text-[#A7A8F8]" data-tab="educacao">
@@ -942,129 +901,7 @@
                 </div>
                 
                 <!-- Conteúdo das abas -->
-                <div id="habilidades" class="tab-content active">
-                    <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Habilidades Técnicas</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="analise-dados">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-database text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Análise de Dados</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Lidar com dados sempre fez parte do meu dia a dia. Com o tempo, essa habilidade natural se fortaleceu em ambientes profissionais. Isso aprimorou minha capacidade de resolver.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="inteligencia-artificial">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-brain text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Inteligência Artificial</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Desenvolver competências em IAs tem sido um grande diferencial para mim. Ela funciona como um verdadeiro assistente pessoal, permitindo aumentar minha produtividade.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="ferramentas">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-gear text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Ferramentas e Plataformas</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Posso afirmar com convicção que aprender ferramentas foi um divisor de águas para mim. Essa é uma habilidade técnica indispensável no mercado e que ajuda a abrir portas.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="programacao-logica">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-code text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Programação e Automação</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Criar scripts e aplicações que otimizam processos já faz parte da minha rotina. Essa habilidade é muito importante para quem busca se destacar como um profissional completo.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="qualidade-processos">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-medal text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Qualidade e Processos</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Adquiri experiência em metodologias e ferramentas voltadas para a melhoria contínua em projetos e compreendo, na prática, a importância da qualidade nos processos.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="gestao-projetos">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-bullseye text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Gestão e Liderança</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Tive a oportunidade de exercer liderança em diferentes contextos, entendendo na prática que comunicação e acompanhamento constante são determinantes para os resultados.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="planejamento">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-calendar text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Planejamento e Operação</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Tive a oportunidade de elaborar planos para alinhar equipes e processos, além de realizar a gestão de riscos, garantindo que os procedimentos estejam em conformidade.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="aprendizagem-rapida">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-lightbulb text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Aprendizado e Adaptabilidade</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Me considero autodidata e tenho facilidade em absorver conhecimento de forma rápida, o que me torna apto a aprender coisas novas e me adaptar com agilidade a diferentes contextos.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-
-                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover cursor-pointer open-modal" data-habilidade="didatica-ensino">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-4">
-                                    <i class="fas fa-graduation-cap text-2xl text-[#A7A8F8]"></i>
-                                </div>
-                                <h4 class="text-[16px] font-bold">Comunicação e Treinamento</h4>
-                            </div>
-                            <p class="text-[#F6F9DC]/80 mb-4">
-                                Tenho grande prazer em ensinar e compartilhar o conhecimento que adquiri. Sinto-me realizado ao compreender as dores das pessoas e contribuir ativamente para o seu desenvolvimento.
-                            </p>
-                            <span class="text-sm text-[#A7A8F8] font-medium">Clique para ver detalhes</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div id="experiencia" class="tab-content hidden">
+                <div id="experiencia" class="tab-content active">
                     <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Experiência Profissional</h3>
                     
                     <div class="relative">
@@ -1075,147 +912,12 @@
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Desenvolvedor de BI</h4>
-                                <p class="text-[#A7A8F8] mb-2">PEEXL Transformação Digital | mar de 2022 - o momento | 4 anos 2 meses | Remoto · Autônomo</p>
+                                <h4 class="text-xl font-bold mb-2">Fundador</h4>
+                                <p class="text-[#A7A8F8] mb-2">PEEXL BI, Dados e Automação | março de 2019 – atual | atuação autônoma, remota</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuo no desenvolvimento e implementação de soluções de Business Intelligence, adaptando ferramentas e arquiteturas conforme o ambiente e as necessidades do cliente.</li>
-                                    <li>Trabalho com modelagem de dados, integração de múltiplas fontes e construção de pipelines seguindo práticas de ELT.</li>
-                                    <li>Desenvolvo dashboards, automações e aplicações com foco em performance, escalabilidade e geração de insights estratégicos para tomada de decisão.</li>
-                                    <li>Ferramentas: Excel, Power BI, SQL, Python, Fabric, Power Platform, Azure, Codex, Google Workspace, Google Cloud, Looker, Apps Script, BigQuery, APIs e Git.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Instrutor de Excel e Power BI</h4>
-                                <p class="text-[#A7A8F8] mb-2">PEEXL Transformação Digital | mai de 2019 - mar de 2022 | 2 anos 11 meses | Remoto · Autônomo</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Ministrei aulas individuais e em grupo, capacitando alunos do básico ao avançado com foco prático e aplicado.</li>
-                                    <li>Atuei na preparação para testes técnicos e no desenvolvimento de projetos reais voltados a demandas corporativas e negócios próprios, com foco em automação, análise de dados e dashboards.</li>
-                                    <li>Ferramentas: Excel, Power BI e Microsoft Office.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Analista Comercial Pleno</h4>
-                                <p class="text-[#A7A8F8] mb-2">Cysy Fertilizantes | fev de 2026 - o momento | 3 meses | Criciúma, SC · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuo na operação comercial com foco em dados e eficiência de processos, realizando atendimento interno e externo, gestão de pedidos, conferência de comissões e pós-venda.</li>
-                                    <li>Desenvolvo análises, controles comerciais, integrações e automações para apoiar a tomada de decisão e a melhoria contínua dos processos.</li>
-                                    <li>Ferramentas: Google Sheets, Apps Script, BigQuery, Gemini, Protheus e SQL.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Analista de Operações de Vendas</h4>
-                                <p class="text-[#A7A8F8] mb-2">Camed Microcrédito | ago de 2025 - dez de 2025 | 5 meses | Fortaleza, CE · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuei no monitoramento da performance do programa Crediamigo, desenvolvendo análises operacionais e financeiras orientadas a dados.</li>
-                                    <li>Participei da implementação de soluções tecnológicas, integração de sistemas e suporte às equipes comerciais, contribuindo para ganho de eficiência e melhoria dos indicadores.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Automate, SQL, APIs e Copilot.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Analista de Logística e Dados</h4>
-                                <p class="text-[#A7A8F8] mb-2">Grupo Cosampa | jul de 2025 - ago de 2025 | 2 meses | Fortaleza, CE · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuei na análise de indicadores logísticos e no controle de ativos, elaborando relatórios de disponibilidade e rastreabilidade de equipamentos.</li>
-                                    <li>Contribuí para a gestão operacional e a tomada de decisão por meio de dados estruturados e análises direcionadas.</li>
-                                    <li>Ferramentas: Excel, Python, APIs e ChatGPT.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Analista de Dados</h4>
-                                <p class="text-[#A7A8F8] mb-2">Up Value Solutions | set de 2024 - mai de 2025 | 9 meses | Fortaleza, CE · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuei na coleta, tratamento e análise de dados para geração de insights estratégicos.</li>
-                                    <li>Desenvolvi dashboards, automações e pipelines de dados, integrando diferentes fontes e otimizando processos analíticos.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Automate, Azure, Apache Hop, Python, SQL, APIs, ChatGPT, Git e Docker.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Analista de Logística</h4>
-                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | fev de 2023 - set de 2024 | 1 ano 8 meses | Caucaia, CE · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Desenvolvi e acompanhei indicadores de desempenho logístico, liderando iniciativas de melhoria contínua com foco em eficiência operacional e redução de custos.</li>
-                                    <li>Atuei em projetos estruturados com metodologias Lean e Kaizen e também participei do planejamento e controle de materiais com aderência a processos e normas ISO.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Apps, SAP, Bizagi e Visio.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Assistente Administrativo</h4>
-                                <p class="text-[#A7A8F8] mb-2">Aeris Energy | abr de 2022 - fev de 2023 | 11 meses | Caucaia, CE · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Desenvolvi dashboards e controles operacionais, otimizando fluxos e reduzindo tempo de execução de processos.</li>
-                                    <li>Atuei no suporte às operações logísticas de pás eólicas, incluindo armazenagem, movimentação e expedição.</li>
-                                    <li>Ferramentas: Power BI, Excel, Power Apps e SAP.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Auxiliar Administrativo</h4>
-                                <p class="text-[#A7A8F8] mb-2">Tomé Equipamentos e Transportes | set de 2017 - mai de 2019 | 1 ano 9 meses | São Gonçalo do Amarante, CE · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Realizei atividades administrativas e operacionais, contribuindo para melhoria de processos e controle de operações.</li>
-                                    <li>Participei da implementação de controles logísticos que reduziram custos e aumentaram a eficiência operacional.</li>
-                                    <li>Ferramentas: Excel, Word e sistemas de gestão.</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="relative pl-12 pb-7">
-                            <div class="absolute left-0 w-8 h-8 rounded-full bg-[#A7A8F8] flex items-center justify-center">
-                                <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
-                            </div>
-                            <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Conferente</h4>
-                                <p class="text-[#A7A8F8] mb-2">APM Terminals | dez de 2016 - jul de 2017 | 8 meses | São Gonçalo do Amarante, CE · Presencial</p>
-                                <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Atuei em operações logísticas, incluindo recebimento, armazenagem, conferência, separação e movimentação de cargas.</li>
-                                    <li>Mantive sistemas e documentos atualizados, garantindo controle e rastreabilidade das operações.</li>
+                                    <li>Iniciei a atuação com treinamentos práticos de Excel e Power BI, individuais e em grupo; depois ampliei o trabalho para dados, BI, automação e soluções sob medida.</li>
+                                    <li>Analiso processos e fontes, realizo diagnósticos, defino a abordagem técnica e desenvolvo modelos, integrações, pipelines, relatórios e automações; acompanho a sustentação das soluções.</li>
+                                    <li>Implantei painéis para áreas comercial, financeira, saúde, manutenção e logística; desenvolvi um sistema personalizado e atuei em projetos de migração e recuperação de relatórios.</li>
                                 </ul>
                             </div>
                         </div>
@@ -1225,11 +927,12 @@
                                 <i class="fas fa-briefcase text-sm text-[#080A21]"></i>
                             </div>
                             <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20">
-                                <h4 class="text-xl font-bold mb-2">Conferente</h4>
-                                <p class="text-[#A7A8F8] mb-2">Tecer Terminais | ago de 2015 - dez de 2016 | 1 ano 5 meses | São Gonçalo do Amarante, CE · Presencial</p>
+                                <h4 class="text-xl font-bold mb-2">Trajetória em diferentes empresas</h4>
+                                <p class="text-[#A7A8F8] mb-2">Operações, processos e dados | agosto de 2015 – setembro de 2026 | Brasil</p>
+                                <p class="text-[#F6F9DC]/80 mb-3">Tecer Terminais, APM Terminals, Tomé Equipamentos e Transportes, Aeris Energy, Up Value Solutions, Grupo Cosampa, Camed Microcrédito e Cysy Fertilizantes.</p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Executei atividades logísticas, incluindo recebimento, armazenagem, conferência, separação e amarração de cargas.</li>
-                                    <li>Mantive documentos e sistemas atualizados com as informações das operações realizadas.</li>
+                                    <li>Evoluí de funções de conferência e apoio administrativo para posições de assistente e analista em logística, operações comerciais e dados.</li>
+                                    <li>Trabalhei com controle e melhoria de processos, indicadores e análises, Business Intelligence, integração de fontes e automações para apoiar decisões operacionais e comerciais.</li>
                                 </ul>
                             </div>
                         </div>
@@ -1252,7 +955,7 @@
                                 </div>
                             </div>
                             <p class="text-[#FFFFFF] mb-3">
-                                Estácio de Sá | Cursando 3° Semestre
+                                Estácio | Em andamento · set/2026 a dez/2027 (previsão)
                             </p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
                                     <li>Desenvolvimento e manutenção de sistemas, com foco em lógica de programação, estruturas de dados e performance.</li>
@@ -1268,17 +971,17 @@
                                     <i class="fas fa-graduation-cap text-2xl text-[#A7A8F8]"></i>
                                 </div>
                                 <div>
-                                    <h4 class="text-[17px] font-bold">Gestão Portuária</h4>
-                                    <p class="text-[#A7A8F8]">Graduação Superior | Tecnólogo</p>
+                                    <h4 class="text-[17px] font-bold">Engenharia de Dados e Inteligência Artificial</h4>
+                                    <p class="text-[#A7A8F8]">Especialização lato sensu | Em andamento</p>
                                 </div>
                             </div>
                             <p class="text-[#FFFFFF] mb-3">
-                                UniAteneu | Concluído em 2017
+                                Estácio | set/2026 a dez/2027 (previsão)
                             </p>
                                 <ul class="list-disc pl-5 text-[#F6F9DC]/80 space-y-2">
-                                    <li>Planejamento e coordenação de operações portuárias, com foco em eficiência e integração logística.</li>
-                                    <li>Domínio da importação e exportação, normas legais, contratos internacionais e regras portuárias.</li>
-                                    <li>Responsabilidade ambiental, uso de tecnologias na gestão e práticas sustentáveis e seguras.</li>
+                                    <li>Estudos em engenharia de dados, integração, processamento e arquitetura de soluções.</li>
+                                    <li>Formação em andamento; competências estudadas não representam conclusão do curso.</li>
+                                    <li>Aplicação prática dos conhecimentos conforme experiência e projetos apresentados.</li>
                             </p>
                         </div>
                     </div>
@@ -1413,89 +1116,10 @@
                 </button>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                <div class="project-item web ia html css javascript animate-fadeIn delay-100">
-                    <div class="surface-card-interactive overflow-hidden card-hover h-full flex flex-col">
-                        <div class="project-frame h-48 overflow-hidden">
-                            <img src="https://lh3.googleusercontent.com/d/1n89FGEkWdoQbegi3M2I4WQ5K_yc85Heq=w1371-h658" alt="Captura do site portfólio de Paulo Estevão Maia" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6 flex-grow">
-                            <div class="flex items-center mb-4">
-                                <div class="w-10 h-10 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-3">
-                                    <i class="fas fa-code text-lg text-[#A7A8F8]"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80">Projeto autoral</p>
-                                    <h3 class="text-[1.45rem] font-bold leading-tight">Meu site portfólio</h3>
-                                </div>
-                            </div>
-
-                            <div class="space-y-3 text-[#F6F9DC]/82">
-                                <p><span class="text-[#F6F9DC] font-semibold">Problema:</span> apresentar meu perfil de forma mais clara, profissional e confiável para recrutadores e clientes.</p>
-                                <p><span class="text-[#F6F9DC] font-semibold">Solução:</span> construí uma landing page responsiva com foco em narrativa, escaneabilidade, filtros de projeto e interações leves.</p>
-                                <p><span class="text-[#F6F9DC] font-semibold">Resultado:</span> um portfólio próprio que funciona como vitrine de habilidades em HTML, Tailwind CSS, JavaScript e organização de conteúdo.</p>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2 mt-5">
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">HTML</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Tailwind CSS</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">JavaScript</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">UX writing</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">IA generativa</span>
-                            </div>
-                        </div>
-                        <div class="px-6 pb-6">
-                            <div class="flex flex-wrap gap-3">
-                                <a href="https://github.com/paulomaia93/site_meuportfolio/blob/main/index.html" target="_blank" rel="noopener noreferrer" class="btn-secondary px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-xl font-medium hover:bg-[#A7A8F8]/10 flex items-center">
-                                    <i class="fab fa-github mr-2"></i> Código
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-item ia api power-bi python sql animate-fadeIn delay-200">
-                    <div class="surface-card-interactive overflow-hidden card-hover h-full flex flex-col">
-                        <div class="project-frame h-48 overflow-hidden">
-                            <img src="https://lh3.googleusercontent.com/d/1yZwlyKhWaDjiqW4RwiVTYds9ipaDNCGd=w1000-h488" alt="Dashboard sobre desempenho do emprego formal no Brasil" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6 flex-grow">
-                            <div class="flex items-center mb-4">
-                                <div class="w-10 h-10 rounded-full bg-[#A7A8F8]/10 flex items-center justify-center mr-3">
-                                    <i class="fas fa-chart-column text-lg text-[#A7A8F8]"></i>
-                                </div>
-                                <div>
-                                    <p class="text-sm uppercase tracking-[0.2em] text-[#A7A8F8]/80">Dados públicos + BI</p>
-                                    <h3 class="text-[1.45rem] font-bold leading-tight">Desempenho do Emprego Formal</h3>
-                                </div>
-                            </div>
-
-                            <div class="space-y-3 text-[#F6F9DC]/82">
-                                <p><span class="text-[#F6F9DC] font-semibold">Problema:</span> acompanhar admissões e desligamentos exige consolidar dados públicos, tratar volumes altos e facilitar leitura executiva.</p>
-                                <p><span class="text-[#F6F9DC] font-semibold">Solução:</span> desenvolvi fluxo de ELT com Python, SQL e integração de dados do CAGED para alimentar visualizações em Power BI.</p>
-                                <p><span class="text-[#F6F9DC] font-semibold">Resultado:</span> um painel que organiza a leitura do mercado de trabalho e demonstra minha capacidade de unir engenharia de dados, análise e storytelling.</p>
-                            </div>
-
-                            <div class="flex flex-wrap gap-2 mt-5">
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Power BI</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">Python</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">SQL</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">ELT</span>
-                                <span class="px-3 py-1 bg-[#A7A8F8]/10 text-[#A7A8F8] rounded-full text-sm">APIs</span>
-                            </div>
-                        </div>
-                        <div class="px-6 pb-6">
-                            <div class="flex flex-wrap gap-3">
-                                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGE3YmM3ZDYtMzUxZi00MTJhLWI2M2EtOGMwOTFiZDVlYTQ2IiwidCI6IjdmMzE2ZDQxLTUxM2YtNDhjMi05NmFhLTlmMzA1NTk4YWI5NiJ9" target="_blank" rel="noopener noreferrer" class="btn-primary px-4 py-2 bg-[#A7A8F8] text-[#080A21] rounded-xl font-medium hover:bg-[#6C63FF] flex items-center">
-                                    <i class="fas fa-chart-line mr-2"></i> Dashboard
-                                </a>
-                                <a href="https://github.com/paulomaia93/DadosAntigosCAGED" target="_blank" rel="noopener noreferrer" class="btn-secondary px-4 py-2 border border-[#A7A8F8] text-[#A7A8F8] rounded-xl font-medium hover:bg-[#A7A8F8]/10 flex items-center">
-                                    <i class="fab fa-github mr-2"></i> Código
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            </div>
+            <div class="mt-10 flex justify-center">
+                <button id="project-toggle" type="button" aria-controls="project-grid" aria-expanded="false" hidden>Ver mais</button>
             </div>
         </div>
     </section>
@@ -1615,7 +1239,7 @@
     </section>
 
     <!-- Rodapé -->
-    <footer class="bg-[#080A21] py-8 border-t border-[#A7A8F8]/14">
+    <footer id="site-footer" class="relative bg-[#080A21] py-8 border-t border-[#A7A8F8]/14">
         <div class="container mx-auto px-6">
             <div class="flex flex-col gap-6 md:flex-row md:justify-between md:items-center">
                 <div class="mb-6 md:mb-0">
@@ -1642,32 +1266,339 @@
                 </div>
             </div>
         </div>
+        <!-- Permanece acima do rodapé quando os links de mídia estão visíveis. -->
+        <button id="back-to-top" type="button" aria-label="Voltar ao topo" class="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-[#A7A8F8] text-[#080A21] flex items-center justify-center shadow-[0_18px_36px_rgba(108,99,255,0.24)] hover:bg-[#6C63FF]">
+            <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        </button>
     </footer>
 
-    <!-- Botão para voltar ao topo -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-[#A7A8F8] text-[#080A21] flex items-center justify-center shadow-[0_18px_36px_rgba(108,99,255,0.24)] hover:bg-[#6C63FF]">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Modal para Habilidade Técnica -->
-    <div id="modal-habilidade" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center hidden">
-        <div class="modal-content surface-card-primary flex overflow-hidden relative">
-      
-          <!-- Botão fechar -->
-          <button id="fechar-modal" class="absolute top-4 right-4 text-white text-2xl hover:text-[#6C63FF] transition bg-black/30 rounded-full w-10 h-10 flex items-center justify-center leading-none">&times;</button>
-      
-          <!-- Conteúdo (texto) -->
-          <div class="modal-text-pane p-8 text-[#F6F9DC] flex flex-col justify-center space-y-4">
-            <h2 id="modal-titulo" class="text-3xl font-bold"></h2>
-            <ul id="modal-topicos" class="list-[square] pl-5 space-y-2 text-[#F6F9DC]/90 text-base"></ul>
-          </div>
-      
-          <!-- Imagem -->
-          <div class="modal-media-pane bg-[#0D0F2B] flex items-center justify-center">
-            <img id="modal-imagem" src="" alt="Imagem" class="rounded-none border-l border-[#A7A8F8]/10">
-          </div>
+    <dialog id="peexl-case-dialog" aria-labelledby="peexl-case-title">
+        <div class="peexl-case-dialog-body">
+            <div class="peexl-case-dialog-head"><div><p class="peexl-case-category" id="peexl-case-category"></p><h2 id="peexl-case-title"></h2></div><button id="peexl-case-close" type="button" aria-label="Fechar detalhes do projeto">Fechar ×</button></div>
+            <p id="peexl-case-description"></p>
+            <h3>Objetivos</h3><ul id="peexl-case-objectives"></ul>
+            <h3>O que foi feito</h3><ul id="peexl-case-actions"></ul>
+            <h3 id="peexl-case-results-heading">Resultados descritos no portfólio da PEEXL</h3><ul id="peexl-case-results"></ul>
+            <div id="peexl-case-links"></div>
         </div>
-    </div>
+    </dialog>
+
+    <script>
+const projectCaseContent = {
+        portfolio: {
+            badgeOne: 'HTML',
+            badgeTwo: 'JavaScript',
+            objectives: [
+                'Apresentar meu perfil de forma mais clara, profissional e confiável para recrutadores e clientes.'
+            ],
+            actions: [
+                'Construí uma landing page responsiva com foco em narrativa, escaneabilidade, filtros de projeto e interações leves.'
+            ],
+            results: [
+                ['Vitrine profissional', 'Um portfólio próprio que funciona como vitrine de habilidades em HTML, Tailwind CSS, JavaScript e organização de conteúdo.']
+            ]
+        },
+        'peexl-site': {
+            badgeOne: 'Desenvolvimento Web',
+            badgeTwo: 'Site institucional',
+            objectives: [
+                'Apresentar a PEEXL, suas soluções, seus projetos e seus canais de contato em uma experiência organizada e responsiva.'
+            ],
+            actions: [
+                'Estruturei a página principal com seções de soluções, jornada, apresentação institucional, projetos e Self-Service BI.',
+                'Desenvolvi navegação por âncoras, menu para celular e detalhes interativos dos projetos.',
+                'Organizei páginas de privacidade, termos de uso e metadados para mecanismos de busca.'
+            ],
+            results: [
+                ['Site institucional', 'Página estática organizada para apresentar a PEEXL, suas soluções e seus cases.']
+            ]
+        },
+        'task-manager': {
+            badgeOne: 'Sistema web',
+            badgeTwo: 'Gestão de tarefas',
+            objectives: [
+                'Desenvolver um sistema sob medida para organizar tarefas e substituir a ferramenta de gestão usada anteriormente, conforme o objetivo relatado para o projeto.'
+            ],
+            actions: [
+                'Implementei interface para painel, consulta e acompanhamento de tarefas, com permissões independentes por tipo de ação.',
+                'Estruturei registros de histórico, notificações, chat e laudos vinculados às tarefas.',
+                'Integrei a importação de pedidos de uma API ao Google Drive e ao BigQuery, com processamento em lotes e retomada.'
+            ],
+            results: [
+                ['Aplicação desenvolvida', 'O código local reúne os módulos de tarefas, usuários, pedidos, notificações e laudos.']
+            ]
+        },
+        'peexl-management-ai': {
+            badgeOne: 'IA aplicada',
+            badgeTwo: 'Gestão empresarial',
+            objectives: [
+                'Organizar o contexto da PEEXL e apoiar análises e decisões do proprietário com informações rastreáveis.'
+            ],
+            actions: [
+                'Estruturei fontes de contexto, planejamento, operação e registros de decisões para dar continuidade ao trabalho de gestão.',
+                'Defini a atuação de Ari, agente de IA que prepara análises, alternativas e recomendações sob a direção do proprietário.',
+                'Estabeleci a distinção entre fatos fornecidos, evidências verificadas, hipóteses e decisões aprovadas.'
+            ],
+            results: [
+                ['Gestão documentada', 'A PEEXL passou a contar com uma estrutura local de contexto, planejamento e decisões que apoia o uso de IA nas análises de gestão.']
+            ]
+        },
+        vagas: {
+            badgeOne: 'Gestão de RH',
+            badgeTwo: 'Prazos e Status',
+            objectives: [
+                'Apoiar o RH na priorização de vagas, prazos e status de cada processo.',
+                'Identificar gargalos de recrutamento para acelerar decisões de contratação.',
+            ],
+            actions: [
+                'Organização dos dados de vagas para acompanhar o funil de ponta a ponta.',
+                'Criação de indicadores para status, prazos, responsáveis e andamento dos processos.',
+                'Construção de uma leitura gerencial para orientar prioridades e próximos passos.',
+            ],
+            results: [
+                ['Funil Controlado', 'A equipe passou a acompanhar a evolução das vagas com menos esforço manual.'],
+                ['Prazos Monitorados', 'Processos em atraso e etapas críticas ficaram mais fáceis de priorizar.'],
+                ['Decisão com Direção', 'As decisões sobre recrutamento passaram a considerar indicadores mais objetivos.'],
+            ],
+        },
+        'aeris-logistica': {
+            badgeOne: 'Indicadores Logísticos',
+            badgeTwo: 'Performance Operacional',
+            objectives: [
+                'Transformar dados logísticos em indicadores de desempenho operacional.',
+                'Apoiar decisões diárias sobre processos, desvios e pontos de atenção.',
+            ],
+            actions: [
+                'Mapeamento dos indicadores mais importantes para a rotina logística.',
+                'Organização das fontes de dados para reduzir leituras fragmentadas da operação.',
+                'Criação de painéis para acompanhar desempenho, evolução e exceções.',
+            ],
+            results: [
+                ['Operação Monitorada', 'Gestores passaram a acompanhar indicadores logísticos em uma base mais confiável.'],
+                ['Desvios Priorizados', 'Pontos de atenção ficaram mais fáceis de transformar em ação.'],
+                ['Decisão Mais Rápida', 'A leitura dos dados ajudou a orientar ações no dia a dia da operação.'],
+            ],
+        },
+        materials: {
+            badgeOne: 'Projeto Premiado',
+            badgeTwo: 'Destaque do Mês',
+            objectives: [
+                'Criar indicadores executivos sobre materiais parados, volumes e locais de concentração.',
+                'Apoiar decisões de destinação, reaproveitamento e devolução com dados confiáveis.',
+            ],
+            actions: [
+                'Reuniões com lideranças para entender a decisão que precisava ser tomada.',
+                'Integração de fontes para consolidar indicadores confiáveis sobre materiais, locais e responsáveis.',
+                'Construção de um painel para acompanhar prioridades e direcionar ações de destinação.',
+            ],
+            results: [
+                ['Espaço Liberado', 'Áreas antes ocupadas por materiais sem uso passaram a ser tratadas como prioridade de gestão.'],
+                ['Destinação com Segurança', 'Gestores passaram a decidir o que reaproveitar, devolver, descartar ou vender com mais confiança.'],
+                ['Caso de Sucesso', 'A solução ganhou visibilidade interna e inspirou novos controles orientados por indicadores.'],
+            ],
+        },
+        trimark: {
+            badgeOne: 'Dashboard Financeiro',
+            badgeTwo: 'APIs e ERPs',
+            objectives: [
+                'Consolidar receitas, despesas e resultados financeiros em indicadores confiáveis.',
+                'Reduzir dependência de controles manuais para acompanhar clientes e períodos.',
+            ],
+            actions: [
+                'Integração dos dados financeiros por APIs para manter os indicadores atualizados.',
+                'Organização das informações por cliente, categoria, período e resultado.',
+                'Criação de um painel executivo para direcionar análises de saúde financeira.',
+            ],
+            results: [
+                ['Gestão Financeira', 'Acompanhamento mais simples dos principais números financeiros em uma única base.'],
+                ['Menos Trabalho Manual', 'Dados integrados aos ERPs reduziram retrabalho e aceleraram a análise.'],
+                ['Resultado Monitorado', 'Indicadores passaram a apoiar conversas mais objetivas sobre desempenho financeiro.'],
+            ],
+        },
+        'aeris-he': {
+            badgeOne: 'Controle Orçamentário',
+            badgeTwo: 'Horas Extras',
+            objectives: [
+                'Dar direção às ações sobre horas extras e exceções que impactavam o orçamento da logística.',
+                'Acompanhar insumos, veículos e equipamentos com maior controle operacional.',
+                'Apoiar decisões semanais em uma operação com mais de 400 funcionários.',
+            ],
+            actions: [
+                'Mapeamento dos indicadores necessários para encontrar as maiores exceções.',
+                'Criação de visões para horas extras, guindastes, veículos, consumo e centros de custo.',
+                'Acompanhamento recorrente dos dados para orientar ações de redução e controle.',
+            ],
+            results: [
+                ['Horas Extras Reduzidas', 'A rotina de indicadores apoiou a redução gradativa das exceções até a extinção das horas extras praticadas.'],
+                ['Controle Operacional', 'Gestores passaram a acompanhar insumos, veículos, guindastes e equipamentos com mais confiança.'],
+                ['Decisão Semanal', 'A rotina de análise trouxe mais previsibilidade para decisões administrativas e orçamentárias.'],
+            ],
+        },
+        maxsul: {
+            badgeOne: 'DAX Avançado',
+            badgeTwo: 'ERP Protheus',
+            objectives: [
+                'Ajudar a gestão a entender quando comprar, quanto comprar e quais itens exigiam atenção.',
+                'Acompanhar fornecedores, pedidos e cobertura de estoque com informação confiável.',
+                'Reduzir decisões baseadas apenas em planilhas e consultas isoladas ao ERP.',
+            ],
+            actions: [
+                'Conexão com bases do ERP Protheus para manter os indicadores atualizados.',
+                'Organização de regras para calcular consumo médio, ponto de pedido e cobertura de estoque.',
+                'Construção de visões de Pareto, pedidos, itens críticos e sugestão de compra.',
+            ],
+            results: [
+                ['Estoque Direcionado', 'A gestão passou a enxergar itens críticos, excesso e risco de ruptura com mais facilidade.'],
+                ['Compras Mais Seguras', 'Sugestões de reposição passaram a apoiar decisões alinhadas à programação da empresa.'],
+                ['Fornecedores Monitorados', 'Pedidos em atraso, desempenho e prioridades ficaram mais visíveis para a área de suprimentos.'],
+            ],
+        },
+        caged: {
+            badgeOne: 'Dados Públicos',
+            badgeTwo: 'SQL Integrado',
+            objectives: [
+                'Transformar dados públicos complexos em indicadores úteis sobre emprego formal.',
+                'Permitir análises por região, capital, setor, atividade e indicadores de saldo.',
+                'Facilitar a interpretação de tendências sem depender de consultas técnicas.',
+            ],
+            actions: [
+                'Extração e organização dos dados públicos em uma base estruturada para análise.',
+                'Modelagem dos indicadores de admissões, desligamentos, saldo de empregos e recortes por perfil.',
+                'Construção de painéis para consulta visual e comparação de tendências.',
+            ],
+            results: [
+                ['Dados Mais Acessíveis', 'Informações públicas passaram a ser consultadas de forma visual e organizada.'],
+                ['Leitura Regional', 'Indicadores por regiões, capitais e setores facilitaram comparações e análises.'],
+                ['Direção de Tendência', 'O projeto permitiu observar movimentos do mercado formal com mais segurança.'],
+            ],
+        },
+        sipoc: {
+            badgeOne: 'Mapeamento de Processo',
+            badgeTwo: 'Direção Operacional',
+            objectives: [
+                'Organizar processos, fornecedores, entradas, saídas e clientes internos em uma leitura gerencial.',
+                'Ajudar a operação a enxergar responsabilidades, dependências e pontos de melhoria.',
+            ],
+            actions: [
+                'Estruturação das etapas do processo em uma base simples de acompanhamento.',
+                'Mapeamento dos principais relacionamentos entre áreas, entradas e entregas.',
+                'Construção de uma leitura visual para apoiar alinhamentos internos.',
+            ],
+            results: [
+                ['Processo Organizado', 'A equipe passou a visualizar melhor como as etapas se conectam.'],
+                ['Responsabilidades Visíveis', 'Fornecedores, entradas, entregas e clientes internos ficaram mais organizados.'],
+                ['Melhoria Contínua', 'O mapeamento facilitou conversas sobre gargalos e oportunidades de ajuste.'],
+            ],
+        },
+    };
+
+const cases = {
+  portfolio: { category: 'Projeto autoral', title: 'Meu site portfólio', teaser: 'Uma apresentação clara da minha trajetória, competências e projetos.', description: 'Landing page responsiva que reúne minha trajetória, competências e projetos em um único espaço.', badges: ['Desenvolvimento Web'], icon: 'fa-code', image: 'https://lh3.googleusercontent.com/d/1n89FGEkWdoQbegi3M2I4WQ5K_yc85Heq=w1371-h658', tags: ['web', 'html', 'css', 'javascript'], links: [
+    ['Código', 'https://github.com/paulomaia93/site_meuportfolio/blob/main/index.html']
+  ] },
+  'peexl-site': { category: 'Projeto PEEXL', title: 'Site institucional da PEEXL', teaser: 'Soluções, projetos e canais de contato reunidos em uma experiência responsiva.', description: 'Site institucional estático desenvolvido para apresentar a PEEXL, suas soluções em dados e automação e os projetos da empresa.', badges: ['Desenvolvimento Web', 'Site institucional'], icon: 'fa-globe', tags: ['web', 'html', 'css', 'javascript'], links: [
+    ['Acessar site', 'https://peexl.com.br/']
+  ] },
+  'task-manager': { category: 'Sistema sob medida', title: 'Gerenciador de Tarefas', teaser: 'Tarefas, pedidos e acompanhamento operacional em um sistema próprio.', description: 'Aplicação web desenvolvida para organizar tarefas e fluxos operacionais. O código local reúne interface, regras de acesso, persistência em BigQuery e integração de pedidos.', badges: ['Sistema web', 'Gestão de tarefas'], icon: 'fa-list-check', tags: ['web', 'api', 'html', 'css', 'javascript'] },
+  'peexl-management-ai': { category: 'Solução de IA', title: 'Gestão Empresarial da PEEXL no ChatGPT', teaser: 'Contexto, planejamento e decisões organizados para apoiar a gestão com IA.', description: 'Estrutura de gestão empresarial aplicada à PEEXL com apoio do ChatGPT. Reúne fontes locais e orientações para que a IA prepare análises e recomendações, mantendo as decisões sob responsabilidade do proprietário.', badges: ['IA aplicada', 'Gestão empresarial'], icon: 'fa-brain', tags: ['ia'] },
+  materials: { category: 'Logística', title: 'Destinação de Materiais Obsoletos', teaser: 'Indicadores para orientar a destinação de materiais parados.', description: 'Projeto criado para transformar dados dispersos sobre materiais obsoletos em indicadores de destinação, reaproveitamento e devolução, apoiando decisões com gerentes e diretoria industrial.', tags: [] },
+  'aeris-he': { category: 'Logística', title: 'Controle Admin. e Orçamentário', teaser: 'Horas extras e recursos logísticos em uma leitura de gestão.', description: 'Projeto desenvolvido para dar controle administrativo a uma operação logística com mais de 400 funcionários, reunindo dados de horas extras, atividades, insumos, abastecimento e equipamentos para reduzir exceções e apoiar decisões semanais de gestão.', tags: [] },
+  trimark: { category: 'Financeiro', title: 'Análise Financeira', teaser: 'Receitas, despesas e resultados reunidos para decidir.', description: 'Solução desenvolvida para consolidar informações financeiras de diferentes clientes e ERPs, permitindo acompanhar receitas, despesas e resultados com mais segurança e menos dependência de controles manuais.', tags: ['api'] },
+  maxsul: { category: 'Suprimentos', title: 'Estoque e Suprimentos', teaser: 'Estoque e compras guiados por dados do ERP.', description: 'Projeto desenvolvido para apoiar decisões de estoque e compras em uma indústria, conectando dados do ERP Protheus para acompanhar fornecedores, pedidos, cobertura de estoque e necessidade de reposição.', tags: [] },
+  caged: { category: 'BI Público', title: 'Desempenho do Emprego Formal', teaser: 'Emprego formal analisado por região, setor e atividade.', description: 'BI desenvolvido para transformar dados públicos do CAGED em indicadores sobre admissões, desligamentos, saldo de empregos, regiões, capitais, setores e atividades econômicas.', tags: ['power-bi', 'python', 'sql', 'api'], links: [
+    ['Dashboard', 'https://app.powerbi.com/view?r=eyJrIjoiMGE3YmM3ZDYtMzUxZi00MTJhLWI2M2EtOGMwOTFiZDVlYTQ2IiwidCI6IjdmMzE2ZDQxLTUxM2YtNDhjMi05NmFhLTlmMzA1NTk4YWI5NiJ9'],
+    ['Código', 'https://github.com/paulomaia93/DadosAntigosCAGED']
+  ] },
+  vagas: { category: 'RH', title: 'Gestão e Análise de Vagas', teaser: 'Prazos, status e gargalos do recrutamento mais visíveis.', description: 'Solução criada para ajudar o RH a acompanhar vagas, prazos e status de cada processo, facilitando a identificação de gargalos e a escolha das prioridades de contratação.', tags: [] },
+  'aeris-logistica': { category: 'Logística', title: 'Logística Aeris', teaser: 'Desempenho logístico acompanhado no dia a dia.', description: 'Projeto voltado a transformar dados da operação logística em indicadores de desempenho, permitindo acompanhar processos, identificar desvios e agir com mais velocidade no dia a dia.', tags: [] },
+  sipoc: { category: 'SIPOC', title: 'SIPOC Pecém', teaser: 'Processos e responsabilidades organizados visualmente.', description: 'Mapeamento criado para organizar a leitura de processos, fornecedores, entradas, saídas e clientes internos, ajudando a operação a enxergar responsabilidades e pontos de melhoria.', tags: [] }
+};
+
+const grid = document.getElementById('project-grid');
+const dialog = document.getElementById('peexl-case-dialog');
+const make = (tag, className, value) => {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (value) element.textContent = value;
+  return element;
+};
+const fillList = (id, values, titled = false) => {
+  const list = document.getElementById(id);
+  list.replaceChildren(...values.map(value => {
+    const item = document.createElement('li');
+    if (titled) item.append(make('strong', '', value[0] + ': '), value[1]);
+    else item.textContent = value;
+    return item;
+  }));
+};
+
+Object.entries(cases).forEach(([key, item], index) => {
+  const detail = projectCaseContent[key];
+  const wrapper = make('article', ['project-item', ...item.tags].join(' '));
+  wrapper.hidden = index >= 3;
+  const card = make('div', 'peexl-case-card surface-card-interactive');
+  const media = make('div', 'peexl-case-media' + (item.image ? '' : ' peexl-case-media--empty'));
+  if (item.image) {
+    const image = make('img');
+    image.src = item.image;
+    image.alt = 'Captura do site portfólio de Paulo Estevão Maia';
+    media.append(image);
+  } else {
+    const icon = make('i', 'fas ' + (item.icon || 'fa-chart-line'));
+    icon.setAttribute('aria-hidden', 'true');
+    media.append(icon);
+    media.setAttribute('aria-hidden', 'true');
+  }
+  const content = make('div', 'peexl-case-content');
+  const heading = make('div', 'peexl-case-heading');
+  const iconWrap = make('span', 'peexl-case-icon');
+  const headingIcon = make('i', 'fas ' + (item.icon || 'fa-chart-bar'));
+  headingIcon.setAttribute('aria-hidden', 'true');
+  iconWrap.append(headingIcon);
+  const headingText = make('div');
+  const category = make('small', 'peexl-case-category', item.category);
+  const title = make('h3', '', item.title);
+  headingText.append(category, title);
+  heading.append(iconWrap, headingText);
+  const badges = make('div', 'peexl-case-badges');
+  (item.badges || [detail.badgeOne, detail.badgeTwo]).forEach(badge => badges.append(make('span', '', badge)));
+  const teaser = make('p', 'peexl-case-teaser', item.teaser);
+  const button = make('button', 'peexl-case-button', 'Ver projeto completo →');
+  button.type = 'button';
+  button.dataset.case = key;
+  button.setAttribute('aria-label', 'Ver projeto completo: ' + item.title);
+  content.append(heading, teaser, badges, button);
+  card.append(media, content);
+  wrapper.append(card);
+  grid.append(wrapper);
+});
+
+grid.addEventListener('click', event => {
+  const button = event.target.closest('[data-case]');
+  if (!button) return;
+  const item = cases[button.dataset.case];
+  const detail = projectCaseContent[button.dataset.case];
+  document.getElementById('peexl-case-category').textContent = item.category;
+  document.getElementById('peexl-case-title').textContent = item.title;
+  document.getElementById('peexl-case-description').textContent = item.description;
+  document.getElementById('peexl-case-results-heading').textContent = ['portfolio', 'peexl-site', 'task-manager', 'peexl-management-ai'].includes(button.dataset.case) ? 'Resultado' : 'Resultados descritos no portfólio da PEEXL';
+  fillList('peexl-case-objectives', detail.objectives);
+  fillList('peexl-case-actions', detail.actions);
+  fillList('peexl-case-results', detail.results, true);
+  const links = document.getElementById('peexl-case-links');
+  links.replaceChildren();
+  (item.links || []).forEach(([label, href]) => {
+    const anchor = make('a', 'peexl-case-link', label);
+    anchor.href = href;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+    links.append(anchor);
+  });
+  dialog.showModal();
+});
+document.getElementById('peexl-case-close').addEventListener('click', () => dialog.close());
+dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+    </script>
 
     <!-- JavaScript -->
     <script>
@@ -1688,7 +1619,9 @@
             const sectionElements = Array.from(document.querySelectorAll('section[id]'));
             const projectFilters = document.querySelectorAll('.project-filter');
             const projectItems = document.querySelectorAll('.project-item');
+            const projectToggle = document.getElementById('project-toggle');
             const backToTopButton = document.getElementById('back-to-top');
+            const siteFooter = document.getElementById('site-footer');
 
             function smoothScrollToElement(targetElement) {
                 if (!targetElement) {
@@ -2010,8 +1943,15 @@
             }
 
             const projectHideTimers = new WeakMap();
+            let activeProjectFilter = 'all';
+            let projectsExpanded = false;
 
             function filterProjects(filterValue) {
+                const matchingItems = Array.from(projectItems).filter(item =>
+                    filterValue === 'all' || item.classList.contains(filterValue)
+                );
+                const visibleItems = projectsExpanded ? matchingItems : matchingItems.slice(0, 3);
+
                 projectItems.forEach(item => {
                     const existingTimer = projectHideTimers.get(item);
                     if (existingTimer) {
@@ -2019,8 +1959,7 @@
                         projectHideTimers.delete(item);
                     }
 
-                    const itemClasses = item.className.split(/\s+/);
-                    const shouldShow = filterValue === 'all' || itemClasses.includes(filterValue);
+                    const shouldShow = visibleItems.includes(item);
 
                     if (shouldShow) {
                         const needsReveal = item.hidden || item.classList.contains('is-exiting');
@@ -2046,15 +1985,27 @@
                         projectHideTimers.set(item, hideTimer);
                     }
                 });
+
+                projectToggle.hidden = matchingItems.length <= 3;
+                projectToggle.textContent = projectsExpanded ? 'Ver menos' : 'Ver mais';
+                projectToggle.setAttribute('aria-expanded', String(projectsExpanded));
             }
 
             projectFilters.forEach(filter => {
                 filter.addEventListener('click', function() {
                     const filterValue = this.getAttribute('data-filter');
+                    activeProjectFilter = filterValue;
+                    projectsExpanded = false;
                     setProjectFilterState(filterValue);
                     filterProjects(filterValue);
                 });
             });
+
+            projectToggle.addEventListener('click', () => {
+                projectsExpanded = !projectsExpanded;
+                filterProjects(activeProjectFilter);
+            });
+            filterProjects(activeProjectFilter);
 
             function updateBackToTopVisibility() {
                 if (!backToTopButton) {
@@ -2062,6 +2013,7 @@
                 }
 
                 backToTopButton.classList.toggle('is-visible', window.pageYOffset > 300);
+                backToTopButton.classList.toggle('is-near-footer', siteFooter.getBoundingClientRect().top < window.innerHeight);
             }
 
             window.addEventListener('scroll', updateBackToTopVisibility, { passive: true });
@@ -2075,6 +2027,7 @@
 
             window.addEventListener('resize', () => {
                 updateCurriculoScrollState();
+                updateBackToTopVisibility();
             });
 
             updateCurriculoScrollState();
@@ -2216,155 +2169,6 @@
                         setContactLoadingState(false);
                     }
                 });
-            }
-        });
-
-        // Modal de Habilidades Técnicas
-        const habilidadesDetalhes = {
-            "analise-dados": {
-                titulo: "Análise de Dados",
-                imagem: "https://lh3.googleusercontent.com/d/1UrmAlJaQwws1YynVJvFEHsAIfxd754i_=w766-h962",
-                topicos: [
-                    "Análise de dados com foco em leitura de negócio, identificação de padrões e geração de insights acionáveis.",
-                    "Business Intelligence com Power BI e Microsoft Excel para construção de relatórios, indicadores e dashboards.",
-                    "Modelagem de dados, bancos de dados, SQL e estruturação analítica para suportar decisões.",
-                    "ETL/ELT, Linguagem M, pipelines de dados e integração de múltiplas fontes com foco em consistência e escala.",
-                    "Atuação com Apache Hop, BigQuery, Microsoft Fabric e visualização analítica."
-                ]
-            },
-            "inteligencia-artificial": {
-                titulo: "Inteligência Artificial",
-                imagem: "https://lh3.googleusercontent.com/d/1cj3qGIT_bk1z015Sn0075kkVFFcYXYy2=w823-h1024",
-                topicos: [
-                    "Aplicação prática de inteligência artificial para produtividade, análise, automação, programação e apoio à decisão.",
-                    "Uso de ChatGPT, Google Gemini, Microsoft Copilot e Codex como apoio técnico e estratégico.",
-                    "Estruturação de prompts, fluxos de trabalho e experimentação orientada a resultado.",
-                    "Uso de IA com foco em contexto, qualidade da resposta, utilidade e aceleração de entrega."
-                ]
-            },
-            "ferramentas": {
-                titulo: "Ferramentas e Plataformas",
-                imagem: "https://lh3.googleusercontent.com/d/1dPGDTindIMe4tF4K2o6P8F9nKp6KFluP=w934-h1080",
-                topicos: [
-                    "Ecossistema Microsoft: Excel, Power BI, Power Platform, Fabric, PowerPoint, Word, Visio e Azure.",
-                    "Ecossistema Google: Planilhas Google, Google Workspace, Google Cloud Platform, Apps Script, BigQuery e Looker.",
-                    "Plataformas e ambientes voltados a análise, automação e dados conforme o contexto da solução.",
-                    "ERPs e sistemas corporativos como TOTVS Protheus e SAP.",
-                    "Ferramentas de apoio à produtividade, estruturação e sustentação de entregas."
-                ]
-            },
-            "programacao-logica": {
-                titulo: "Programação e Automação",
-                imagem: "https://lh3.googleusercontent.com/d/1ce_uhWVyeBKtd_jYdp_zonwnPD9zChjF=w820-h928",
-                topicos: [
-                    "Programação com Python, JavaScript, HTML e CSS para automação, análise, sites e soluções web.",
-                    "Aplicação de lógica, algoritmos, análise de sistemas e desenvolvimento de software em projetos práticos.",
-                    "Construção de scripts, integrações com APIs e rotinas para automação de processos e tratamento de dados.",
-                    "Uso de Git e GitHub para versionamento, organização e evolução de projetos de desenvolvimento.",
-                    "Automação com VBA Excel, Apps Script e soluções orientadas a produtividade e escala."
-                ]
-            },
-            "qualidade-processos": {
-                titulo: "Qualidade e Processos",
-                imagem: "https://lh3.googleusercontent.com/d/13XSZD7WZ1XsOeC4vgDPmYJHxcYy6x423=w735-h977",
-                topicos: [
-                    "Melhoria de processos com foco em eficiência, padronização, redução de desperdícios e confiabilidade operacional.",
-                    "Aplicação de metodologias como Kaizen, DMAIC, Green Belt Seis Sigma e gestão da qualidade.",
-                    "Estabelecimento de processos e fluxos com apoio de Microsoft Visio.",
-                    "Atuação com sistema de qualidade, auditoria interna e acompanhamento de indicadores e planos de ação.",
-                    "Integração entre análise, melhoria contínua e organização de fluxos para sustentar evolução operacional."
-                ]
-            },
-            "gestao-projetos": {
-                titulo: "Gestão e Liderança",
-                imagem: "https://lh3.googleusercontent.com/d/14dlnJC24dstiDXCPfNv8cS4L4S9bfo1J=w901-h1024",
-                topicos: [
-                    "Condução de projetos de desenvolvimento e melhoria com foco em escopo, prioridade, execução e resultado.",
-                    "Organização da entrega com acompanhamento de atividades, comunicação entre áreas e visão de impacto.",
-                    "Uso de práticas como Kanban para gestão visual, fluxo de trabalho e alinhamento contínuo.",
-                    "Apoio à liderança de equipe e à implementação de soluções junto a usuários, times e clientes."
-                ]
-            },
-            "planejamento": {
-                titulo: "Planejamento e Operação",
-                imagem: "https://lh3.googleusercontent.com/d/1juXSYJYBM8CgHKcvMeRBqMBAsg694ufd=w782-h1050",
-                topicos: [
-                    "Planejamento operacional com base em dados, metas, prioridades e acompanhamento de execução.",
-                    "Atuação em administração, processos administrativos, suporte e organização de rotinas e controles.",
-                    "Controle financeiro, elaboração de documentos, manutenção de registros e apoio à operação.",
-                    "Conhecimento aplicado em sistemas operacionais, suporte técnico e sustentação de atividades administrativas e operacionais."
-                ]
-            },
-            "aprendizagem-rapida": {
-                titulo: "Aprendizado e Adaptabilidade",
-                imagem: "https://lh3.googleusercontent.com/d/1aCYNGDAm8QcwsZXxcbiawGcFY_wbQiqB=w765-h896",
-                topicos: [
-                    "Perfil autodidata com facilidade para aprender novas ferramentas, linguagens, plataformas e contextos de negócio.",
-                    "Adaptação rápida a diferentes arquiteturas, processos, sistemas e ambientes de trabalho.",
-                    "Busca contínua por aprofundamento técnico, experimentação prática e aplicação orientada a resultado.",
-                    "Capacidade de conectar aprendizado com execução, transformando conhecimento em solução útil e aplicável."
-                ]
-            },
-            "didatica-ensino": {
-                titulo: "Comunicação e Treinamento",
-                imagem: "https://lh3.googleusercontent.com/d/1HMKEDPDb_UgB056nDeN78zX-1NZiAnDJ=w776-h1141",
-                topicos: [
-                    "Comunicação clara e estruturada para apresentações, alinhamentos, treinamentos e suporte ao usuário.",
-                    "Desenvolvimento de conteúdo técnico e didático com foco em aplicação prática e entendimento real.",
-                    "Atuação em treinamento, oratória e tradução de temas complexos para diferentes públicos.",
-                    "Relacionamento com cliente e atendimento com foco em clareza, confiança e resolução de necessidade."
-                ]
-            }
-        };
-
-        const modal = document.getElementById('modal-habilidade');
-
-        // Abrir modal com transição
-        document.querySelectorAll('.open-modal').forEach(el => {
-            el.addEventListener('click', () => {
-                const tipo = el.getAttribute('data-habilidade');
-                const dados = habilidadesDetalhes[tipo];
-
-                if (dados) {
-                    document.getElementById('modal-titulo').textContent = dados.titulo;
-                    document.getElementById('modal-imagem').src = dados.imagem;
-                    document.getElementById('modal-imagem').alt = dados.titulo;
-
-                    const lista = document.getElementById('modal-topicos');
-                    lista.innerHTML = "";
-                    dados.topicos.forEach(topico => {
-                        const li = document.createElement("li");
-                        li.textContent = topico;
-                        lista.appendChild(li);
-                    });
-
-                    // Transição de entrada
-                    modal.classList.remove('hidden');
-                    setTimeout(() => modal.classList.add('active'), 10);
-                }
-            });
-        });
-
-        // Função para fechar o modal com transição
-        function fecharModalSuavemente() {
-            modal.classList.remove('active');
-            setTimeout(() => modal.classList.add('hidden'), 300); // Espera a transição terminar
-        }
-
-        // Botão "X"
-        document.getElementById('fechar-modal').addEventListener('click', fecharModalSuavemente);
-
-        // Clique fora do conteúdo
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                fecharModalSuavemente();
-            }
-        });
-
-        // Tecla ESC
-        document.addEventListener('keydown', (e) => {
-            if (e.key === "Escape") {
-                fecharModalSuavemente();
             }
         });
 
