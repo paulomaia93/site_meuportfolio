@@ -1498,7 +1498,7 @@
             <div class="peexl-case-sections">
                 <section class="peexl-case-detail"><h3>Objetivos</h3><ul id="peexl-case-objectives"></ul></section>
                 <section class="peexl-case-detail"><h3>O que foi feito</h3><ul id="peexl-case-actions"></ul></section>
-                <section class="peexl-case-detail"><h3 id="peexl-case-results-heading">Resultados descritos no portfólio da PEEXL</h3><ul id="peexl-case-results"></ul></section>
+                <section class="peexl-case-detail"><h3 id="peexl-case-results-heading">Resultados</h3><ul id="peexl-case-results"></ul></section>
             </div>
         </div>
     </dialog>
@@ -1800,7 +1800,7 @@ const caseImages = {
   portfolio: ['secao-home.png', 'secao-sobre.png', 'perfil-formacoes.png', 'perfil-certificados.png', 'secao-contato.png'],
   'peexl-site': ['home-hero.png', 'jornada-diagnostico.png', 'self-service-bi.png', 'secao-projetos.png', 'sobre-peexl.png', 'planos-peexl.png'],
   'task-manager': ['login.png', 'dashboard.png', 'tarefas.png', 'configuracoes.png', 'usuarios.png'],
-  'peexl-management-ai': ['capa.svg', 'Screenshot_2.png', 'Screenshot_1.png', 'Screenshot_14.png', 'Screenshot_3.png'],
+  'peexl-management-ai': ['capa.png', 'Screenshot_2.png', 'Screenshot_1.png', 'Screenshot_14.png', 'Screenshot_3.png'],
   materials: ['aeris3.png', 'aeris4.png', 'aeris-premiacao-1.png', 'aeris-premiacao-2.png'],
   'aeris-he': ['aeris-controle-he.png', 'aeris-guindastes.png', 'aeris-veiculos.png'],
   trimark: ['trimark-financeiro-1.png', 'trimark-financeiro-2.png', 'trimark-financeiro-3.png', 'trimark-financeiro-4.png'],
@@ -1964,7 +1964,7 @@ grid.addEventListener('click', event => {
     gallery.append(thumb);
   });
   selectImage(images[0], 0);
-  document.getElementById('peexl-case-results-heading').textContent = ['portfolio', 'peexl-site', 'task-manager', 'peexl-management-ai'].includes(button.dataset.case) ? 'Resultado' : 'Resultados descritos no portfólio da PEEXL';
+  document.getElementById('peexl-case-results-heading').textContent = 'Resultados';
   fillList('peexl-case-objectives', detail.objectives);
   fillList('peexl-case-actions', detail.actions);
   fillList('peexl-case-results', detail.results, true);
