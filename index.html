@@ -734,6 +734,35 @@
         }
         #educacao .card-hover:hover,
         #certificacoes .card-hover:hover { transform: none; border-color: transparent; box-shadow: none; }
+        #certificacoes img { cursor: zoom-in; }
+        #certificate-image-dialog {
+            width: min(96vw, 1100px);
+            max-width: none;
+            max-height: 94vh;
+            padding: 3.5rem 1rem 1rem;
+            border: 1px solid rgba(167, 168, 248, .35);
+            border-radius: 1rem;
+            background: rgba(8, 10, 33, .98);
+            color: #F6F9DC;
+        }
+        #certificate-image-dialog::backdrop { background: rgba(2, 4, 20, .88); }
+        #certificate-image-dialog img {
+            display: block;
+            max-width: 100%;
+            max-height: calc(94vh - 5rem);
+            margin: 0 auto;
+            object-fit: contain;
+        }
+        #certificate-image-close {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            padding: .45rem .8rem;
+            border: 1px solid rgba(167, 168, 248, .45);
+            border-radius: .5rem;
+            background: #1f234b;
+            color: #F6F9DC;
+        }
         #certificacoes img {
             display: block;
             width: 100%;
@@ -1176,6 +1205,27 @@
                     <h3 class="text-2xl font-bold text-[#A7A8F8] mb-6">Certificados e Reconhecimentos</h3>
                     
                     <div class="space-y-6">                       
+                        <!-- Formação SQL e Banco de Dados -->
+                        <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
+                            <div class="flex flex-col md:flex-row md:items-center">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <img src="imagens/certificados/certificado-sql.jpg" alt="Certificado de conclusão do curso SQL Impressionador" class="rounded-lg" loading="lazy">
+                                </div>
+                                <div class="md:w-3/4 md:pl-6">
+                                    <h4 class="text-xl font-bold mb-2">Formação SQL e Banco de Dados</h4>
+                                    <p class="text-[#A7A8F8] mb-3">Hashtag Treinamentos | nov de 2026</p>
+                                    <p class="text-[#F6F9DC]/80">
+                                        A Hashtag Treinamentos confere o presente certificado a Paulo Estevão Freitas Maia pela conclusão do curso SQL Impressionador com duração de 92 horas, concluído no dia 12/11/26. Credencial sql-paul1795597028889ff8fecf6.
+                                    </p>
+                                    <a href="https://portal.hashtagtreinamentos.com/certificate/verify/sql-paul1795597028889ff8fecf6"
+                                    target="_blank" rel="noopener noreferrer"
+                                    class="inline-block mt-3 text-[#A7A8F8] hover:underline">
+                                    Ver certificado <i class="fas fa-external-link-alt ml-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Certificação 1 -->
                         <div class="bg-[#080A21] p-6 rounded-lg border border-[#A7A8F8]/20 card-hover">
                             <div class="flex flex-col md:flex-row md:items-center">
@@ -1184,11 +1234,11 @@
                                 </div>
                                 <div class="md:w-3/4 md:pl-6">
                                     <h4 class="text-xl font-bold mb-2">Formação Inteligência Artificial</h4>
-                                    <p class="text-[#A7A8F8] mb-3">Hashtag Treinamentos | abr de 2026</p>
+                                    <p class="text-[#A7A8F8] mb-3">Hashtag Treinamentos | jul de 2026</p>
                                     <p class="text-[#F6F9DC]/80">
-                                        A Hashtag Treinamentos confere o presente certificado a Paulo Estevão Freitas Maia pela conclusão do curso Inteligência Artificial Impressionador com duração de 57 horas, concluído no dia 24/04/26. Credencial INTPAU1777040745.
+                                        A Hashtag Treinamentos confere o presente certificado a Paulo Estevão Freitas Maia pela conclusão do curso Inteligência Artificial Impressionador com duração de 55 horas, concluído no dia 02/07/26. Credencial intepaul1795603542133cdf312e8.
                                     </p>
-                                    <a href="https://portalhashtag.com/validacao-certificado/1777040744775x475404270750446000" 
+                                    <a href="https://portal.hashtagtreinamentos.com/certificate/verify/intepaul1795603542133cdf312e8"
                                     target="_blank" rel="noopener noreferrer"
                                     class="inline-block mt-3 text-[#A7A8F8] hover:underline">
                                     Ver credencial <i class="fas fa-external-link-alt ml-1"></i>
@@ -1995,6 +2045,29 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
     <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const certificateDialog = document.getElementById('certificate-image-dialog');
+            const expandedCertificate = document.getElementById('certificate-image-expanded');
+            document.querySelectorAll('#certificacoes img').forEach(image => {
+                image.tabIndex = 0;
+                image.setAttribute('role', 'button');
+                image.setAttribute('aria-label', 'Ampliar ' + image.alt);
+                image.addEventListener('click', () => {
+                    expandedCertificate.src = image.src;
+                    expandedCertificate.alt = image.alt;
+                    certificateDialog.showModal();
+                });
+                image.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        image.click();
+                    }
+                });
+            });
+            document.getElementById('certificate-image-close').addEventListener('click', () => certificateDialog.close());
+            certificateDialog.addEventListener('click', event => {
+                if (event.target === certificateDialog) certificateDialog.close();
+            });
+
             document.getElementById('year').textContent = new Date().getFullYear();
 
             const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -2441,5 +2514,9 @@ dialog.addEventListener('click', event => { if (event.target === dialog) dialog.
         });
 
     </script>  
+    <dialog id="certificate-image-dialog" aria-label="Imagem ampliada do certificado">
+        <button id="certificate-image-close" type="button" aria-label="Fechar imagem ampliada">Fechar ×</button>
+        <img id="certificate-image-expanded" alt="">
+    </dialog>
 </body>
 </html>
